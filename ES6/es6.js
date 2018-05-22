@@ -705,3 +705,32 @@ console.log(typeof Symbol());//symbol，ES6新增的数据类型，用Symbol()�
     console.log(s);//Set(2) {1,2}
 }
 
+//(3)Set实例的属性和方法
+{
+    let s = new Set([1, 2, 3, 4]);
+    s.size;//4，获取成员个数
+    s.entries();//返回一个键值对的遍历器
+    s.keys();//返回一个键的遍历器，set中键和值一样
+    s.values();//返回一个值的遍历器
+    s.has(2);//true，判断set结构中是否有指定的值，有则返回true，否则返回false
+    s.delete(2);//true，删除指定的值，删除成功返回true，失败返回false
+    s.clear();//清除所有成员
+}
+
+//(4)遍历Set结构
+{
+    let s = new Set([1, 2, 3, 4]);
+    for (let v of s) {
+        console.log(v);
+    }
+    for (let [i, v] of s.entries()) {
+        console.log(i, v);
+    }
+    for (let i of s.keys()) {
+        console.log(i);
+    }
+    for (let v of s.values()) {
+        console.log(v);
+    }
+    s.forEach(v => console.log(v));
+}
