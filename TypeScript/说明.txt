@@ -1,0 +1,2 @@
+(1)通过npm install typescript -g，全局安装typescript后，就可以用typescript编译器，编译.ts文件了
+(2)通过tsc hello.ts可以将.ts文件编译成.js文件
