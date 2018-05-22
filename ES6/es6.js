@@ -687,7 +687,7 @@ console.log(typeof Symbol());//symbol，ES6新增的数据类型，用Symbol()�
 
 //-------------------------------ES6新增的数据结构：Set和WeakSet----------------------------------------
 
-//(1)Set（与数组类似，只是它的值不会有重复项，成员唯一）
+//(1)Set（与数组类似，只是它的值不会有重复项，成员唯一，而且键和值一样）
 {
     console.log("------------------Set和WeakSet-------------------")
     let arr = new Array([1, 2, 3, 4, 4]);
@@ -732,5 +732,98 @@ console.log(typeof Symbol());//symbol，ES6新增的数据类型，用Symbol()�
     for (let v of s.values()) {
         console.log(v);
     }
-    s.forEach(v => console.log(v));
+    s.forEach((v, key) => console.log(v, key));
 }
+
+//(5)Set的用途一：数组去重（利用Set成员唯一的特性）
+{
+    let arr = [1, 2, 3, 3, 2, 2, 4];
+    console.log(arr);
+    let s = new Set(arr);//得到的set已经去重
+    console.log(s);
+    arr = Array.from(s);//之前说过可以用Array.from方法将类数组的转为数组
+    console.log(arr);
+}
+
+//(6)WeakSet（与Set类似，只是它的成员必须是对象object类型，而且不可遍历，因为成员都是对象的弱引用）
+{
+    let ws = new WeakSet([{ "age": 18 }]);//成员必须是对象类型（比如数组、狭义的对象、函数）
+    ws.add([1, 2, 3]);//WeakSet依然有add()、delete()、has()方法，但由于不可遍历，所以没有keys()、values()、entries()、forEach(),以及clear()方法和size属性
+    console.log(ws);
+}
+
+
+//-------------------------------ES6新增的数据结构：Map和WeakMap--------------------------------
+
+//(1)Map（和Object对象类似，都是键值对的集合，只是它的键不局限于字符串，而可以是多种类型的值）
+{
+    let obj = new Object({//对象
+        "name": "前端君",
+        "age": 18
+    });
+    let m = new Map([//Map，参数是二维数组
+        ["name", "前端君"],
+        ["age", 18]
+    ]);
+    console.log("-----------------Map和WeakMap----------------------")
+    console.log(obj);//{name:"前端君",age:18}
+    console.log(m);//Map(2) {"name"=>"前端君","age"=>18}
+}
+
+//(2)Map的实例方法和属性
+{
+    let m = new Map();
+    m.set("name", "前端君");//set()方法，用于添加键值对
+    m.set(1, 2);
+    console.log(m);
+    m.set("name", "假的前端君");//set()方法的键重复，则会覆盖之前的
+    console.log(m);
+    let name = m.get("name");//get()方法用于读取指定键对应的值，没有则返回undefined
+    console.log(name);//假的前端君
+    m.has("name");//has()方法用于判断Map中是否有指定键对应的键值对，有返回true，否则返回false
+    m.delete("name");//delete()方法用于上次指定键对应的键值对，成功返回true，失败返回false
+    console.log(m);
+    m.clear();//clear()方法用于删除所有的键值对
+    console.log(m);
+    m.entries();//entries()方法返回键值对的遍历器
+    m.keys();//keys()方法返回键的遍历器
+    m.values();//values()方法返回值的遍历器
+    m.size;//返回成员个数
+}
+
+//(3)遍历Map结构
+{
+    let m = new Map([
+        ["name", "前端君"],
+        ["age", 18]
+    ])
+    for (let value of m) {
+        console.log(value);
+    }
+    for (let [key, value] of m) {
+        console.log(key, value);
+    }//等同于下面这个entries()方法得到的
+    for (let [key, value] of m.entries()) {//[key,value]就是解构赋值
+        console.log(key, value);
+    }
+    for (let key of m.keys()) {
+        console.log(key);
+    }
+    for (let value of m.values()) {
+        console.log(value);
+    }
+    m.forEach(function (value, key) {
+        console.log(key, value)
+    })
+}
+
+//(4)WeakMap（和Map类似，只是WeakMap的键只支持对象object类型的值：数组、狭义的对象、函数，和WeakSet支持的成员一样）
+{
+    let wm = new WeakMap();
+    wm.set([1], 2);//键是数组
+    wm.set({ "name": "张三" }, 2);//键是对象
+    wm.set(function () { }, 2);//键是函数
+    console.log(wm);
+}
+
+//(5)WeakMap同样有set、get、delete、has等方法，但不能遍历，理由和WeakSet一样，因为键都是引用类型，是弱引用，不知道什么时候会被回收
