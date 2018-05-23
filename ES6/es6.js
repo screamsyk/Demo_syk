@@ -989,13 +989,13 @@ console.log(typeof Symbol());//symbol，ES6新增的数据类型，用Symbol()�
 
 //--------------------------------ES6新增特性：module模块-----------------------------------
 
-//(1)ES6之前，JavaScript还不支持原生模块化，需要借助如requireJS、seaJS等，现在ES6提供的module则支持了（但还没有浏览器支持ES6的module模块）
+//(1)ES6之前，JavaScript还不支持原生模块化，需要借助如requireJS、seaJS等，现在ES6提供的module则支持了（但还没有浏览器支持ES6的module模块，下面我要注释下）
 
 //(2)模块Module（一个模块，就是一个文件，可以对其他模块暴露自己的属性和方法）
 
 //(3)如何暴露一个模块的属性和方法（Export Import）
 //---假设这个区块中的代码属于module-A.js文件
-{
+/* {
     export var name = "前端君";//通过export关键字将该属性暴露出去
 }
 //---假设这个区块中的代码属于module-B.js文件
@@ -1022,7 +1022,7 @@ console.log(typeof Symbol());//symbol，ES6新增的数据类型，用Symbol()�
     import * as obj from "module-A.js";//使用*实现整体导入
     console.log(obj.name1);
     import sayDefault from "module-A.js";//为没有名字的变量取任意名字，而且不需要大括号{}
-}
+} */
 
 //(5)导出的变量，处理对象类型外都是只读的，不可修改（因为对象类型是引用类型，修改时相当于地址一直没变，内容变了）
 
