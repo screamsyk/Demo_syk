@@ -1,5 +1,10 @@
 
-//--------------类型批注（编译时类型检测）-------------------
+//============================TypeScript===================================
+
+//(1)TypeScript是JavaScript的超集，用法上完全兼容JavaScript，而且ES6规定的JS语法也能在TypeScript中用
+
+
+//---------------------------TS特性：类型批注（编译时类型检测）------------------------------
 
 //(1)不带类型批注的函数
 function add1(shape, width, height) {
@@ -9,23 +14,81 @@ function add1(shape, width, height) {
 document.write(add1("rectangle1", 20, 30) + '<br/>');
 
 //(2)带类型批注的函数
-function add2(shape: string, width: number, height: number) {
+function add2(shape: string, width: number, height: number) {//类型批注用冒号:，前面是变量名，后面是类型（相当于java中的int i这种）
     var area = width * height;
     return "I'm a " + shape + " with an area of " + area + " cm squared.2";
 }
 document.write(add2("rectangle2", 40, 60) + '<br/>');
 
 
-//------------------接口---------------------
+//------------------------------TS中的数据类型（支持js中所有的，同时有新增）-------------------------------
 
-//(1)接口:作为类型批注
-interface shape {
+//(1)TS中的数据类型（下面也用到了“类型批注”）
+{
+    let isDone: boolean = true;//boolean，布尔类型
+    let num: number = 12;//number，数值类型（和JS一样都是浮点数存储）
+    let str: string = "字符串";//string，字符串
+    let ms: string = `数量为：${num}`;//string，模板字符串（ES6新增，反引号）
+    let list1: number[] = [1, 2, 3, 4];//数组
+    let list2: Array<number> = [1, 2, 3, 4];//数组的另一种定义方式
+    let tu: [string, number] = ["字符串", 12];//tuple，元组（代表已知元素个数和类型的数组，类型和顺序是一致的，之后还有一个联合类型string|number）
+    enum Color { green = 1, orange = 2, balck = 4 };//enum，枚举（enum关键字表明Color是一个枚举类型，为一组数值赋好名字）
+    let c: Color = Color.orange;
+    let a: any = 4;//any，任意类型值（不进行类型检查，一般使用了类型批注的都会在编译阶段进行类型检查，any类型不检查）
+    let v: void = undefined;//void，空值（只能赋值undefined和null），普通函数没有返回值会返回undefined，所以没有返回值的函数也可以用void类型批注
+    let un: undefined = undefined;//undefined
+    let nu: null = null;//null
+}
+
+//(2)类型断言（告诉编译器，数据准确的类型，编译器就不必再进行类型检查了，有点类似类型转换）
+{
+    let someValue: any = "this is a string";//any任意值
+    let num1: number = (<string>someValue).length;//<string>这种尖括号<>写法就是一种类型断言
+    let num2: number = (someValue as string).length;//用关键字as是类型断言的另一种形式，而JSX中只支持as，不支持<>
+}
+
+//(3)TypeScript中的变量声明可以用ES6中新增的特性let、const、解构赋值等，用法和ES6中的一样
+
+
+//---------------------------------TS特性：接口interface-------------------------------
+
+//(1)TypeScript的核心原则之一：对值的结构进行类型检查（结构性子类型化），接口的作用就是为这些类型命名。（类型化）
+function test1(obj: { name: string }) {//类型批注，可以看出test()函数有个对象参数，而且要求对象参数有一个键为name，类型为string的属性
+    console.log(obj.name);
+}
+//等同于用interface写
+interface objType {//接口objType就相当于一个名字，代表含有名称为name且类型为string的属性的对象
+    name: string
+}
+function test2(obj: objType) {//将接口interface作为类型批注
+    console.log(obj.name);
+}
+{
+    let o = { name: "张三", height: 172 };
+    test1(o);
+    test2(o);
+}
+
+//(2)interface指定只读属性
+interface Point {
+    readonly x: number,//用readonly表明属性只读，不可修改
+    y: number
+}
+{
+    let p: Point = { x: 10, y: 20 };
+    //p.x=5;//会报错，因为不可修改
+    let arr: ReadonlyArray<number> = [1, 2, 3];
+    //arr[0]=3;//会报错，因为ReadonlyArray把数组置为只读，不可修改
+}
+
+//(3)接口interface:作为对象的类型批注
+interface Shape {
     type: string,
     width: number,
-    height: number,
-    color?: string//?代表，这个参数可传可不传
+    readonly height: number,//readonly代表只读属性
+    color?: string,//?代表可选属性，这个参数可传可不传
 }
-function add3(shape: shape) {
+function add3(shape: Shape) {
     var area = shape.width * shape.height;
     return "I'm a " + shape.type + " with an area of " + area + " cm squared.3";
 }
@@ -42,6 +105,55 @@ var shape2 = {
 }
 document.write(add3(shape1) + '<br/>');
 document.write(add3(shape2) + '<br/>');
+
+//(4)接口interface：作为函数的类型批注
+interface fnc {
+    (name: string, height: number): boolean//描述函数的参数类型和返回值类型
+}
+let fn3: fnc;
+fn3 = function (name: string, height: number) {
+    return false;
+}
+
+//(5)接口interface：作为数组的类型批注
+interface arrType {
+    [index: number]: string//b描述索引的类型和值的类型
+}
+let arr: arrType;
+arr = ["bob", "tom"];
+
+//(6)类实现接口（接口interface描述类的公共部分）
+{
+    interface common {
+        type: string;
+        run(): any;
+    }
+    class Animal implements common {//类Animal实现接口common，这样类中必须有接口中的东西
+        type: string;
+        run() {
+            console.log("Animal can run!");
+        }
+        constructor() {
+            this.type = "animal";//接口中的属性必须在构造方法中初始化
+        }
+    }
+}
+
+//(7)接口的继承
+{
+    interface Shape {
+        color: string;
+    }
+
+    interface PenStroke {
+        penWidth: number;
+    }
+
+    interface Square extends Shape, PenStroke {//一个接口可以继承多个接口
+        sideLength: number;
+    }
+
+}
 
 
 //-------------------Lambda表达式，即箭头函数表达式=>------------------------
@@ -107,7 +219,7 @@ class cat extends animal {
         return "I like to eat mouse";
     }
     constructor(name: string, color: string, weight: number, type: string) {
-        super(name, color, weight);
+        super(name, color, weight);//super()方法相当于父类的构造方法，而super相当于父类实例this
         this.type = type;
     }
 }
@@ -116,3 +228,8 @@ console.log(tomCat.name);
 console.log(tomCat.color);
 console.log(tomCat.weight);
 console.log(tomCat.type);
+
+
+
+
+//()
