@@ -827,3 +827,203 @@ console.log(typeof Symbol());//symbol，ES6新增的数据类型，用Symbol()�
 }
 
 //(5)WeakMap同样有set、get、delete、has等方法，但不能遍历，理由和WeakSet一样，因为键都是引用类型，是弱引用，不知道什么时候会被回收
+
+
+//----------------------------ES6新增特性：Promise对象-----------------------------------
+
+//(1)Promise对象被设计出来解决异步请求由于数据依赖而层层嵌套的问题，能使我们更合理、更规范地处理异步操作
+/* {
+    $.ajax({
+        success: function () {
+            $.ajax({
+                success: function () {
+                    $.ajax({
+                        success: function () {
+                            //...不断依赖，不断嵌套，陷入“回调地狱”，代码可读性差，不直观，调试起来也很麻烦
+                        }
+                    });
+                }
+            });
+        }
+    })
+} */
+
+//(2)Promise的基本用法
+{
+    let pro = new Promise(function (resolve, reject) {//resolve和reject是内置参数，是函数
+        //Promise的状态一：pending，初始状态，表示刚刚创建Promise实例
+        if ("成功") {
+            resolve();//将状态从pending变为fulfilled（操作成功）
+        } else {
+            reject();//将状态从pending变为rejected（操作失败）
+        }
+    })
+    pro.then(function (res) {//then()方法用于绑定处理操作后的处理程序
+        //操作成功后的处理程序
+    }, function (error) {
+        //操作失败后的处理程序
+    });
+    pro.catch(function (error) {//catch()方法专门处理操作失败后的处理程序
+        //操作失败后的处理程序
+    });
+    pro.then(function () {//综合then()和catch()，这样更常用
+        //操作成功后的处理程序
+    }).catch(function () {
+        //操作失败后的处理程序
+    });
+}
+
+//(3)Promise的完整示例
+{
+    let pro = new Promise(function (resolve, reject) {
+        if (true) {
+            resolve();
+        } else {
+            reject();
+        }
+    })
+    function A() {
+        console.log("A执行了")
+        return "请求A成功";//通过return传递依赖的数据给下个请求
+    }
+    function B(res) {
+        console.log("上一步执行结果：" + res)
+        console.log("B执行了");
+        return "请求B成功"
+    }
+    function C(res) {
+        console.log("上一步执行结果：" + res)
+        console.log("C执行了");
+        return "请求C成功"
+    }
+    pro.then(A)//这样表明请求之间的依赖关系，就很明朗了
+        .then(B)
+        .then(C)
+        .catch(function () {
+            console.log("报错了")
+        });
+}
+
+//(4)Promise.all()方法（参数是Promise实例数组，所有实例的状态都从pending变化了才执行，常用于多个请求不相互依赖，但又需要所有请求的结果）
+{
+    let pro1 = new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            resolve("操作实例1成功")
+        }, 5000);
+    })
+    let pro2 = new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            resolve("操作实例2成功");
+        }, 1000);
+    })
+    Promise.all([pro1, pro2]).then(function (result) {//这里需要两个请求都完成了再执行
+        console.log(result);
+    });
+}
+
+//(5)Promise.race()方法与Promise.all()方法类似，只是只要有实例的状态变化了，就开始执行操作处理的then()方法或者catch()方法
+
+
+//----------------------------ES6新增特性：类class-----------------------------
+
+//(1)我们之前提过，JavaScript中没有类的概念，面向对象是通过构造函数和原型链实现的，这里ES6新增了类class的概念，不过实际上也是基于原型prototype的实现方式进行了封装
+{
+    class Animal {//定义类Animal（类也存在块作用域）
+
+        constructor(name, color) {//构造函数constructor，是一个类必有的方法，且唯一，如果没写，JS也会自动加上一个空的
+            this.name = name;
+            this.color = color;//类的属性
+        }
+
+        getName() {//自定义的类的方法，在类里面的方法必须采用对象的方法的简洁写法
+            return "它叫" + this.name;
+        }
+    }
+    let dog = new Animal("dog", "black");
+    console.log('----------------类class-----------------------')
+    console.log(dog.name, dog.color);//dog black
+    console.log(dog.getName());//它叫dog
+}
+
+//(2)类class就是基于构造函数和原型对象的实现方式，进行了进一步封装
+//---class Animal就像是原型对象prototype
+//---constructor就像是构造函数function
+//---new Animal()就像是用new调用构造函数
+
+//(3)类的静态方法
+{
+    class Fish {
+        constructor(type) {
+            this.type = type
+        }
+        static friends(a1, a2) {//用static关键字定义静态方法，类可以直接调用，相当于之前构造函数的静态方法
+            return `${a1}和${a2}`;
+        }
+    }
+}
+
+//(4)类的继承（extends关键字，子类必须在构造方法中调用super方法，而且必须先用super方法，再使用this）
+{
+    class Animal {//定义类Animal
+
+        constructor(name, color) {//构造函数constructor，是一个类必有的方法，且唯一，如果没写，JS也会自动加上一个空的
+            this.name = name;
+            this.color = color;//类的属性
+        }
+
+        getName() {//自定义的类的方法，在类里面的方法必须采用对象的方法的简洁写法
+            return "它叫" + this.name;
+        }
+    }
+    class Dog extends Animal {//定义类Dog继承于类Animal，关键字extends
+        constructor(name, color, type) {
+            super(name, color);//super关键字，一：相当于父类的构造方法，必须调用
+            super.getName();//super关键字，二：相当于父类中的this，代表父类的实例，常用来访问父类的实例方法。
+            this.type = type;//必须先用super方法，再使用this，不然报错
+        }
+    }
+    let dog = new Dog("henry", "gray", "strong");
+    console.log(dog.name, dog.color, dog.type);
+}
+
+
+//--------------------------------ES6新增特性：module模块-----------------------------------
+
+//(1)ES6之前，JavaScript还不支持原生模块化，需要借助如requireJS、seaJS等，现在ES6提供的module则支持了（但还没有浏览器支持ES6的module模块）
+
+//(2)模块Module（一个模块，就是一个文件，可以对其他模块暴露自己的属性和方法）
+
+//(3)如何暴露一个模块的属性和方法（Export Import）
+//---假设这个区块中的代码属于module-A.js文件
+{
+    export var name = "前端君";//通过export关键字将该属性暴露出去
+}
+//---假设这个区块中的代码属于module-B.js文件
+{
+    import { name } from "module-A.js";//通过import关键字导入模块A的属性name
+    console.log(name);
+}
+
+//(4)暴露多个属性和方法（单个属性导入导出、批量导出、*整体导入、as重命名、默认导出匿名函数）
+{
+    var name1 = "后端君";
+    var age = 25;
+    var say = function () {
+        console.log("hello");
+    }
+    export { name1, age, say };//批量导出
+    export default function(){//用export default实现默认导出一个没有名字的变量
+        console.log("默认导出")
+    }
+}
+{
+    import { name1, age, say } from "module-A.js";//批量导入（变量名必须与导出的相同，顺序可以不同）
+    import { name1 as name, age, say } from "module-A.js";//用关键字as重命名导入的变量
+    import * as obj from "module-A.js";//使用*实现整体导入
+    console.log(obj.name1);
+    import sayDefault from "module-A.js";//为没有名字的变量取任意名字，而且不需要大括号{}
+}
+
+//(5)导出的变量，处理对象类型外都是只读的，不可修改（因为对象类型是引用类型，修改时相当于地址一直没变，内容变了）
+
+//(6)导入的变量如果不存在，则使用时为undefined，而不会报错
