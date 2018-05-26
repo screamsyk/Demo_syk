@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>学习AngularJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./index.js"></script>
+</head>
+
+<body>
+    <!--带有控制器的AngularJS应用-->
+    <!--ng-app指令指定了一个值"myApp"，而且必须用angular的module方法来调用，从而创建AngularJS应用）-->
+    <!--ng-controller指定了对应的控制器，用于操控数据-->
+    <div ng-app="myApp" ng-controller="myController">
+        {{behavior}}，我的第一个控制器
+        <div>{{root}}</div>
+
+        <!--多个控制器-->
+        <div ng-controller="myController2">
+            {{behavior}}，我的第二个控制器
+            <div>{{root}}</div>
+        </div>
+
+        <!--使用ng-modal实现双向数据绑定，用ng-init可以初始化值，也可以在对应的控制器中初始化值，但ng-init优秀级更高-->
+        <div ng-controller="myController3">
+            <input type="text" ng-model="inputText" ng-init="inputText='双向数据绑定'">
+            <label>{{inputText}}</label>
+            <ul>
+                <li ng-repeat="item in list">{{item}}</li>
+                <!--ng-repeat用于遍历数组和对象-->
+            </ul>
+        </div>
+
+        <!--AngularJS过滤器：符号|调用-->
+        <div ng-controller="myController4">
+            <div>当前时间（未过滤）：{{time}}</div>
+            <div>当前时间（通过date过滤器过滤）：{{time|date:'yyyy-MM-dd'}}</div>
+            <div>字符串（未过滤）：{{str}}</div>
+            <div>字符串（过滤后变成大写）：{{str|uppercase}}</div>
+            <div>字符串（过滤后变成小写）：{{str|lowercase}}</div>
+            <ul>
+                <li ng-repeat="item in age">年龄为{{item}}岁，{{item|isAdult}}</li>
+            </ul>
+        </div>
+
+        <!--AngularJS服务-->
+        <div ng-controller="myController5">
+            <div>使用window.location对象得到的url为：{{windowUrl}}</div>
+            <div>通过内置的$location得到的url为：{{url}}</div>
+            <div>通过service自定义的：{{service}}</div>
+        </div>
+
+    </div>
+</body>
+
+</html>

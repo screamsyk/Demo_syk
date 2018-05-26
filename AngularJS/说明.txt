@@ -1,0 +1,2 @@
+(1)AngularJS是由Google公司开发的前端MVVM框架Angular的1.x版本，由于Angular 2.0及以后的版本与1.x版本的差异太大，两者就完全分开了
+(2)Angular 1.x版本称为AngularJS，Angular2.0版本及以后都称为Angular
