@@ -1,7 +1,35 @@
 
 //============================TypeScript===================================
 
-//(1)TypeScript是JavaScript的超集，用法上完全兼容JavaScript，而且ES6规定的JS语法也能在TypeScript中用
+//(1)TypeScript是微软开发的编程语言，是JavaScript的超集，用法上完全兼容JavaScript，而且ES6规定的JS语法也能在TypeScript中用
+
+//(2)TypeScript遵循ES6的语法，同时添加了基于类的面向对象编程的特性，以及其他一些语法
+
+//(3)Google于2016年9月底发布的Angular2框架（Angular1.0称为AngularJS，Angular2.0及以后称为Angular）也是由TypeScript开发的
+
+//(3)可以说JavaScript实现了ES5的语法，而TypeScript实现了ES6的语法
+
+//(4)TypeScript的优点：
+//---遵循ES6规范，是浏览器支持的趋势
+//---强大的IDE支持，就是有了类型批注（类型检查）、语法提示、重构（方便修改方法名字等）
+//---是Angular2框架的开发语言
+
+
+//-----------------------------TypeScript编译器compiler-----------------------------------
+
+//(1)之前说了TypeScript遵循ES6规范，由于ES6是2015年发布的，而大多数浏览器并不支持，所以需要转成ES5规范，于是需要一个编译器
+
+//(2)通过TypeScript编译器compiler（之后都简称tsc），将TypeScript代码转成符合ES5规范的JavaScript代码，这样浏览器就能识别了
+
+//(3)在线tsc：http://www.typescriptlang.org/play/index.html（官网上的在线tsc）
+
+//(4)本地tsc：通过Node.js的npm全局安装TypeScript（npm install typescript -g），通过tsc -v检测是否安装成功
+
+//(5)通过tsc命令就能使用typescript 编译器了，如tsc hello.ts就能在hello.ts所在目录下得到一个hello.js文件
+
+//(6)虽然能用tsc转.ts文件为.js文件，但每次都输入命令多麻烦呀，在VScode中就可以用运行任务的方式，集成下：
+//---"查看"-"命令面板"（ctrl+shift+p）-输入"configure task"-选择"构建--对应的tsconfig.json"
+//---这时会在工作区.vscode文件夹自动生成一个tasks.json文件
 
 
 //---------------------------TS特性：类型批注（编译时类型检测）------------------------------

@@ -9,7 +9,20 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-//(1)TypeScript是JavaScript的超集，用法上完全兼容JavaScript，而且ES6规定的JS语法也能在TypeScript中用
+//(1)TypeScript是微软开发的编程语言，是JavaScript的超集，用法上完全兼容JavaScript，而且ES6规定的JS语法也能在TypeScript中用
+//(2)TypeScript遵循ES6的语法，同时添加了基于类的面向对象编程的特性，以及其他一些语法
+//(3)Google于2016年9月底发布的Angular2框架（Angular1.0称为AngularJS，Angular2.0及以后称为Angular）也是由TypeScript开发的
+//(3)可以说JavaScript实现了ES5的语法，而TypeScript实现了ES6的语法
+//(4)TypeScript的优点：
+//---遵循ES6规范，是浏览器支持的趋势
+//---强大的IDE支持，就是有了类型批注（类型检查）、语法提示、重构（方便修改方法名字等）
+//---是Angular2框架的开发语言
+//-----------------------------TypeScript编译器compiler-----------------------------------
+//(1)之前说了TypeScript遵循ES6规范，由于ES6是2015年发布的，而大多数浏览器并不支持，所以需要转成ES5规范，于是需要一个编译器
+//(2)通过TypeScript编译器compiler（之后都简称tsc），将TypeScript代码转成符合ES5规范的JavaScript代码，这样浏览器就能识别了
+//(3)在线tsc：http://www.typescriptlang.org/play/index.html（官网上的在线tsc）
+//(4)本地tsc：通过Node.js的npm全局安装TypeScript（npm install typescript -g），通过tsc -v检测是否安装成功
+//(5)通过tsc命令就能使用typescript 编译器了，如tsc hello.ts就能在hello.ts所在目录下得到一个hello.js文件
 //---------------------------TS特性：类型批注（编译时类型检测）------------------------------
 //(1)不带类型批注的函数
 function add1(shape, width, height) {
@@ -54,20 +67,23 @@ document.write(add2("rectangle2", 40, 60) + '<br/>');
 }
 //(3)TypeScript中的变量声明可以用ES6中新增的特性let、const、解构赋值等，用法和ES6中的一样
 //---------------------------------TS特性：接口interface-------------------------------
-//(1)TypeScript的核心原则之一：对值的结构进行类型检查（结构性子类型化），接口的作用就是为这些类型命名。
+//(1)TypeScript的核心原则之一：对值的结构进行类型检查（结构性子类型化），接口的作用就是为这些类型命名。（类型化）
+function test1(obj) {
+    console.log(obj.name);
+}
+function test2(obj) {
+    console.log(obj.name);
+}
 {
-    function test(obj) {
-        console.log(obj.name);
-    }
     var o = { name: "张三", height: 172 };
-    test(o);
-} //等同于用interface写
+    test1(o);
+    test2(o);
+}
 {
-    function test(obj) {
-        console.log(obj.name);
-    }
-    var o = { name: "张三", height: 172 };
-    test(o);
+    var p = { x: 10, y: 20 };
+    //p.x=5;//会报错，因为不可修改
+    var arr_1 = [1, 2, 3];
+    //arr[0]=3;//会报错，因为ReadonlyArray把数组置为只读，不可修改
 }
 function add3(shape) {
     var area = shape.width * shape.height;
@@ -92,7 +108,7 @@ fn3 = function (name, height) {
 };
 var arr;
 arr = ["bob", "tom"];
-//(4)类实现接口（接口interface描述类的公共部分）
+//(6)类实现接口（接口interface描述类的公共部分）
 {
     var Animal = /** @class */ (function () {
         function Animal() {
@@ -104,7 +120,7 @@ arr = ["bob", "tom"];
         return Animal;
     }());
 }
-//(5)接口的继承
+//(7)接口的继承
 {
 }
 //-------------------Lambda表达式，即箭头函数表达式=>------------------------
