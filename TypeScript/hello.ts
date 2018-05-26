@@ -34,21 +34,32 @@
 //---"任务"-"运行任务"-选择配置任务时的"构建--对应的tsconfig.json"，就可以把所有的.ts文件都转成对应的.js文件了
 
 
-//---------------------------TS特性：类型批注（编译时类型检测）------------------------------
+//----------------------TS特性：类型批注（编译时类型检测到错误后，只有.ts文件会报错，对于转成的弱类型的.js文件是没有影响的）------------------------------
 
-//(1)不带类型批注的函数
-function add1(shape, width, height) {
-    var area = width * height;
-    return "I'm a " + shape + " with an area of " + area + " cm squared.1";
-}
-document.write(add1("rectangle1", 20, 30) + '<br/>');
+//(1)基本的类型批注（用冒号:，前面是变量名，后面是类型）
+var a: string = 'sting';
+var b: number = 12;
+var c: any = 13;//默认类型是any，代表任意类型，和js中一样的动态类型
+var isMan: boolean = true;
+function fn(name: string): void {//无类型就是void，函数参数也可以指定类型
 
-//(2)带类型批注的函数
-function add2(shape: string, width: number, height: number) {//类型批注用冒号:，前面是变量名，后面是类型（相当于java中的int i这种）
-    var area = width * height;
-    return "I'm a " + shape + " with an area of " + area + " cm squared.2";
 }
-document.write(add2("rectangle2", 40, 60) + '<br/>');
+
+//(2)将自定义类型作为类型批注
+{
+    class Person {//这里定义了一个类，但一般用接口（下面了解）来作为类型批注
+        name: string;
+        age: number;
+        constructor(name: string, age: number) {
+            this.name = name;
+            this.age = age;
+        }
+    }
+    var person: Person = {//person是Person类型的，那么赋给person的对象必须含有name、age属性，不然就报错
+        name: '张三',
+        age: 12
+    }
+}
 
 
 //------------------------------TS中的数据类型（支持js中所有的，同时有新增）-------------------------------
@@ -186,15 +197,15 @@ arr = ["bob", "tom"];
 }
 
 
-//-------------------Lambda表达式，即箭头函数表达式=>------------------------
+//-------------------TS实现ES6规范：Lambda表达式，即箭头函数表达式=>------------------------
 
 //(1)传统函数定义
-var fn1 = function (x) {
+var fn1 = function (x: number) {
     return x * x;
 }
 
 //(2)箭头函数
-var fn2 = (x) => x * x;//箭头前的：代表传递进去的参数，箭头后的：代表函数体
+var fn2 = (x: number) => x * x;//箭头前的：代表传递进去的参数，箭头后的：代表函数体
 
 //(3)函数中this的指向（箭头函数修复了this的指向）
 var obj = {
@@ -212,14 +223,15 @@ obj.fn1();//此时this指向window对象
 obj.fn2();//此时this指向obj对象
 
 
-//-----------------------类：typescript支持了ES6中新增的class（实际上也是基于原型prototype的实现方式进行了进一步封装）---------------------------
+//-----------------------TS实现ES6规范：类class（实际上也是基于原型prototype的实现方式进行了进一步封装）---------------------------
 
-//(1)定义一个叫animal的类
+//(1)定义一个叫animal的类（使用访问控制符public、private、protected）
 class animal {
 
     //以类型批注的形式声明属性，注意是以分号;结束
-    public name: string;//公有属性，在任何地方都可以访问
-    private color: string;//私有属性，只能在类体中访问
+    public name: string;//公有属性，在【任何地方】都可以访问，默认
+    private color: string;//私有属性，只能在【本类的类体】中访问
+    protected type: string;//受保护属性，只能在【本类的类体】中和【子类的类体】中访问
     weight: number;//默认公有
 
     //定义方法
@@ -228,38 +240,98 @@ class animal {
     }
 
     //类的构造方法（必须有），this指向实例化后的对象，在构造方法中可以定义属性
-    constructor(name, color, weight) {
+    constructor(name: string, color: string, type: string, weight: number) {
         this.name = name;
         this.color = color;
+        this.type = type;
         this.weight = weight;
     }
 }
 
 //(2)基于类实例化dog对象
-var dog = new animal('旺财', "black", 40);
+var dog = new animal('旺财', "black", "dog", 40);
 console.log(dog.run());
 console.log(dog.name);
-console.log(dog.color);
+//console.log(dog.color);私有属性不可访问
 console.log(dog.weight);
 
 //(3)继承类（关键字extends）
 class cat extends animal {
-    type: string;//新增属性type
+    sex: string;//新增属性type
     eat() {
         return "I like to eat mouse";
     }
-    constructor(name: string, color: string, weight: number, type: string) {
-        super(name, color, weight);//super()方法相当于父类的构造方法，而super相当于父类实例this
-        this.type = type;
+    constructor(name: string, color: string, type: string, weight: number, sex: string) {
+        super(name, color, type, weight);//super()方法相当于父类的构造方法，而super相当于父类实例this
+        this.sex = sex;
     }
 }
-var tomCat = new cat('tomcat', "black", 1000, "server");
+var tomCat = new cat('tomcat', "black", "hasDog", 1000, "server");
 console.log(tomCat.name);
-console.log(tomCat.color);
+//console.log(tomCat.color);私有属性不可访问
 console.log(tomCat.weight);
-console.log(tomCat.type);
+//console.log(tomCat.type);受保护的属性不可访问
+
+
+//----------------------------------TS新特性：函数---------------------------------
+
+//(1)函数的参数可以使用类型批注，指定类型
+function fun(name: string, age: number) {
+    console.log(`${name}的年龄是${age}`);
+}
+fun('小王', 12);//函数调用时，声明了的参数都必须传，而且类型必须一致（如果传的参数数量不对，或者类型不对，就会报错）
+
+//(2)函数的参数可以指定默认值，表示是否必传
+function fun2(name: string, age: number = 0) {//指定默认值的参数，必须放在最后面
+    console.log(`${name}的年龄是${age}`);
+}
+fun2('小米');//指定了默认值的参数，就可以不必须传了
+
+//(3)用问号?表示参数是否可选，即是否必传（可选参数必须在必填参数后面）
+function fun3(a: string, b?: string, c: number = 12) {
+    console.log(a);
+}
+fun3('hello world');//这里?和指定默认值，这两种方式，都可以让函数的参数变成不必传
+
+//(4)rset参数和spread操作符（即ES6中的扩展运算符...），可以给函数指定任意参数
+function fun4(...arr: Array<any>) {
+    arr.forEach(v => console.log(v));
+}
+fun4(1, 2, 3, 4);
+
+//(5)generator函数（ES6中的生成器函数，但目前TS还不支持）
 
 
 
+//--------------------------TS实现ES6规范：模块Module---------------------------
 
-//()
+//(1)在TypeScript中，一个文件就是一个模块（这里建立module-A.ts、module-B.ts）
+
+//(2)使用export和import关键字，来导出模块的内容和导入模块的内容
+
+
+//---------------------------TS新特性：注解（修饰器）-----------------------------------------
+
+//(1)注解与程序逻辑无关，只是用于加上一些说明，供指定的工具和框架使用
+
+//(2)比如Angular2框架中的注解
+/* @component({
+    selector: 'app-root',
+    templateUrl: './app-component.html',
+    styleUrl: ['./app-component.css']
+})
+class AppComponent{//当声明这个类时，注解就告诉angular框架要去加载对应的html和css
+    title="Angular framework"
+} */
+
+
+//----------------------------TS新特性：类型定义文件.d.ts文件--------------------------------------
+
+//(1)类型定义文件（.d.ts文件），用来将已有的JavaScript工具包，如jQuery作为模块供TypeScript使用
+
+//(2)可以从github上下载类型定义文件：https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types
+
+//(3)也可以通过工具Typings安装类型定义文件：https://github.com/typings/typings
+//---使用npm install typings -g，安装typings
+//---使用typings search jquery，查找想找的类型定义文件，如jquery
+//---使用typings install jquery --save --source dt --global，安装jquery的类型定义文件
