@@ -24,9 +24,11 @@ var __extends = (this && this.__extends) || (function () {
 //(3)在线tsc：http://www.typescriptlang.org/play/index.html（官网上的在线tsc）
 //(4)本地tsc：通过Node.js的npm全局安装TypeScript（npm install typescript -g），通过tsc -v检测是否安装成功
 //(5)通过tsc命令就能使用typescript 编译器了，如tsc hello.ts就能在hello.ts所在目录下得到一个hello.js文件
-//(6)虽然能用tsc转.ts文件为.js文件，但每次都输入命令多麻烦呀，在VScode中就可以用运行任务的方式，集成下：
+//(6)虽然能用tsc转.ts文件为.js文件，但每次都输入命令多麻烦呀，在VScode中就可以用【运行任务】的方式集成下：
+//---当然最开始我们使用TypeScript需要创建工程的配置文件，通过tsc --init就可以创建对应的tsconfig.json文件了
 //---"查看"-"命令面板"（ctrl+shift+p）-输入"configure task"-选择"构建--对应的tsconfig.json"
 //---这时会在工作区.vscode文件夹自动生成一个tasks.json文件
+//---"任务"-"运行任务"-选择配置任务时的"构建--对应的tsconfig.json"，就可以把所有的.ts文件都转成对应的.js文件了
 //---------------------------TS特性：类型批注（编译时类型检测）------------------------------
 //(1)不带类型批注的函数
 function add1(shape, width, height) {
