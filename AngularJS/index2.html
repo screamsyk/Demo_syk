@@ -41,6 +41,7 @@
             <div>字符串（未过滤）：{{str}}</div>
             <div>字符串（过滤后变成大写）：{{str|uppercase}}</div>
             <div>字符串（过滤后变成小写）：{{str|lowercase}}</div>
+            <div>使用$filter调用过滤器：{{str_lower}}</div>
             <ul>
                 <li ng-repeat="item in age">年龄为{{item}}岁，{{item|isAdult}}</li>
             </ul>
@@ -51,8 +52,16 @@
             <div>使用window.location对象得到的url为：{{windowUrl}}</div>
             <div>通过内置的$location得到的url为：{{url}}</div>
             <div>通过service自定义的：{{service}}</div>
+            <div>通过factory自定义的：{{service2}}</div>
         </div>
 
+        <!--AngularJS指令-->
+        <my-directive1></my-directive1><!--作为html元素使用-->
+        <my-directive2></my-directive2><!--作为html元素使用，而且看不到指令标签名称-->
+        <my-directive3></my-directive3><!--作为html元素：E-->
+        <div my-directive3></div><!--作为html属性：A-->
+        <div class="my-directive3"></div><!--作为属性class的值：C-->
+        <my-directive4 attr-one="这是参数一" attr-two="这是参数二"></my-directive4>
     </div>
 </body>
 
