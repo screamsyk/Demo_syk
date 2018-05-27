@@ -1,0 +1,30 @@
+﻿<!--标题部分-->
+<div style="font-size:22px"><span class="fa fa-heart"></span><span style="margin:0 8px">{{title}}</span></div>
+
+<!--内容部分-->
+<div style="width:100%;margin-top:20px;background-color:#ffffff;;padding:10px 20px">
+      <!--内容头部-->
+      <div style="height:48px;line-height:48px;border-bottom: 1px solid #eef1f5;margin-bottom:20px">
+         <span style="font-size:18px;color:32c5d2">兴趣选项配置</span>
+         <button type="button" ng-click="saveUserInterest()" style="float:right; font-size:15px;color:#ffffff;margin-top:5px" class="btn btn-info"><span class="fa fa-save"></span><span style="margin-left:5px">保存</span></button>
+      </div>
+      <!--内容-->
+      <div style="padding:0 20px">
+           <div style="color:#82949a">配置已选项：</div>
+           <div style="margin:20px">
+               <div style="margin-bottom:10px;margin-right:10px;color:#999999" ng-repeat="userInterest in userInterests" ng-click="dealSelected(userInterest)" ng-class="{true:'btn-interest',false:'btn-not-interest'}[!userInterest.isClick]" class="btn btn-default">
+                   <span>{{userInterest.NVC_NAME}}</span>
+                   <span ng-if="!userInterest.isClick" style="margin-left:5px" class="icon-check"></span>
+               </div>
+           </div>
+           <div style="color:#82949a">配置待选项：</div>
+           <div style="margin:20px">
+               <div style="margin-bottom:10px;margin-right:10px;color:#999999" ng-if="!isSelected(interestTheme)" ng-repeat="interestTheme in interestThemes" ng-click="dealNotSelected(interestTheme)" ng-class="{true:'btn-interest',false:'btn-not-interest'}[interestTheme.isClick]" class="btn btn-default">
+                    <span>{{interestTheme.NVC_NAME}}</span><span ng-if="interestTheme.isClick" style="margin-left:5px" class="icon-check"></span>
+               </div>
+           </div>
+      </div>
+      <!--底部分割线-->
+      <div style="text-align:center;margin-top:20px;margin-bottom:20px;border-top: 1px solid #eef1f5;padding-top:10px">
+      </div>
+</div>

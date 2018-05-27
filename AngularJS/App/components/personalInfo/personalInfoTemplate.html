@@ -1,0 +1,77 @@
+﻿<!--标题部分-->
+<div style="font-size:22px"><span class="fa fa-user"></span><span style="margin:0 8px">{{title}}</span></div>
+
+<!--内容部分-->
+<div style="width:100%;margin-top:20px;background-color:#ffffff;;padding:10px 20px">
+      <!--内容头部-->
+      <div style="height:48px;line-height:48px;border-bottom: 1px solid #eef1f5;margin-bottom:20px">
+         <span style="font-size:18px;color:32c5d2">{{contentTitle}}</span>
+         <button type="button" ng-if="!isEdit" ng-click="startEdit()" style="float:right; font-size:15px;color:#ffffff;margin-top:5px" class="btn btn-info"><span class="fa fa-edit"></span><span style="margin-left:5px">编辑</span></button>
+         <button type="button" ng-if="isEdit" ng-click="startSave()" style="float:right; font-size:15px;color:#ffffff;margin-top:5px" class="btn btn-info"><span class="fa fa-save"></span><span style="margin-left:5px">保存</span></button>
+         <button type="button" ng-if="isEdit" ng-click="cancelEdit()" style="float:right; font-size:15px;color:#999999;margin-top:5px;margin-right:10px" class="btn btn-default"><span class="icon-remove-sign"></span><span style="margin-left:5px">取消</span></button>
+      </div>
+
+      <!--内容主体-->
+      <div style="padding:0 50px" class="container-fluid">
+          <div style="margin-bottom:25px" class="row">
+              <div style="text-align:center;color:#999999" class="col-sm-4">姓名 / Name</div>
+              <div style="text-align:center" class="col-sm-8">
+                  <span style="font-weight: 600;">{{user.name}}</span>
+              </div>
+          </div>
+          <div style="margin-bottom:25px" class="row">
+              <div style="text-align:center;color:#999999" class="col-sm-4">性别 / Sex</div>
+              <div style="text-align:center" class="col-sm-8">
+                  <span style="font-weight: 600;">{{user.sex|Sex}}</span>
+              </div>
+          </div>
+          <div style="margin-bottom:25px" class="row">
+              <div style="text-align:center;color:#999999" class="col-sm-4">民族 / Nation</div>
+              <div style="text-align:center" class="col-sm-8">
+                  <span style="font-weight: 600;">{{user.nation}}</span>
+              </div>
+          </div>
+          <div style="margin-bottom:25px" class="row">
+              <div style="text-align:center;color:#999999" class="col-sm-4">籍贯 / Birthplace</div>
+              <div style="text-align:center" class="col-sm-8">
+                  <span style="font-weight: 600;">{{user.birthplace}}</span>
+              </div>
+          </div>
+          <div style="margin-bottom:25px" class="row">
+              <div style="text-align:center;color:#999999" class="col-sm-4">学历 / Education</div>
+              <div style="text-align:center" class="col-sm-8">
+                  <span style="font-weight: 600;">{{user.education}}</span>
+              </div>
+          </div>
+          <div style="margin-bottom:25px" class="row">
+              <div style="text-align:center;color:#999999" class="col-sm-4">年级 / Grade</div>
+              <div style="text-align:center" class="col-sm-8">
+                  <span style="font-weight: 600;">{{user.grade}}级</span>
+              </div>
+          </div>
+          <div style="margin-bottom:25px" class="row">
+              <div style="text-align:center;color:#999999" class="col-sm-4">专业 / Profession</div>
+              <div style="text-align:center" class="col-sm-8">
+                  <span style="font-weight: 600;">{{user.profession}}</span>
+              </div>
+          </div>
+          <div style="margin-bottom:25px" class="row">
+              <div style="text-align:center;color:#999999" class="col-sm-4">手机号 / Telephone</div>
+              <div style="text-align:center" class="col-sm-8">
+                  <span ng-if="!isEdit" style="font-weight: 600;">{{user.telephone}}</span>
+                  <input id="telephoneId" ng-if="isEdit" ng-model="requestParams.telephone" type="text" class="form-control" placeholder="Telephone"/>
+              </div>
+          </div>
+          <div style="margin-bottom:25px" class="row">
+              <div style="text-align:center;color:#999999" class="col-sm-4">邮箱 / Email</div>
+              <div style="text-align:center" class="col-sm-8">
+                  <span ng-if="!isEdit" style="font-weight: 600;">{{user.email}}</span>
+                  <input id="emailId" ng-if="isEdit" ng-model="requestParams.email" type="email" class="form-control" placeholder="Email"/>
+              </div>
+          </div>
+      </div>
+
+      <!--底部分割线-->
+      <div style="text-align:center;margin-bottom:20px;border-top: 1px solid #eef1f5;padding-top:10px">
+      </div>
+</div>

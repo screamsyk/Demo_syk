@@ -1,0 +1,5 @@
+(1)App是基于之前学习AngularJS之后，利用AngularJS实现的一个完整AngularJS应用，但不涉及后台请求
+(2)主要依赖的js包这些还是通过npm管理
+(3)包含的模块化采用RequireJS、路由切换采用angular-ui-router、资源的懒加载采用ocLazyLoad等
+(4)使用路由，必须将项目放在web服务器中进行访问才行，只有ftp协议是不支持的，所以这里采用webpack的一个服务器插件
+(5)既然要用webpack服务器插件，那么肯定要学习下webpack咯，详见https://www.webpackjs.com/

@@ -1,0 +1,70 @@
+﻿<!--标题部分-->
+<div style="font-size:22px"><span class="fa fa-cog"></span><span style="margin:0 8px">{{title}}</span></div>
+
+<!--内容部分-->
+<!--推送方式-->
+<div style="width:100%;margin-top:20px;background-color:#ffffff;;padding:10px 20px">
+      <div style="height:48px;line-height:48px;border-bottom: 1px solid #eef1f5;margin-bottom:20px">
+            <span style="font-size:18px;color:32c5d2">推送形式</span>
+            <button type="button" ng-click="savePushSet()" style="float:right; font-size:15px;color:#ffffff;margin-top:5px" class="btn btn-info"><span class="fa fa-save"></span><span style="margin-left:5px">保存所有设置</span></button>
+      </div>
+      <div class="container-fluid">
+            <div class="row">
+                 <div style="text-align:center;font-size:20px;color:#82949a" class="col-md-6">
+                      <input style="cursor:pointer" type="checkbox" id="telephone" ng-model="pushSet.isUseSms" ng-disabled="!isExitTelephone"/><label style="cursor:pointer;font-weight:normal;padding-left:10px" for="telephone">手机短信</label>
+                      <span style="font-size:10px;color:red" ng-if="!isExitTelephone">（请在个人中心绑定手机号）</span>
+                 </div>
+                 <div style="text-align:center;font-size:20px;color:#82949a" class="col-md-6">
+                      <input style="cursor:pointer" type="checkbox" id="email" ng-model="pushSet.isUseEmail" ng-disabled="!isExitEmail"/><label style="cursor:pointer;font-weight:normal;padding-left:10px" for="email">电子邮件</label>
+                      <span style="font-size:10px;color:red" ng-if="!isExitEmail">（请在个人中心绑定邮箱）</span>
+                 </div>
+            </div>
+      </div>
+      <!--底部分割线-->
+      <div style="text-align:center;margin-bottom:20px;margin-top:20px; border-top: 1px solid #eef1f5;padding-top:10px">
+      </div>
+</div>
+
+<div style="width:100%;margin-top:20px;background-color:#ffffff;;padding:10px 20px">
+      <!--内容头部-->
+      <div style="height:48px;line-height:48px;border-bottom: 1px solid #eef1f5;margin-bottom:20px">
+         <span style="font-size:18px;color:32c5d2">定期推送</span>
+         <div style="height:32px;float:right;margin-top:5px">
+             <input type="checkbox" id="setTimeId" readonly data-on-color="info" data-off-color="warning" data-on-text="已开启" data-off-text="已关闭"/>
+         </div>
+      </div>
+      <div class="container-fluid">
+            <div style="text-align:center;color:#82949a;margin:20px 0">
+                <span>功能说明：用户自定义图书信息推送周期和时间，系统根据设定的周期和时间定期推送最新的图书信息。目前暂未开放此功能，敬请期待！</span>
+            </div>
+            <div class="row">
+                 <div style="text-align:center;color:#82949a;margin-top:30px" class="col-md-6">
+                      <span>推送周期：</span>
+                      <select style="display:inline;width:50%" class="form-control" ng-model="pushSet.pushCycle" ng-options="pushCycle.value as pushCycle.name for pushCycle in pushCycles"></select>
+                 </div>
+                 <div style="text-align:center;color:#82949a;margin-bottom:10px" class="col-md-6">
+                      <span style="float:left;margin:35px 20px 0 20%">推送时间：</span>
+                      <div style="float:left" uib-timepicker ng-model="pushSet.pushTime" ng-change="changed()" hour-step="1" minute-step="1" show-meridian="false"></div>
+                      <button style="float:left;margin-top:27px;margin-left:20px" type="button" class="btn btn-danger" ng-click="clear()">清空</button>
+                 </div>
+            </div>
+      </div>
+      <!--底部分割线-->
+      <div style="text-align:center;margin-bottom:20px;margin-top:20px;border-top: 1px solid #eef1f5;padding-top:10px">
+      </div>
+</div>
+<div style="width:100%;margin-top:20px;background-color:#ffffff;;padding:10px 20px">
+      <!--内容头部-->
+      <div style="height:48px;line-height:48px;border-bottom: 1px solid #eef1f5;margin-bottom:20px">
+         <span style="font-size:18px;color:32c5d2">实时推送</span>
+         <div style="height:32px;float:right;margin-top:5px">
+             <input type="checkbox" id="realTimeId" data-on-color="info" data-off-color="warning" data-on-text="已开启" data-off-text="已关闭"/>
+         </div>
+      </div>
+      <div style="text-align:center;color:#82949a;margin:20px 0">
+         <span>功能说明：系统定期检测用户感兴趣的图书更新，一有相关图书的更新就向用户推送最新的图书信息。此功能已开放，可使用！</span>
+      </div>
+      <!--底部分割线-->
+      <div style="text-align:center;margin-bottom:20px;border-top: 1px solid #eef1f5;padding-top:10px">
+      </div>
+</div>

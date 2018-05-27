@@ -1,0 +1,41 @@
+﻿<div style="font-family: 微软雅黑">
+    <!--导航条部分-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div style="background-color:#ffffff" class="container-fluid">
+            <div class="navbar-header">
+                <a style="height:76px" class="navbar-brand" href="http://www.swu.edu.cn"  target="_blank">
+                  <img style="height:100%" alt="Brand" src="../../../Images/main/logo.png">
+                </a>
+                <p style="font-size:30px;color:#588cbb;margin-left:0" class="navbar-text">个性化图书信息推送系统</p>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                   <li id="remindId" ng-click="remind()"><a href="javascript:;"><span class="fa fa-bell-o"></span><span style="margin:0 8px">提醒</span><span style="background-color:#ed6b75" class="badge">{{remindNum}}</span></a></li>
+                   <li ng-if="!isFullScreen" ng-click="launchFullScreen()"><a href="javascript:;"><span class="icon-resize-full"></span><span style="margin-left:8px">开启全屏</span></a></li>
+                   <li ng-if="isFullScreen" ng-click="exitFullScreen()"><a href="javascript:;"><span class="icon-resize-small"></span><span style="margin-left:8px">退出全屏</span></a></li>
+                   <li><a ui-sref="main.personalInfo"><span style="margin-right:8px" ng-class="{true:'boy-color',false:'girl-color'}[sex=='0']">{{name}}</span><img style="height:50%" class="img-circle" alt="image" ng-src="../../../Images/main/user{{sex}}.png"></a></li>
+                   <li ng-click="logout()"><a href="javascript:;"><span class="fa fa-sign-out"></span><span style="margin:0 8px">退出</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--左侧菜单栏+右侧内容部分-->
+    <div style="margin-top:75px;background-color:#e9ecf3;height:88%;">
+        <!--左侧菜单栏部分-->
+        <div style="float:left;margin:20px;width:235px" class="btn-group-vertical" role="group">
+            <button type="button" style="color:#5C9ACF;background:#ffffff;font-size:20px;" class="btn btn-default" disabled="disabled">操作列表</button>
+            <button type="button" class="btn btn-default btn-my-option" ng-class="{true:'btn-my-option-active',false:''}[option=='homePage']" ui-sref="main.homePage"><span class="fa fa-home"></span><span style="margin:0 8px">首页</span></button>
+            <button type="button" class="btn btn-default btn-my-option" ng-class="{true:'btn-my-option-active',false:''}[option=='newBook']" ui-sref="main.newBook"><span class="fa fa-book"></span><span style="margin:0 8px">图书推荐</span></button>
+            <button type="button" class="btn btn-default btn-my-option" ng-class="{true:'btn-my-option-active',false:''}[option=='personalInfo']" ui-sref="main.personalInfo"><span class="fa fa-user"></span><span style="margin:0 8px">个人中心</span></button>
+            <button type="button" class="btn btn-default btn-my-option" ng-class="{true:'btn-my-option-active',false:''}[option=='interestOption']" ui-sref="main.interestOption"><span class="fa fa-heart"></span><span style="margin:0 8px">兴趣选项</span></button>
+            <button type="button" class="btn btn-default btn-my-option" ng-class="{true:'btn-my-option-active',false:''}[option=='pushSet']" ui-sref="main.pushSet"><span class="fa fa-cog"></span><span style="margin:0 8px">推送设置</span></button>
+            <button type="button" style="color:#5C9ACF;background:#ffffff;font-size:20px;" class="btn btn-default" disabled="disabled"></button>
+        </div>
+        <!--右侧内容部分-->
+        <div style="margin-left:275px;padding-right:20px;padding-top:40px;padding-bottom:20px;height:100%;overflow:auto;overflow-x:hidden">
+            <div ui-view="content"></div>
+        </div>
+    </div>
+
+</div>

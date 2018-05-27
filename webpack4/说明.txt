@@ -1,0 +1,7 @@
+(1)webpack是一个前端代码打包工具，可以把.js、.css、.html、.png等资源都打包成模块，压缩代码，使代码大小减少，目前很流行
+
+(2)webpack的四个核心概念：入口（entry）、出口（output）、加载器（loader）、插件（plugins）
+
+(3)webpack支持高度配置，通常都会建立一个webpack.config.js文件
+
+(4)通过npm可以安装webpack，详见官网：https://www.webpackjs.com/guides/installation/
