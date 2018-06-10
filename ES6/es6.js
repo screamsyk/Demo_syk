@@ -192,7 +192,7 @@ console.log(str.charAt(0));//乱码
 console.log(str.codePointAt(0));//134071，码点，codePointAt函数能识别字符是4个字节，并且返回它的码点的十进制数，得到16进制就是20bb7，然后得到Unicode编码就是\u20bb7
 console.log(String.fromCodePoint(134071));//将码点转成字符，这样就读取了4个字节的字符
 
-//(8)String.raw函数（得到不处理的字符串，即哪些换行符等特殊字符/转义符都不处理）
+//(8)String.raw函数（得到不处理的字符串，即输出字符串时，那些换行符等特殊字符/转义符都不处理）
 console.log(`hello\nworld`);//输出hello 然后换行输出world
 console.log(String.raw`hello\nworld`);//输出hello\nworld
 //console.log(String.raw("hello\nworlld"));//这样用就会报错，证明String.row函数只能作用于模板字符串，且只能写成“标签模板”的形式
@@ -266,7 +266,7 @@ console.log(Array.from("hello"));//['h','e','l','l','o']，很常用的用法，
 //(4)Array.prototype.findIndex()函数
 {
     let arr = [7, 8, 9, 10];
-    arr.find(function (value) {//找出数组中符合条件的第一个元素的位置
+    arr.findIndex(function (value) {//找出数组中符合条件的第一个元素的位置
         return value > 8;
     });//2，如果没有符合条件的，则返回-1
 }
@@ -279,7 +279,7 @@ console.log(Array.from("hello"));//['h','e','l','l','o']，很常用的用法，
 }
 
 //(6)Array.prototype.entries()函数
-for (let [i, v] of ["a", "b"].entries()) {//返回一个有键值对组成的遍历器(类似Map)
+for (let [i, v] of ["a", "b"].entries()) {//返回一个由键值对组成的遍历器(类似Map)
     console.log(i, v);//0 "a"  1 "b"
 }
 

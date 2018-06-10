@@ -27,14 +27,14 @@ var _adfa;
 var asa;
 
 //(4)区块（即大括号{}，用来将多个语句组合到一起）
-//---在JS中，对于var关键字声明的变量，只有全局作用域，和函数作用域，并没有块作用域（用let的有）
+//---在JS中，对于var关键字声明的变量，只有全局作用域，和函数作用域，并没有块作用域（用let的有），没有用关键字声明的变量在非严格模式下属于全局变量
 {
     var name = "tom";
 }
 console.log(name);//tom，在区块外面仍然读取得到
 
 //(5)常规操作：if条件语句 switch条件语句 三元运算符?:  for循环 while循环 do...while循环 break不再执行循环  continue跳出当前这次循环，执行下次循环
-//---在条件判断中，JS将0、''、""、null、undefined、NAN都看作false
+//---在条件判断中，JS将0、''、""、null、undefined、NAN、false都看作false，其他的都为true
 
 //(6)标签Label（用于标记程序的位置，在使用break、continue时，指定位置就以及跳转到对应的位置）
 top:
@@ -62,7 +62,7 @@ var v6 = {//object，对象，即各种类型的值组成的集合
 }
 
 //(2)对象类型object（还可以划分为三个类型：狭义的对象object、函数function、数组array）
-//---狭义的对象和数组是两种不同的数据组合方式，一般只的对象都是说狭义的对象
+//---狭义的对象和数组是两种不同的数据组合方式，一般的对象都是说狭义的对象
 //---函数function则是处理数据的方法
 var obj = {
     name: "狭义的对象object"
@@ -212,7 +212,7 @@ obj1['name'];//wo，方括号运算符，属性名必须加上引号，不然会
 Object.keys(obj1);//['name']，查看对象本身的所有属性名
 'name' in obj1;//true，用in运算符判断对象是否有某个属性，包括继承来的
 obj1.hasOwnProperty('name');//true，判断这个属性是不是对象自己的，而不是继承来的等等
-delete obj1.name;//用delete删除对象的属性，返回true，但有的属性删除不了
+delete obj1.name;//用delete删除对象的属性，返回true，但有的属性删除不了，也删除不了用var等关键字声明的全局变量
 
 //(4)for...in循环用来遍历一个对象的全部属性，包括从原型链继承的属性，但会跳过不可遍历的属性，如toString、length等
 for (var key in obj1) {
@@ -263,7 +263,7 @@ var fn_2 = function () {
 
 }
 
-//(4)函数的name属性（用处就是用来获取参数函数的名称）、函数的length属性（返回预定义的参数的个数）、函数的toString方法（返回一个字符串，内容是函数的源码）。
+//(4)函数的name属性（用处就是用来获取参数函数的名称）、函数的length属性（返回预定义的参数的个数）、函数的toString方法（返回一个字符串，内容是函数的源码），这些都是只读的，不可修改。
 var myFunc = function () { };
 function test(f) {
     console.log(f.name);
@@ -271,7 +271,7 @@ function test(f) {
 test(myFunc) // myFunc
 
 var f3 = function myName() { };//这种情况，取function后面的名称
-f3.name // 'myName'，返回函数表达式的名称，而真正的函数名还是f3
+f3.name // 'myName'，返回函数表达式的名称，而真正的函数名还是f3，所以调用时还是用f3()
 
 //(5)函数作用域（ES5规定JS只有全局作用域、函数作用域，ES6新增块级作用域）
 var v = 1;

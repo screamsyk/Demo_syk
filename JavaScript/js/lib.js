@@ -41,8 +41,8 @@ var obj = Object(undefined);
 var obj = Object(null);
 obj instanceof Object // true
 var obj = Object(true);
-obj instanceof Object // true
-obj instanceof Boolean // true
+obj instanceof Object; // true
+obj instanceof Boolean; // true
 
 //(5)Object作为构造函数，用法类似作为普通函数
 var obj = new Object();
