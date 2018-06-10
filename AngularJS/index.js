@@ -130,7 +130,7 @@ myApp.directive('myDirective5', function () {//指令五：完整的配置项说
             a: '@',//隔离作用域，就是scope对应一个对象，而对象的属性就是指令作用域中的变量，$scope.a的值也就为属性a对应的值
             b: '@attrTwo',//绑定策略：@，将值绑定到指令作用域中
             c: '=attrThree',//绑定策略：=，将值绑定到父作用域中，实现指令作用域和父作用域数据双向绑定
-            d: '@attrFour',//绑定策略：&，将方法绑定到父作用域中，实现使用父作用域中的方法
+            d: '&attrFour',//绑定策略：&，将方法绑定到父作用域中，实现使用父作用域中的方法
         },
         transclude: false,//boolean，默认false，嵌入通常用来复用组件，但基本不用
         constroller: function ($scope, $element, $attrs, $transclude) {//function/string，控制器，可以是定义了的控制器的名称
