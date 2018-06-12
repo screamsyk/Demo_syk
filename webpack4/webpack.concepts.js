@@ -1,5 +1,5 @@
 
-//====================webpack配置文件======================
+//====================webpack概念：https://www.webpackjs.com/concepts/ ======================
 
 //(1)webpack的四大核心概念：入口（entry）、输出（output）、加载器（loader）、插件（plugins）
 
@@ -182,7 +182,6 @@ module.exports = {
     const webpack = require('webpack'); //访问内置的插件
     const config = {
         plugins: [
-            new webpack.optimize.UglifyJsPlugin(),
             new HtmlWebpackPlugin({ template: './src/index.html' })//在plugins中实例化
         ]
     };
@@ -204,11 +203,11 @@ module.exports = {
 
 //(4)webpack支持解析以下3种文件路径：绝对路径、相对路径、模块路径
 //---绝对路径
-import '/home/me/file';
-import 'C:\\Users\\me\\file';
+//import '/home/me/file';
+//import 'C:\\Users\\me\\file';
 //---相对路径
-import '../src/file1';//上级目录
-import './file2';//当前目录
+//import '../src/file1';//上级目录
+//import './file2';//当前目录
 //---模块路径：这里就需要配置下了，通过在module.exports.resolve.modules中配置目录，这样webpack就会在指定目录中搜索模块
 {
     const config = {
@@ -224,8 +223,8 @@ import './file2';//当前目录
         }
     }
 }
-require('module1');
-require('module2/file1');//这里webpack就会在指定路径的目录中去查找依赖的模块
+//require('module1');
+//require('module2/file1');//这里webpack就会在指定路径的目录中去查找依赖的模块
 
 //(5)webpack构建目标target：因为js可以在服务端和浏览器端运行，所以webpack打包时可以配置到底是在哪个上面运行，通过module.exports.target来配置说明
 {
@@ -235,3 +234,6 @@ require('module2/file1');//这里webpack就会在指定路径的目录中去查�
 }
 
 //(6)webpack模块热替换（Hot Module Replacement），就是在应用程序运行时，当代码修改了，就自动替换模块，无需重新加载整个页面。
+
+
+//----------------------------之后每个部分更详细的内容实际上参考https://www.webpackjs.com/ 官网中的就可以明白--------------------------------
