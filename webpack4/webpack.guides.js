@@ -13,7 +13,7 @@
 //(4)安装命令：npm install webpack-cli --save-dev
 
 
-//--------------------webpack打包基本应用程序：利用npx webpack命令----------------------
+//--------------------webpack打包基本应用程序：利用npx webpack命令（Node.js 8.2+版本支持）----------------------
 
 //(1)为了防止我们打包的应用程序不小心通过npm发布了（也就是发布到了npm中，别人就可以下载了），可以在package.json中设置private为true，并移除main属性，即程序入口
 
@@ -36,4 +36,10 @@
   |-index.js
 */
 
-//(7)构建命令：npx webpack（Node.js 8.2+版本支持），会自动查找命令执行时所在目录下的src文件夹中的脚本，即js文件，作为打包的入口entry
+//(7)构建命令：npx webpack（Node.js 8.2+版本支持）
+//---使用该命令时，webpack会自动查找命令执行时所在目录下的src文件夹中的index.js（固定是./src/index.js，名称和路径什么的变了都不行），作为打包的入口entry
+//---然后输出output也是固定的为main.js，路径为./dist文件夹下
+
+//(8)注意：
+//---像import export等ES6标准提供的模块语句，大多数浏览器不支持，通过webpack打包后，webpack会对其进行转换，从而可以使用
+//---但ES6中其他的语法特性，webpack并不会进行处理，如果要使用，则必须在webpack的加载器loader用到如babel-loader等转换工具
