@@ -4,15 +4,26 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "webpack --config ./webpack.config.js"
+    "start": "webpack --config ./webpack.config.js",
+    "build": "rimraf dist & webpack --config ./webpack.guides.js",
+    "dev": "webpack-dev-server --config webpack.guides.js --open"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "csv-loader": "^2.1.1",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "rimraf": "^2.6.2",
+    "style-loader": "^0.21.0",
     "webpack": "^4.9.1",
-    "webpack-cli": "^2.1.4"
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4",
+    "xml-loader": "^1.2.1"
   },
   "dependencies": {
     "lodash": "^4.17.10"

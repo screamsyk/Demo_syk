@@ -1,0 +1,9 @@
+.blueSquare{
+    width: 300px;
+    height: 100px;
+    background-color: #016dcf;
+}
+.backImg{
+    background: url(./noContent.png);
+    height:300px;
+}
