@@ -26,3 +26,7 @@ print();//调用print.js通过export default导出的方法
 //(5)测试webpack-dev-server
 document.write("web服务器webpack-dev-server启动成功！");
 console.log("web服务器webpack-dev-server启动成功！");
+
+//(6)测试模块热替换
+import { hmr } from './hmr.js';
+document.write("<br/>" + hmr);

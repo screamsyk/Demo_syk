@@ -2,6 +2,7 @@
     width: 300px;
     height: 100px;
     background-color: #016dcf;
+    color:white;
 }
 .backImg{
     background: url(./noContent.png);

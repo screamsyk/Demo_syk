@@ -51,6 +51,7 @@
 const path = require('path');//通过webpack使用Node.js的require()方法去加载Node.js的path模块，用于处理各种路径信息
 const HtmlWebpackPlugin = require('html-webpack-plugin');//通过Node.js的require从node_modules中引入此插件
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webapck = require('webpack');
 module.exports = {//入口。注意入口指的是脚本js文件，而不是html文件，webpack打包后只有一个html文件，而且是在打包后webpack通过htmlWebpackPlugins插件自动添加的，或者我们手动放置到打包后的目录的
   entry: {
     app: './src/index.js',
@@ -95,11 +96,13 @@ module.exports = {//入口。注意入口指的是脚本js文件，而不是html
       template: './index.html'
     }),
     new CleanWebpackPlugin(['dist']),//每次构建时清理dist
+    new webapck.HotModuleReplacementPlugin(),//模块热替换，无需完全刷新
   ],
   devtool: 'source-map',//这表明打包后仍保留原始源代码，具体有哪些值可选：https://www.webpackjs.com/configuration/devtool/
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),//代表提供内容的目录
     port: 8090,//web服务器端口号，这样运行webpack-dev-server --open就会启动web服务器localhost:8090，读取的内容就是dist文件夹中的内容，默认显示index.html
+    hot: true
   }
 }
 
@@ -191,3 +194,24 @@ module.exports = {//入口。注意入口指的是脚本js文件，而不是html
 //---于是有了模块热替换
 
 //(2)想要启用模块热替换HMR？很简单
+//---配置devServer.hot为true
+//---配置webpack内置的HMR插件
+
+//(3)如果是css等样式文件修改了，可以借助style-loader和css-loader很容易实现css的模块热替换，除此之外，像vue-loader等也能很好的支持模块热替换
+
+//(4)但如果是其他的，则需要使用module.hot.accept()方法来绑定模块才能实现模块热替换
+
+
+//-----------------------webpack tree shaking(移除上下文中未用到的代码)---------------------------------
+
+//(1)tree shaking是啥？
+//---专业术语，啊哈，通常用于描述移除 JavaScript 上下文中的未引用代码(dead-code)。
+//---当然这必须基于ES6的import和export语法
+
+//(2)上下文？嗯哼
+//---上下文在我的理解，就像一个函数用到了函数外部的一个变量，这个变量既在函数外部又在函数内部，这个变量就表示上下文。
+//---或者模块之间引用，模块A引用了模块B，那么模块B既在模块A外部，又在模块A内部，模块B就是上下文，即外部变量
+
+//(3)为了将上下文中export了的，但没有import出来的代码删除
+//---需要将配置文件中的mode改为“production”，即生产环境，来压缩输出
+//---在package.json中配置sideEffects，标记文件无副作用
