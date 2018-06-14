@@ -21,6 +21,7 @@
 //---用angular.module()方法创建AngularJS应用时，第一个参数就是ng-app的值，并且必须传第二个参数，表示依赖的模块的数组
 //---如果不传第二个参数，则代表获取一个已存在的名称为"myApp"的AngularJS应用
 var myApp = angular.module('myApp', []);
+//---如果在页面中没有写ng-app="myApp"，也可以通过如angular.bootstrap(document.body,['myApp'])来启动
 
 //(2)创建控制器
 //---用controller()方法创建的控制器，第一个参数就是控制器名称（即ng-controller的值）
