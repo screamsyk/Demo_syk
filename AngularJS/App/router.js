@@ -1,4 +1,5 @@
-define(['angular', 'app'], function (angular, app) {
+define(['angular'], function (angular) {
+    var app=angular.module('app');
     app.provider('appRouter', ['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         
         this.$get = function () {

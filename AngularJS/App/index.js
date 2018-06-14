@@ -2,9 +2,9 @@
 //-------------------------模块化代码（采用requireJS实现的AMD规范）-----------------------------
 
 //(1)将angualr作为一个模块
-define('angular', function () {
+/* define('angular', function () {
     return angular//返回值就是当其他模块依赖该模块时，可以调用的变量（这里的angular是引入的angular.min.js提供的全局对象）
-});
+}); */
 
 //(2)将AngularJS应用作为一个模块
 define('app', ['angular'], function (angular) {//这里就依赖了我们上面定义的angular模块
