@@ -3,7 +3,7 @@
 
 //(1)使用import来显示依赖lodash，这样webpack就能利用这些信息去构建依赖图
 //---但注意目前浏览器大多不支持ES6的import模块命令，如果直接访问html就会报错，所以必须采取webpack打包来合成脚本，这样才能正常访问
-import _ from 'lodash';
+//import _ from 'lodash';
 
 //(1)引入css文件
 import './index.css';//同一目录下也必须写./，不然会被识别为模块路径，这个是相对路径
@@ -17,7 +17,7 @@ function createElement() {
     element.innerHTML += JSON.stringify(json);
     return element;
 }
-document.body.appendChild(createElement());
+//document.body.appendChild(createElement());
 
 //(4)引入print.js模块
 import print from './print.js';
@@ -30,3 +30,18 @@ console.log("web服务器webpack-dev-server启动成功！");
 //(6)测试模块热替换
 import { hmr } from './hmr.js';
 document.write("<br/>" + hmr);
+
+//(7)动态导入
+function dyn() {
+    return import(/* webpackChunkName: "lodash" */ 'lodash').then(_ => {
+        var element = document.createElement('div');
+
+        element.innerHTML = _.join(['动态导入Hello', 'webpack'], ' ');
+
+        return element;
+
+    }).catch(error => 'An error occurred while loading the component');
+}
+dyn().then(function (element) {
+    document.body.appendChild(element);
+});

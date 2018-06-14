@@ -95,7 +95,7 @@ module.exports = {//入口。注意入口指的是脚本js文件，而不是html
     new HtmlWebpackPlugin({//在plugins中进行插件的配置，这样就会webpack打包的时候就会去自动生成index.html文件了，当然有的可以通过配置进行修改
       template: './index.html'
     }),
-    new CleanWebpackPlugin(['dist']),//每次构建时清理dist
+    new CleanWebpackPlugin(['dist']),//每次构建时清理dist，但挺影响性能的
     new webapck.HotModuleReplacementPlugin(),//模块热替换，无需完全刷新
   ],
   devtool: 'source-map',//这表明打包后仍保留原始源代码，具体有哪些值可选：https://www.webpackjs.com/configuration/devtool/
@@ -161,7 +161,7 @@ module.exports = {//入口。注意入口指的是脚本js文件，而不是html
 //(9)然后在npm脚本中配置webpack打包命令时，在前面加上rimraf dist，&符号连接两个命令，这样就可以每次打包生成新的dist文件夹了 
 
 //(10)除了用额外的插件rimraf移除之前的dist外，难道webpack没想过这个问题，当然想过！
-//---我们也可以用clean-webpack-plugin插件来每次打包时清理dist文件夹（同样，先安装再配置），效果和rimraf一样
+//---我们也可以用clean-webpack-plugin插件来每次打包时清理dist文件夹（同样，先安装再配置），效果和rimraf一样，但性能较差
 
 //(11)安装命令：npm install clean-webpack-plugin --save-dev
 
@@ -206,12 +206,52 @@ module.exports = {//入口。注意入口指的是脚本js文件，而不是html
 
 //(1)tree shaking是啥？
 //---专业术语，啊哈，通常用于描述移除 JavaScript 上下文中的未引用代码(dead-code)。
-//---当然这必须基于ES6的import和export语法
+//---当然这必须基于ES6的import和export语法，未引用代码就是export了的，但没import
 
 //(2)上下文？嗯哼
 //---上下文在我的理解，就像一个函数用到了函数外部的一个变量，这个变量既在函数外部又在函数内部，这个变量就表示上下文。
 //---或者模块之间引用，模块A引用了模块B，那么模块B既在模块A外部，又在模块A内部，模块B就是上下文，即外部变量
 
 //(3)为了将上下文中export了的，但没有import出来的代码删除
-//---需要将配置文件中的mode改为“production”，即生产环境，来压缩输出
+//---需要将配置文件中的mode改为“production”，即生产环境，来压缩输出，常用到插件UglifyJsPlugin
+//---安装命令：npm install uglifyjs-webpack-plugin --save-dev
 //---在package.json中配置sideEffects，标记文件无副作用
+
+
+//-----------------------------webpack生产环境构建----------------------------------
+
+//(1)开发环境和生产环境？
+//---开发环境：指我们本地编写代码时的环境，打包后需要很多详细的信息，比如把devtool设为‘source-map’就是为了保留原始源代码，方便调试。
+//---生产环境：指我们部署我们编写好的代码的环境，这时不需要太多信息，只要打包够小，加载够快就好，会和开发环境有很大区别。
+
+//(2)知道开发环境和生产环境的构建目标差别很大后，我们在写打包的配置文件时，就需要分开写，同时把公用的配置放在一个文件中，所以主要分为以下三个文件：
+//---webpack.common.js存放公用的配置
+//---webpack.dev.js存放开发环境特有的配置
+//---webpack.prod.js存放生产环境特有的配置
+
+//(3)为了将公有配置webpack.common.js融合到另外两个配置中，需要用到插件webpack-merge
+//---安装命令：npm install webpack-merge --save-dev
+
+//(4)最后利用npm脚本，本地开发时执行npm run dev，打包到生产环境时执行npm run build
+
+
+//----------------------------webpack代码分离--------------------------------
+
+//(1)代码分离：就是把不同业务模块的代码分开打包到不同的bundle文件中，然后按需加载，或并行加载这些文件
+
+//(2)3中常用代码分离方法：
+//---入口起点：使用多个入口起点，这样打包出来就有多个bundle（包）
+//---防止重复：使用CommonsChunkPlugin去重和分离chunk（块）
+//---动态导入：如AngularJS通过路由和ocLazyLoad实现模块代码的懒加载，按需加载
+
+//(3)像之前我们打包有两个入口文件，而打包后里面代码都非常多，这就是因为包含了重复的代码了，需要我们使用CommonsChunkPlugin去重
+//---需要注意的是在webpack4已经把CommonsChunkPlugin移除了，替代它的是SplitChunksPlugin
+//---在module.exports.optimization.splitChunks中配置，具体配置信息：https://www.webpackjs.com/plugins/split-chunks-plugin/
+
+//(4)动态导入，有两种方案：
+//---ES6标准的import()
+//---webpack特有的require.ensure()
+//---两者都是用于webpack打包时，把模块代码拆分成多个bundle进行打包，可以指定每个bundle的名称
+
+//(5)第三方的库(library)可能会引用一些全局依赖（例如 jQuery 中的 $），我们可以用ProvidePlugin插件来处理
+//---使用 ProvidePlugin 后，能够在通过 webpack 编译的每个模块中，通过访问一个变量来获取到 package 包
