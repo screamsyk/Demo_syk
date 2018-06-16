@@ -56,7 +56,7 @@ var module3 = (function ($, _) {
 //---UMD
 
 //(3)ES6
-//---ES6是ECMA国际标准化组织于2015年6月提出的JavaScript语法标准，新增特性：module模块化，通过关键字export导出，import导入
+//---ES6是ECMA国际标准化组织于2015年6月提出的JavaScript语法标准，新增特性：module模块化，通过关键字export导出，import导入（可以导入非js文件）
 //---ES6模块化认为，一个模块就是一个文件。
 //---假设module-A就是一个文件module-A.js，其中可以用export导出变量和函数供其他模块使用
 {
@@ -79,7 +79,7 @@ var module3 = (function ($, _) {
 //---commonJS是Node.js采用并实现的模块化规范，由一个团队提出的用于服务器端的模块化规范，具体哪个团队不太清楚~v~
 //---Node.js是2009年由美国程序员Ryan Dahl创造的，主要是将JavaScript用于服务端的编程，而服务端必须采用模块化编程，所以Node.js的诞生也标志着JavaScript模块化的诞生。
 //---在commonJS中模块的加载采用同步的方式，即必须加载好了才能执行之后的代码，所以主要用于服务器端（本地资源加载快），而不是浏览器端（需要网络请求）
-//---commonJS认为，每个文件就是一个模块，和ES6的想法一样，不过是通过module.exports对象导出，通过require()函数导入
+//---commonJS认为，每个文件就是一个模块，和ES6的想法一样，不过是通过module.exports对象导出，通过require()函数导入，而且可以加载非JS文件
 //---假设module-A就是一个文件module-A.js，模块必须通过module.exports对象导出对外的变量或接口
 {
     var a = 1;
@@ -103,32 +103,33 @@ var module3 = (function ($, _) {
     //为啥加载的核心模块是加载的这些呢？
     //当然是因为commonJS规范是被Node.js实现的，require()就是Node.js提供的全局方法，而npm就是Node.js的模块管理工具，当然可以规定加载这些咯
     //像这种情况也可以写成这样：
-    require('module1/module1.min.js');//这个应该就是要去node_module中找了
+    require('module1/module1.min.js');//这个应该就是要去node_module中找了，如果找不到就当做相对路径去找
 }
 
 //(5)AMD
 //---AMD是异步模块加载的规范，区别于commonJS的同步加载，更适用于浏览器端
 //---目前实现了AMD规范的主要是RequireJS和curl.js，我们主要讲解RequireJS，为啥呢？它更流行更好用~v~，官网：http://www.requirejs.cn/docs/api.html
 //---AMD规范，认为可以通过define()将代码定义为模块，这意味着模块不一定是一个文件，但最好还是一个文件定义一个模块
-//---同commonJS类似，用require()加载模块，不过参数和加载的模块不同（加载的模块不是文件，而是用define()定义的）
+//---同commonJS类似，用require()加载模块，不过加载的既可以是用define定义的模块文件，也可以是模块代码
 //---首先使用define()定义模块
-define('moduleName', [], function () {//三个参数，分别是模块名（可省略，默认为所在文件名）、依赖的其他模块、回调函数（函数返回的就是模块的具体内容）
+define('moduleName', [], function () {//三个参数，分别是模块名（可省略，默认模块名为所在文件路径，记住不是文件名）、依赖的其他模块、回调函数（函数返回的就是模块的具体内容）
     return {
         a: function () { }
     };
 });
-//---再用require()异步加载模块，加载模块前，必须先用define()定义模块
+//---再用require()异步加载模块，加载的模块可以是模块文件，也可以是模块代码，如果是模块代码则必须先执行define的操作才行
 require(['moduleName'], function (moduleName) {
     moduleName.a();
 })
 //---require本身既是函数又是对象，可以调用它的一些方法如config进行模块的加载配置
 require.config({
+    baseUrl: '/js',
     paths: {
-        "backbone": "vendor/backbone",//指定加载的模块的别名
+        "backbone": "vendor/backbone",//模块名:模块路径，用于指定不在baseUrl下面的模块的加载路径
         "underscore": "vendor/underscore"
     },
     shim: {
-        "backbone": {//加载非AMD规范的模块
+        "backbone": {//非AMD规范的模块
             deps: ["underscore"],//依赖的其他模块
             exports: "Backbone"//输出的模块名
         },
@@ -141,3 +142,46 @@ require.config({
 //---匿名模块：即定义模块时没有写模块名，那么默认的模块名就是从根目录baseUrl到模块文件的路径形成的名称（推荐使用匿名模块）
 //---命名模块：即定义模块时指定了模块名，那么加载模块时，必须写指定的模块名，而不能写什么相对路径等，如果在不同目录必须在paths中配置路径
 //---所以如果看到require(['src/module-A'],function(a){});则说明模块的名称是‘src/module-A’
+//---requreJS的模块加载机制是通过添加<script>标签去加载的模块文件，证明可以跨域加载，并且加载即执行，而且只能加载js文件
+//---requireJS的具体用法，强烈推荐慕课网：https://www.imooc.com/learn/787
+
+//(6)CMD
+//---CMD和AMD很相似，都是用define和require，不过推崇在过程中引入依赖，是为了推广sea.js而提出来的
+//---CMD模块写法
+define(function (require, exports, module) {
+    var a = require('./a');//在过程中引入依赖，依赖就近
+    a.doSomething();
+    var b = require('./b');
+    b.doSomething();
+})
+//---AMD模块写法
+define(['a', 'b'], function (a, b) {//必须在开头写好依赖
+    a.doSomething();
+    b.doSomething();
+});
+
+//(7)UMD
+//---UMD规范，主要是用于兼容上面提及的规范，在写模块时，要判断到底采用哪种规范进行写
+//---如下，按照UMD规范进行编写模块，那么这个模块就可以兼容各种加载规范了。
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD
+        define(['jquery', 'underscore'], factory);
+    } else if (typeof exports === 'object') {
+        // Node, CommonJS之类的
+        module.exports = factory(require('jquery'), require('underscore'));
+    } else {
+        // 浏览器全局变量(root 即 window)
+        root.returnExports = factory(root.jQuery, root._);
+    }
+}(this, function ($, _) {
+    // 方法
+    function a() { }; // 私有方法，因为它没被返回 (见下面)
+    function b() { }; // 公共方法，因为被返回了
+    function c() { }; // 公共方法，因为被返回了
+    // 暴露公共方法
+    return {
+        b: b,
+        c: c
+    }
+}));
