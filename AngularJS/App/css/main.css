@@ -1,0 +1,85 @@
+﻿html
+{
+    overflow:hidden;
+}
+
+/*顶部导航条*/
+.navbar-nav>li>a{
+    height: 75px;
+    line-height: 75px;
+    padding: 0 12px;
+}
+.navbar-nav>li:hover
+{
+    background-color:#f9fafc;
+}
+
+.boy-color
+{
+    color:#5C9ACF;
+}
+
+.girl-color
+{
+    color:#FDB9B3;
+}
+
+/*左侧操作栏*/
+.btn-group-vertical>button
+{
+    font-size:14px;
+    color: #485a6a;
+    padding: 12px 15px;
+    border: 0;
+    text-align:left;
+}
+.btn-my-option:hover
+{
+    border-left: 3px solid #5C9ACF!important;
+    background: #f2f6f9;
+    color:#5C9ACF;
+    margin-left: -3px;
+    padding-left: 15px;
+}
+.btn-my-option-active
+{
+    border-left: 3px solid #5C9ACF!important;
+    background: #f2f6f9;
+    color:#5C9ACF;
+    margin-left: -3px;
+    padding-left: 15px;
+}
+/*淡入淡出效果的图片轮播*/
+.carousel-fade .carousel-inner .item {
+	transition-property: opacity;
+}
+.carousel-fade .carousel-inner .item,  
+.carousel-fade .carousel-inner .active.left,  
+.carousel-fade .carousel-inner .active.right {
+   opacity: 0;
+}
+.carousel-fade .carousel-inner .active,  
+.carousel-fade .carousel-inner .next.left,  
+.carousel-fade .carousel-inner .prev.right {
+    opacity: 1;	
+}
+.carousel-fade .carousel-inner .next,  
+.carousel-fade .carousel-inner .prev,  
+.carousel-fade .carousel-inner .active.left,  
+.carousel-fade .carousel-inner .active.right {
+    left: 0;
+    transform: translate3d(0, 0, 0);
+}
+.carousel-fade .carousel-control {
+    z-index: 2;
+}
+
+/*兴趣选项*/
+.btn-interest
+{
+    background-color: rgb(245, 223, 193);
+}
+.btn-not-interest
+{
+    color:#999999
+}

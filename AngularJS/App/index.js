@@ -13,7 +13,13 @@ define('app', ['angular'], function (angular) {//这里就依赖了我们上面�
 });
 
 //(3)将AngularJS应用的配置（主要是路由配置）作为一个模块
-define('appConfig', ['app', 'router'], function (app) {
+define('appConfig', ['app', './router'], function (app) {
+    app.config(['$ocLazyLoadProvider', function ($ocLazyLoadProvider) {
+        $ocLazyLoadProvider.config({
+            jsLoader: 'requirejs',
+            debug: true
+        });
+    }]);
     app.config(['appRouterProvider', function (appRouterProvider) {
         appRouterProvider.initRouter();//appRouterProvider就是在模块router中创建的服务appRouter的提供者，可以加入config中进行配置
     }]);

@@ -7,7 +7,6 @@ module.exports = {
     entry: {
         vendors: './vendors.js',//第三方依赖以及样式文件
         app: './index.js',//应用程序入口
-        router:'./router.js'
     },
     output: {
         path: path.resolve(root, 'dist'),
@@ -25,8 +24,20 @@ module.exports = {
                 use: 'html-loader'
             },
             {
-                test: /\.(png|jpeg|jpg|gif)$/,
+                test: /\.(png|jpeg|jpg|gif|svg)$/,
                 use: 'file-loader'
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: [
+                    'file-loader'
+                ]
+            },
+            {
+                test: /\.xml$/,
+                use: [
+                    'xml-loader'
+                ]
             }
         ]
     },

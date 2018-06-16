@@ -1,7 +1,7 @@
 define(['angular'], function (angular) {
-    var app=angular.module('app');
+    var app = angular.module('app');
     app.provider('appRouter', ['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-        
+
         this.$get = function () {
             return {};//空服务
         };
@@ -17,16 +17,19 @@ define(['angular'], function (angular) {
             //定义路由规则
             $stateProvider.state('login', {//登录
                 url: '/login',
-                resolve: {
-                    loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load(['components/login/loginController']);
-                    }]
-                },
                 views: {
                     '': {
                         templateUrl: 'components/login/loginTemplate.html',
                         controller: 'loginController'
                     }
+                },
+                resolve: {
+                    loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return require.ensure([], function (require) {
+                            var m1 = require('./components/login/loginController.js');
+                            return $ocLazyLoad.inject([m1]);
+                        }, 'login');
+                    }]
                 }
             }).state('main', {//主界面
                 url: '/main',

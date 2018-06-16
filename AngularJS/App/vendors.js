@@ -1,5 +1,6 @@
 //css
 require('bootstrap/dist/css/bootstrap.min.css');
+//require('./css/login.css');
 require('./css/style.css');
 
 //AngularJS相关
@@ -9,6 +10,5 @@ require('ocLazyLoad');
 
 //其他js
 require('jquery');
-require('./router');
 
 
