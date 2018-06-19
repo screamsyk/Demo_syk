@@ -77,7 +77,10 @@ define(['angular'], function (angular) {
                 url: '/newBook',
                 resolve: {
                     loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load(['components/newBook/newBookController']);
+                        return require.ensure([], function () {
+                            var m1 = require('components/newBook/newBookController.js');
+                            $ocLazyLoad.inject([m1]);
+                        });
                     }]
                 },
                 views: {
@@ -90,7 +93,10 @@ define(['angular'], function (angular) {
                 url: '/personalInfo',
                 resolve: {
                     loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load(['components/personalInfo/personalInfoController']);
+                        return require.ensure([], function () {
+                            var m1 = require('components/personalInfo/personalInfoController.js');
+                            $ocLazyLoad.inject([m1]);
+                        });
                     }]
                 },
                 views: {
@@ -103,7 +109,10 @@ define(['angular'], function (angular) {
                 url: '/interestOption',
                 resolve: {
                     loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load(['components/interestOption/interestOptionController']);
+                        return require.ensure([], function () {
+                            var m1 = require('components/interestOption/interestOptionController.js');
+                            $ocLazyLoad.inject([m1]);
+                        });
                     }]
                 },
                 views: {
@@ -116,7 +125,10 @@ define(['angular'], function (angular) {
                 url: '/pushSet',
                 resolve: {
                     loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load(['components/pushSet/pushSetController']);
+                        return require.ensure([], function () {
+                            var m1 = require('components/pushSet/pushSetController.js');
+                            $ocLazyLoad.inject([m1]);
+                        });
                     }]
                 },
                 views: {
