@@ -17,25 +17,28 @@ define(['angular'], function (angular) {
             //定义路由规则
             $stateProvider.state('login', {//登录
                 url: '/login',
-                views: {
-                    '': {
-                        templateUrl: 'components/login/loginTemplate.html',
-                        controller: 'loginController'
-                    }
-                },
                 resolve: {
                     loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return require.ensure([], function (require) {
-                            var m1 = require('./components/login/loginController.js');
-                            return $ocLazyLoad.inject([m1]);
+                        return require.ensure([], function () {
+                            var m1 = require('components/login/loginController.js');
+                            $ocLazyLoad.inject([m1]);
                         }, 'login');
                     }]
+                },
+                views: {
+                    '': {
+                        template: require('components/login/loginTemplate.html'),
+                        controller: 'loginController'
+                    }
                 }
             }).state('main', {//主界面
                 url: '/main',
                 resolve: {
                     loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load(['components/main/mainController']);
+                        return require.ensure([], function () {
+                            var m1 = require('components/main/mainController.js');
+                            $ocLazyLoad.inject([m1]);
+                        }, 'main');
                     }]
                 },
                 views: {
@@ -51,14 +54,17 @@ define(['angular'], function (angular) {
                 },
                 views: {
                     '': {
-                        templateUrl: 'error.html'
+                        template: require('./error.html')
                     }
                 }
             }).state('main.homePage', {//首页
                 url: '/homePage',
                 resolve: {
                     loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load(['components/homePage/homePageController']);
+                        return require.ensure([], function () {
+                            var m1 = require('components/homePage/homePageController.js');
+                            $ocLazyLoad.inject([m1]);
+                        });
                     }]
                 },
                 views: {

@@ -1,7 +1,8 @@
-﻿define(['angular'], function (angular) {
+define(['angular'], function (angular) {
     var app = angular.module('app');
     app.controller('loginController', ['$scope', function ($scope) {
 
+        $scope.test="测试";
         //动画效果处理
         $(function () {
             $('#login #password').focus(function () {
@@ -11,7 +12,5 @@
             });
         });
 
-        
-
-    } ]);
+    }]);
 });
