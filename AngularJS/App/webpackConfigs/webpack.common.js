@@ -48,8 +48,12 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({ template: './index.html' }),//生成index.html文件
         new webpack.HotModuleReplacementPlugin(),//模块热替换
+        new webpack.ProvidePlugin({//使用时自动加载第三方库，并设定全局变量
+            $: 'jquery',
+            jQuery: 'jquery'
+        }),
         new CopyWebpackPlugin([
-            { from: './images', to: 'images' }
+            { from: './images', to: 'images' }//复制文件
         ])
     ],
     resolve: {//解析
