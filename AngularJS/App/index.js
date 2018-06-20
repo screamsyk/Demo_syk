@@ -8,7 +8,7 @@ define('angular', function () {
 
 //(2)将AngularJS应用作为一个模块
 define('app', ['angular'], function (angular) {//这里就依赖了我们上面定义的angular模块
-    var app = angular.module('app', ['ui.router', 'oc.lazyLoad', 'ngCookies','ui.bootstrap']);//创建AngularJS应用，依赖于angualr的module（ui.router）等
+    var app = angular.module('app', ['ui.router', 'oc.lazyLoad', 'ngCookies', 'ui.bootstrap']);//创建AngularJS应用，依赖于angualr的module（ui.router）等
     return app;
 });
 
@@ -35,7 +35,8 @@ define('appConfig', ['app', './router'], function (app) {
     }]);
 
     //配置AngularJS路由
-    app.config(['appRouterProvider', function (appRouterProvider) {
+    app.config(['$locationProvider', 'appRouterProvider', function ($locationProvider, appRouterProvider) {
+        $locationProvider.hashPrefix('');//避免地址栏url中出现#!
         appRouterProvider.initRouter();//appRouterProvider就是在模块router中创建的服务appRouter的提供者，可以加入config中进行配置
     }]);
 
