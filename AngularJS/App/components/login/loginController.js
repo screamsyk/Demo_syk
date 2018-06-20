@@ -1,6 +1,6 @@
 define(['angular'], function (angular) {
     var app = angular.module('app');
-    app.controller('loginController', ['$scope', function ($scope) {
+    app.controller('loginController', ['$scope','$state', function ($scope,$state) {
 
         //动画效果处理
         $(function () {
@@ -10,6 +10,11 @@ define(['angular'], function (angular) {
                 $('#owl-login').removeClass('password');
             });
         });
+
+        //登录进主页面
+        $scope.login=function(){
+            $state.go('main.homePage');
+        }
 
     }]);
 });

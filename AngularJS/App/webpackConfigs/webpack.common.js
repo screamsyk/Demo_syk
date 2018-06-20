@@ -53,7 +53,9 @@ module.exports = {
             jQuery: 'jquery'
         }),
         new CopyWebpackPlugin([
-            { from: './images', to: 'images' }//复制文件
+            { from: './images', to: 'images' },//复制文件
+            { from: './css', to: 'css' },
+            { from: './fonts', to: 'fonts' }
         ])
     ],
     resolve: {//解析

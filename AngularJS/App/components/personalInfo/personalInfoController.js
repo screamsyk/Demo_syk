@@ -50,24 +50,39 @@
                 return;
             }
             $http.post(url + $.param($scope.requestParams)).then(
-            function success(response) {
-                var jsonObj = response.data;
-                if (jsonObj.success == true) {
-                    $scope.contentTitle = "个人信息阅览";
-                    $scope.isEdit = false;
-                    searchUserInfo();
-                    sweetAlert("success", "保存成功");
-                } else {
-                    sweetAlert("warning", jsonObj.msg);
-                }
-            },
-            function error(data) {
-                sweetAlert("error", "网络出错");
-            });
+                function success(response) {
+                    var jsonObj = response.data;
+                    if (jsonObj.success == true) {
+                        $scope.contentTitle = "个人信息阅览";
+                        $scope.isEdit = false;
+                        searchUserInfo();
+                        sweetAlert("success", "保存成功");
+                    } else {
+                        sweetAlert("warning", jsonObj.msg);
+                    }
+                },
+                function error(data) {
+                    sweetAlert("error", "网络出错");
+                });
         }
 
         //根据用户id查询用户信息
         function searchUserInfo() {
+
+            //默认
+            var data = {
+                NVC_NAME: 'screamsyk',
+                NVC_NATION: '汉族',
+                NVC_BIRTHPLACE: '四川遂宁',
+                NVC_EDUCATION: '本科',
+                I_GRADE: 2013,
+                NVC_PROFESSION: '计算机科学与技术',
+                VC_TELEPHONE: 12231231231,
+                VC_EMAIL: null,
+                I_SEX: 0
+            }
+            assignUserInfo(data);
+
             var requestParams = { action: "GetUserInfo" }; //请求参数
             if ($cookies.get("userId")) {
                 requestParams.userId = $cookies.get("userId");
@@ -75,17 +90,17 @@
                 return;
             }
             $http.post(url + $.param(requestParams)).then(
-            function success(response) {
-                var jsonObj = response.data;
-                if (jsonObj.success == true) {
-                    assignUserInfo(jsonObj.data); //给用户信息赋值
-                } else {
-                    sweetAlert("warning", jsonObj.msg);
-                }
-            },
-            function error(data) {
-                sweetAlert("error", "网络出错");
-            });
+                function success(response) {
+                    var jsonObj = response.data;
+                    if (jsonObj.success == true) {
+                        assignUserInfo(jsonObj.data); //给用户信息赋值
+                    } else {
+                        sweetAlert("warning", jsonObj.msg);
+                    }
+                },
+                function error(data) {
+                    sweetAlert("error", "网络出错");
+                });
         }
 
         //给用户信息赋值
@@ -149,5 +164,14 @@
         }
 
 
-    } ]);
+    }]);
+    app.filter('Sex', function () {
+        return function (value) {
+            if (value === 0) {
+                return '男'
+            } else {
+                return '女'
+            }
+        }
+    })
 });

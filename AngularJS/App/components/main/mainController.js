@@ -3,12 +3,14 @@
     app.controller('mainController', ['$scope', '$cookies', '$http', '$state', function ($scope, $cookies, $http, $state) {
 
         //判断是否登录
-        if ($cookies.get("userId")) {//已登录
+        /* if ($cookies.get("userId")) {//已登录
             $scope.name = $cookies.get("name"); //姓名
             $scope.sex = $cookies.get("sex"); //性别（0：男；1：女）
         } else {
             $state.go("login"); //未登录则跳转到登录界面
-        }
+        } */
+        $scope.name = $cookies.get("name") || 'screamsyk'; //姓名
+        $scope.sex = $cookies.get("sex") || 0; //性别（0：男；1：女）
 
         //初始化数据
         $scope.option = "homePage";
@@ -17,7 +19,7 @@
         var remindMsg = "暂无相关提醒。"; //提醒的消息
         var remindContent = ""; //提醒的内容框架html
 
-        searchUserInterest(); //查询用户的已选的兴趣选项，以确定是否提醒用户进行兴趣选项配置
+        //searchUserInterest(); //查询用户的已选的兴趣选项，以确定是否提醒用户进行兴趣选项配置
 
         //广播事件处理
         $scope.$on('optionChange', function (scope, data) {//接收"操作列表选项改变"事件，从而修改对应class和颜色
@@ -116,23 +118,23 @@
 
             //开始请求
             $http.post("../WebData/USL_interestOption.ashx?" + $.param(requestParams)).then(
-            function success(response) {
-                var jsonObj = response.data;
-                if (jsonObj.success == true) {
-                    if (jsonObj.data.length == 0) {//用户未选兴趣主题
-                        remindMsg = "请选择您的兴趣选项并开启推送，便于系统推送您感兴趣的图书信息。";
-                        $scope.remindNum = 1;
-                    } else {//用户选了兴趣主题
-                        remindMsg = "暂无相关提醒。";
-                        $scope.remindNum = 0;
+                function success(response) {
+                    var jsonObj = response.data;
+                    if (jsonObj.success == true) {
+                        if (jsonObj.data.length == 0) {//用户未选兴趣主题
+                            remindMsg = "请选择您的兴趣选项并开启推送，便于系统推送您感兴趣的图书信息。";
+                            $scope.remindNum = 1;
+                        } else {//用户选了兴趣主题
+                            remindMsg = "暂无相关提醒。";
+                            $scope.remindNum = 0;
+                        }
+                    } else {
+                        sweetAlert("warning", jsonObj.msg);
                     }
-                } else {
-                    sweetAlert("warning", jsonObj.msg);
-                }
-            },
-            function error(data) {
-                sweetAlert("error", "网络出错");
-            });
+                },
+                function error(data) {
+                    sweetAlert("error", "网络出错");
+                });
         }
 
         //提示弹框
@@ -146,5 +148,5 @@
             });
         }
 
-    } ]);
+    }]);
 });

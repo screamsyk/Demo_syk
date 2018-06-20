@@ -43,7 +43,7 @@ define(['angular'], function (angular) {
                 },
                 views: {
                     '': {
-                        templateUrl: 'components/main/mainTemplate.html',
+                        template: require('components/main/mainTemplate.html'),
                         controller: 'mainController'
                     }
                 }
@@ -64,12 +64,12 @@ define(['angular'], function (angular) {
                         return require.ensure([], function () {
                             var m1 = require('components/homePage/homePageController.js');
                             $ocLazyLoad.inject([m1]);
-                        });
+                        }, 'homePage');
                     }]
                 },
                 views: {
                     'content': {
-                        templateUrl: 'components/homePage/homePageTemplate.html',
+                        template: require('components/homePage/homePageTemplate.html'),
                         controller: 'homePageController'
                     }
                 }
@@ -80,12 +80,12 @@ define(['angular'], function (angular) {
                         return require.ensure([], function () {
                             var m1 = require('components/newBook/newBookController.js');
                             $ocLazyLoad.inject([m1]);
-                        });
+                        }, 'newBook');
                     }]
                 },
                 views: {
                     'content': {
-                        templateUrl: 'components/newBook/newBookTemplate.html',
+                        template: require('components/newBook/newBookTemplate.html'),
                         controller: 'newBookController'
                     }
                 }
@@ -96,12 +96,12 @@ define(['angular'], function (angular) {
                         return require.ensure([], function () {
                             var m1 = require('components/personalInfo/personalInfoController.js');
                             $ocLazyLoad.inject([m1]);
-                        });
+                        }, 'personalInfo');
                     }]
                 },
                 views: {
                     'content': {
-                        templateUrl: 'components/personalInfo/personalInfoTemplate.html',
+                        template: require('components/personalInfo/personalInfoTemplate.html'),
                         controller: 'personalInfoController'
                     }
                 }
@@ -112,12 +112,12 @@ define(['angular'], function (angular) {
                         return require.ensure([], function () {
                             var m1 = require('components/interestOption/interestOptionController.js');
                             $ocLazyLoad.inject([m1]);
-                        });
+                        }, 'interestOption');
                     }]
                 },
                 views: {
                     'content': {
-                        templateUrl: 'components/interestOption/interestOptionTemplate.html',
+                        template: require('components/interestOption/interestOptionTemplate.html'),
                         controller: 'interestOptionController'
                     }
                 }
@@ -128,12 +128,12 @@ define(['angular'], function (angular) {
                         return require.ensure([], function () {
                             var m1 = require('components/pushSet/pushSetController.js');
                             $ocLazyLoad.inject([m1]);
-                        });
+                        }, 'pushSet');
                     }]
                 },
                 views: {
                     'content': {
-                        templateUrl: 'components/pushSet/pushSetTemplate.html',
+                        template: require('components/pushSet/pushSetTemplate.html'),
                         controller: 'pushSetController'
                     }
                 }

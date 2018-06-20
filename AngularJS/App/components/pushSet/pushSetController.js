@@ -19,25 +19,25 @@
         ];
         var url = "../WebData/USL_pushSet.ashx?"; //后台地址
         var isFirstSet = true; //是否第一次设置，即用户是否进行了推送设置，便于保存时判断要更新还是添加
-        searchPushSet(); //开始查询用户的推送设置信息
-        searchUserInfo(); //查询用户的邮箱和手机号等信息，即用户信息
+        //searchPushSet(); //开始查询用户的推送设置信息
+        //searchUserInfo(); //查询用户的邮箱和手机号等信息，即用户信息
 
         //广播“操作列表选项改变”事件
         $scope.$root.$broadcast('optionChange', { 'option': 'pushSet' });
 
         //定期推送开关事件
-        $("#setTimeId").bootstrapSwitch({
+        /* $("#setTimeId").bootstrapSwitch({
             onSwitchChange: function (event, state) {
                 $scope.pushSet.isUseSetTime = state;
             }
-        });
+        }); */
 
         //实时推送开关事件
-        $("#realTimeId").bootstrapSwitch({
+        /* $("#realTimeId").bootstrapSwitch({
             onSwitchChange: function (event, state) {
                 $scope.pushSet.isUseRealTime = state;
             }
-        });
+        }); */
 
         //时间选择控件
         $scope.pushSet.pushTime = new Date("2017-04-01 12:00:00");

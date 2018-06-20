@@ -1,85 +1,109 @@
 ﻿<!--标题部分-->
-<div style="font-size:22px"><span class="fa fa-book"></span><span style="margin:0 8px">{{title}}</span></div>
+<div style="font-size:22px">
+    <span class="fa fa-book"></span>
+    <span style="margin:0 8px">{{title}}</span>
+</div>
 
 <!--内容部分-->
 <div style="width:100%;margin-top:20px;background-color:#ffffff;;padding:10px 20px">
-      <!--内容头部-->
-      <div style="height:48px;line-height:48px;border-bottom: 1px solid #eef1f5;margin-bottom:20px" ng-keyup="myKeyup($event)">
-         <span style="font-size:18px;color:32c5d2">图书列表</span>
-         <div style="float:right">
-             <input type="text"  ng-model="requestParams.bookName" style="width:135px;display:inline" class="form-control" placeholder="书名搜索..."/>
-             <button type="button" ng-click="search(1)" style="display:inline;font-size:20px;color:#ffffff" class="btn btn-info"><span class="fa fa-search"></span></button>
-         </div>
-      </div>
+    <!--内容头部-->
+    <div style="height:48px;line-height:48px;border-bottom: 1px solid #eef1f5;margin-bottom:20px" ng-keyup="myKeyup($event)">
+        <span style="font-size:18px;color:32c5d2">图书列表</span>
+        <div style="float:right">
+            <input type="text" ng-model="requestParams.bookName" style="width:135px;display:inline-block" class="form-control" placeholder="书名搜索..."
+            />
+            <button type="button" ng-click="search(1)" style="display:inline;font-size:20px;color:#ffffff" class="btn btn-info">
+                <span class="fa fa-search"></span>
+            </button>
+        </div>
+    </div>
 
-      <!--内容主体-->
-      <div class="container-fluid">
-          <!--没有图书时的提示-->
-          <div ng-if="!isExistBook" class="row">
-              <div style="text-align:center;margin-bottom: 20px;color:#82949a" class="col-md-12">
-                  <span>暂无相应图书信息</span>
-              </div>
-          </div>
+    <!--内容主体-->
+    <div class="container-fluid">
+        <!--没有图书时的提示-->
+        <div ng-if="!isExistBook" class="row">
+            <div style="text-align:center;margin-bottom: 20px;color:#82949a" class="col-md-12">
+                <span>暂无相应图书信息</span>
+            </div>
+        </div>
 
-          <!--第一行的三本图书-->
-          <div class="row">
-              <div class="col-md-4 col-sm-6" ng-repeat="book in bookInfosOne">
-                  <div style="border: 1px solid #e7ecf1;padding: 26px; margin-bottom: 30px;color:#666666">
-                       <div style="padding-bottom: 10px;border-bottom: 1px solid #e7ecf1;margin-bottom: 10px">《{{book.NVC_BOOKNAME}}》</div>
-                       <div style="font-size:10px;padding-bottom: 10px;border-bottom: 1px solid #e7ecf1;margin-bottom: 10px;color:#666666">
-                           <table style="font-size:10px">
-                             <tr>
-                                <td><img style="margin-right:10px" alt="红与黑" ng-src="../../../Images/newBook/{{book.VC_BOOKCOVER}}.png" /></td>
+        <!--第一行的三本图书-->
+        <div class="row">
+            <div class="col-md-4 col-sm-6" ng-repeat="book in bookInfosOne">
+                <div style="border: 1px solid #e7ecf1;padding: 26px; margin-bottom: 30px;color:#666666">
+                    <div style="padding-bottom: 10px;border-bottom: 1px solid #e7ecf1;margin-bottom: 10px">《{{book.NVC_BOOKNAME}}》</div>
+                    <div style="font-size:10px;padding-bottom: 10px;border-bottom: 1px solid #e7ecf1;margin-bottom: 10px;color:#666666">
+                        <table style="font-size:10px">
+                            <tr>
                                 <td>
-                                   <div style="line-height:20px">
-                                       <p>作者：{{book.NVC_AUTHOR}}</p>
-                                       <p>主题：{{book.NVC_THEME}}</p>
-                                       <p>索书号：{{book.VC_CALLNUMBER}}</p>
-                                   </div>
+                                    <img style="margin-right:10px" alt="红与黑" ng-src="../../../Images/newBook/{{book.VC_BOOKCOVER}}.png"
+                                    />
                                 </td>
-                             </tr> 
-                           </table>
-                           <div style="margin-top:10px"><p style="text-indent:2em">简介：{{book.NVC_INTRODUCTION}}</p></div>
-                       </div>
-                       <div>
-                           <span>发布时间：{{dateFormat(book.DT_WRITEDATE)}}</span>
-                           <button type="button" style="float:right" class="btn btn-info btn-xs"><a style="color:#ffffff" ng-href="http://202.202.121.10/xndxrfidweb/TSDW/GotoFlash.aspx?szBarCode={{book.VC_BARCODE}}" target="_blank">馆藏</a></button>
-                       </div>
-                  </div>
-              </div>
-          </div>
-          <!--第二行的三本图书-->
-          <div class="row">
-              <div class="col-md-4 col-sm-6" ng-repeat="book in bookInfosTwo">
-                  <div style="border: 1px solid #e7ecf1;padding: 26px; margin-bottom: 30px;color:#666666">
-                       <div style="padding-bottom: 10px;border-bottom: 1px solid #e7ecf1;margin-bottom: 10px">《{{book.NVC_BOOKNAME}}》</div>
-                       <div style="font-size:10px;padding-bottom: 10px;border-bottom: 1px solid #e7ecf1;margin-bottom: 10px;color:#666666">
-                           <table style="font-size:10px">
-                             <tr>
-                                <td><img style="margin-right:10px" alt="红与黑" ng-src="../../../Images/newBook/{{book.VC_BOOKCOVER}}.png" /></td>
                                 <td>
-                                   <div style="line-height:20px">
-                                       <p>作者：{{book.NVC_AUTHOR}}</p>
-                                       <p>主题：{{book.NVC_THEME}}</p>
-                                       <p>索书号：{{book.VC_CALLNUMBER}}</p>
-                                   </div>
+                                    <div style="line-height:20px">
+                                        <p>作者：{{book.NVC_AUTHOR}}</p>
+                                        <p>主题：{{book.NVC_THEME}}</p>
+                                        <p>索书号：{{book.VC_CALLNUMBER}}</p>
+                                    </div>
                                 </td>
-                             </tr> 
-                           </table>
-                           <div style="margin-top:10px"><p style="text-indent:2em">简介：{{book.NVC_INTRODUCTION}}</p></div>
-                       </div>
-                       <div>
-                           <span>发布时间：{{dateFormat(book.DT_WRITEDATE)}}</span>
-                           <button type="button" style="float:right" class="btn btn-info btn-xs"><a style="color:#ffffff" ng-href="http://202.202.121.10/xndxrfidweb/TSDW/GotoFlash.aspx?szBarCode={{book.VC_BARCODE}}" target="_blank">馆藏</a></button>
-                       </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+                            </tr>
+                        </table>
+                        <div style="margin-top:10px">
+                            <p style="text-indent:2em">简介：{{book.NVC_INTRODUCTION}}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <span>发布时间：{{dateFormat(book.DT_WRITEDATE)}}</span>
+                        <button type="button" style="float:right" class="btn btn-info btn-xs">
+                            <a style="color:#ffffff" ng-href="http://202.202.121.10/xndxrfidweb/TSDW/GotoFlash.aspx?szBarCode={{book.VC_BARCODE}}"
+                                target="_blank">馆藏</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--第二行的三本图书-->
+        <div class="row">
+            <div class="col-md-4 col-sm-6" ng-repeat="book in bookInfosTwo">
+                <div style="border: 1px solid #e7ecf1;padding: 26px; margin-bottom: 30px;color:#666666">
+                    <div style="padding-bottom: 10px;border-bottom: 1px solid #e7ecf1;margin-bottom: 10px">《{{book.NVC_BOOKNAME}}》</div>
+                    <div style="font-size:10px;padding-bottom: 10px;border-bottom: 1px solid #e7ecf1;margin-bottom: 10px;color:#666666">
+                        <table style="font-size:10px">
+                            <tr>
+                                <td>
+                                    <img style="margin-right:10px" alt="红与黑" ng-src="images/newBook/{{book.VC_BOOKCOVER}}.png"
+                                    />
+                                </td>
+                                <td>
+                                    <div style="line-height:20px">
+                                        <p>作者：{{book.NVC_AUTHOR}}</p>
+                                        <p>主题：{{book.NVC_THEME}}</p>
+                                        <p>索书号：{{book.VC_CALLNUMBER}}</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="margin-top:10px">
+                            <p style="text-indent:2em">简介：{{book.NVC_INTRODUCTION}}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <span>发布时间：{{dateFormat(book.DT_WRITEDATE)}}</span>
+                        <button type="button" style="float:right" class="btn btn-info btn-xs">
+                            <a style="color:#ffffff" ng-href="http://202.202.121.10/xndxrfidweb/TSDW/GotoFlash.aspx?szBarCode={{book.VC_BARCODE}}"
+                                target="_blank">馆藏</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-      <!--分页-->
-      <div style="text-align:center;margin-bottom:20px;border-top: 1px solid #eef1f5;padding-top:10px">
-           <ul uib-pagination  style="margin:0px" total-items="totalItems" items_per_page="6" ng-model="currentPage" max-size="5" class="pagination-sm" ng-change="search(currentPage)" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" boundary-links="true"></ul>
-      </div>
-      
+    <!--分页-->
+    <div style="text-align:center;margin-bottom:20px;border-top: 1px solid #eef1f5;padding-top:10px">
+        <ul uib-pagination style="margin:0px" total-items="totalItems" items_per_page="6" ng-model="currentPage" max-size="5" class="pagination-sm"
+            ng-change="search(currentPage)" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+            boundary-links="true"></ul>
+    </div>
+
 </div>

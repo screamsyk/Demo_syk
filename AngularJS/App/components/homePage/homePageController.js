@@ -8,10 +8,10 @@
         $scope.$root.$broadcast('optionChange', { 'option': 'homePage' });
 
         //轮播图
-        $('.carousel').carousel({
+        /* $('.carousel').carousel({
             interval: 5000,
             pause: null
-        });
+        }); */
 
         //背景
         $scope.backgroundContent = "随着互联网及相关技术的迅速发展，以及图书馆数字化的到来，用户如何在图书馆海量信息中以最快、最有效的方式找到真正符合其需求的图书信息成了数字图书馆待解决的问题之一。\
