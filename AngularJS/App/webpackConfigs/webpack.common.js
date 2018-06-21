@@ -65,6 +65,7 @@ module.exports = {
             path.resolve(__dirname, '../components')
         ],
         alias: {//设定文件路径的别名，这样使用时就方便很多
+            //注意特殊的一点：如果是在html中通过<img src='...'>或者在css中用background:url()引入静态图片资源，需要用~images/来告诉webpack要使用别名路径，而不是相对路径
             images: path.resolve(__dirname, '../images'),
             components: path.resolve(__dirname, '../components')
         }
