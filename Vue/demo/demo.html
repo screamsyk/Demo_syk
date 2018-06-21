@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue实战案例：小demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--引入Vue-->
+    <link type="text/css" rel="stylesheet" href="./demo.css"></link>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!--小示例-->
+    <div class="cover" id="app">
+        <div class="title">{{title}}</div>
+        <div class="content">
+            <div class="content_title">任务列表</div>
+            <div class="content_input">
+                <!--键盘事件-->
+                <input type="text" placeholder="回车添加任务..." v-model="task.content" @keydown.enter="add($event)"/>
+            </div>
+            <div class="content_list">
+                <!--父组件——>子组件通信，以及子组件——>父组件通信-->
+                <task :task="item" :index="index" @to-delete="deleteTask" @to-finish="finish" v-for="(item,index) in list"></task>
+            </div>
+        </div>
+    </div>
+    <script src="./demo.js"></script>
+</body>
+
+</html>
