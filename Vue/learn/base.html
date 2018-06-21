@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>学习Vue</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="./base.css"></link>
+    <!--引入Vue-->
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!--基础-->
+    <div id="app1">
+        <div>（1）Vue测试数据绑定：{{test}}</div>
+        <div>（2）视图组件：
+            <card></card>
+        </div>
+        <div>（3）过滤器的使用：{{number|toInt}}</div>
+        <div>（4）计算属性：{{sum}}</div>
+        <div>（5）v-model实现数据双向绑定，用于html表单控件，如input textarea select：
+            <input type="text" v-model="testModel" />
+            <div>{{testModel}}</div>
+        </div>
+        <div>（6）直接用双大括号写法（Mustache语法）绑定带html标签的数据：{{testHtml}}</div>
+        <div>（7）用v-text绑定数据，作用和双大括号一样，不能识别html内容：
+            <span v-text="testHtml"></span>
+        </div>
+        <div>（8）用v-html绑定带html标签的数据：
+            <div v-html="testHtml"></div>
+        </div>
+        <div>（9）用v-bind绑定带html标签的属性：
+            <a v-bind:href="testA" target="_blank">百度</a>
+        </div>
+        <div>（10）用v-bind的简写冒号:来绑定带html标签的属性：
+            <a :href="testA" target="_blank">百度</a>
+        </div>
+        <div>（11）用v-show的控制html元素的显示和隐藏：
+            <div>
+                显示：
+                <p v-show="show1">显示的内容</p>
+                不显示：
+                <p v-show="show2">不显示</p>
+            </div>
+        </div>
+        <div>（12）用v-if的控制html元素是否渲染出来：（如果不会频繁切换元素的显示和隐藏，就采用v-if，同时，如果想让显示时对应的内容初始化，也用v-if）
+            <div>
+                渲染：
+                <p v-show="if1">渲染出来后显示的内容</p>
+                不渲染：
+                <p v-show="if2">不渲染</p>
+            </div>
+        </div>
+        <div>（13）v-else与v-if配合使用，注意在v-if和v-else之间的都会隐藏，只会有其中一个渲染，另外还有v-else-if指令
+            <div>
+                if的：
+                <p v-if="if2">渲染出来后显示的内容</p>
+                <p v-else>v-if为false时才渲染出来</p>
+            </div>
+        </div>
+        <div>（14）v-for用于循环渲染列表数据
+            <ul>
+                <li v-for="item in list">{{item}}</li>
+            </ul>
+        </div>
+        <div>（15）v-for用于循环渲染列表数据，并且拿到索引
+            <ul>
+                <li v-for="(item,index) in list">{{item+'，索引为：'+index}}</li>
+            </ul>
+        </div>
+        <div>（16）v-on用于绑定事件
+            <!--注意如果绑定的方法不需要传参数，那么绑定的方法写不写()都可以，如<button @click="say"></button>等价于<button @click="say()"></button>-->
+            <!--但如果方法有默认参数的话，而且想要得到默认参数，那么绝对不能写()，否则得不到默认参数，比如子组件向父组件发送数据时-->
+            <button type="button" @click="say()">点击事件</button>
+        </div>
+        <div>（17）v-once控制元素只渲染一次，即后面数据变了，元素的内容也不会变了
+            <input type="text" v-model="testOnce" />
+            <div>
+                未使用v-once：
+                <span>{{testOnce}}</span>
+            </div>
+            <div>
+                使用了v-once：
+                <span v-once>{{testOnce}}</span>
+            </div>
+        </div>
+        <div>（18）动态绑定class
+            <div>
+                对象语法：
+                <span :class="{'active':true,'danger':false,'error':false}">active</span>
+                <span :class="{'active':false,'danger':true,'error':false}">danger</span>
+                <span :class="{'active':false,'danger':false,'error':true}">error</span>
+            </div>
+            <div>
+                数组语法：
+                <span :class="['active']">active</span>
+            </div>
+        </div>
+        <div>（19）动态绑定style
+            <p v-bind:style="{color:'#016dcf'}">通常采用对象语法</p>
+        </div>
+
+    </div>
+    <script src="./base.js"></script>
+</body>
+
+</html>

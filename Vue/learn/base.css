@@ -1,0 +1,12 @@
+.active{
+    background-color: blue;
+    color:#fff
+}
+.danger{
+    background-color: yellow;
+    color:#fff
+}
+.error{
+    background-color: red;
+    color:#fff
+}

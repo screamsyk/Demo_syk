@@ -1,3 +1,4 @@
 Vue（也可以叫Vue.js，一个意思）是尤雨溪（中国人哦）写的一个前端框架，与Angular、React三分天下，很厉害
 这里学习下Vue2.0，即Vue.js的第二个版本
 base.js=>Vue2.0基础
+component.js=>Vue2.0组件

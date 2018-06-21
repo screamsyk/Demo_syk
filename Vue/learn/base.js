@@ -40,7 +40,15 @@ new Vue({
     data: {//data：用于存放数据
         test: 'web前端教程',
         testModel: '双向数据绑定',
-        number: 3.14
+        number: 3.14,
+        testHtml: '<div style="width:100px;height:30px;background-color:#fef6f2">这是html内容</div>',
+        testA: 'http://www.baidu.com',
+        show1: true,
+        show2: false,
+        if1: true,
+        if2: false,
+        list: ['列表数据1', '列表数据2', '列表数据3',],
+        testOnce: '测试v-once的只渲染一次'
     },
     filters: {//filters：用于存放过滤器
         toInt(value) {//ES6扩展对象的方法的简写
@@ -55,6 +63,9 @@ new Vue({
     methods: {//methods：用于存放方法
         plus() {
             return this.number++
+        },
+        say() {
+            alert('绑定点击事件');
         }
     },
     watch: {//watch：用于观察数据的变化
@@ -95,7 +106,31 @@ new Vue({
     actived() {//keep-alive组件被激活时调用
 
     },
-    deactivated(){//keep-alive组件被停用时调用
+    deactivated() {//keep-alive组件被停用时调用
 
     }
 });
+
+//(5)绑定数据的方法，以及一些常用的Vue指令：
+//---mustache语法（即小胡子，双大括号{{}}）：在html标签中使用<div>{{number}}</div>来绑定数据number
+//---v-model指令：在html标签中当属性使用，通过<div v-model="number"></div>来双向绑定数据number，用于html表单控件
+//---v-html指令：在html标签中当属性使用，通过<div v-html="testHtml"></div>来绑定带html内容的数据testHtml，这样可以显示html内容
+//---v-bind指令：绑定标签的属性值，如<a v-bind:href=""></a>，<img v-bind:src="">
+//----------------简写为冒号:，如<a :href=""></a>
+//---v-text指令：作用和{{}}一样，用于绑定数据文本，不能识别html内容
+//---v-show指令：控制html元素的显示和隐藏
+//---v-if指令：控制html元素是否渲染出来（如果不会频繁切换元素的显示和隐藏，就采用v-if，同时，如果想让显示时对应的内容初始化，也用v-if）
+//---v-else指令：与v-if指令配合使用
+//---v-else-if指令：可与v-if和v-else指令配合使用，注意在v-if和v-else之间如果写了内容都会隐藏
+//---v-for指令：用于循环渲染列表数据
+//---v-on指令：绑定事件，如<button v-on:click=""></button>
+//------------简写为@，如<button @click=""></button>
+//------------注意如果绑定的方法不需要传参数，那么绑定的方法写不写()都可以，如<button @click="say"></button>等价于<button @click="say()"></button>
+//------------但如果方法有默认参数的话，想要得到默认参数，那么绝对不能写()，否则得不到默认参数，比如子组件向父组件发送数据时
+//---v-once指令：控制元素只渲染一次，即数据改变时，内容也不变了
+
+//(6)动态绑定class和style（主要还是用v-bind指令）
+//---对象语法：<p v-bind:class="{'active':isActive,'danger':isDanger,'error':isError}"></p>
+//---数组语法：<p v-bind:class="[activeClass,errorClass]"></p>
+//------------isActive为true或false，activeClass的值是类名，所以也可以直接写true和false，或者class的名称
+//---绑定style也主要采用对象语法：<p v-bind:style="{color:red}"></p>

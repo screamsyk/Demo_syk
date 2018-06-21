@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>学习Vue组件</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--引入Vue-->
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!--组件-->
+    <div id="app">
+        <h3>单个组件：</h3>
+        <my-article :detail="article"></my-article><!--将数据article当做实参，属性detail当作形参，向组件内部传入数据-->
+        <h3>组件复用：</h3>
+        <my-article :detail="item" v-for="item in articles"></my-article>
+        <h3>子组件——>父组件通信：</h3>
+        <son @connect="say"></son><!--父组件中监听子组件触发的事件，注意say不要写()，不然得不到子组件传递的数据-->
+    </div>
+    <script src="./component.js"></script>
+</body>
+
+</html>
