@@ -4,7 +4,7 @@
 Vue.component('task', {
     props: ['task', 'index'],//组件数据，又称属性
     template: `<div class="task">
-    <input type="checkbox" @click="finish(index)"/>
+    <input type="checkbox" @click="finish(index)" :checked="task.isFinish"/>
     <span style="margin:0 10px" :class="{'finish':task.isFinish}">{{index+1}}.{{task.content}}</span>
     <label v-show="task.isFinish">【已完成】</label>
     <label v-show="!task.isFinish">【未完成】</label>
