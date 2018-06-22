@@ -4,18 +4,51 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>学习Vue</title>
+    <title>学习Vue进阶</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="./advance.css">
     <!--引入Vue-->
     <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules//vue-router/dist/vue-router.js"></script>
+    <script src="../node_modules/vuex/dist/vuex.js"></script>
 </head>
 
 <body>
     <!--进阶-->
     <div id="app">
-        
+
         <!--内置组件transition：实现CSS3的过渡效果-->
-        <transition name="box"></transition>
+        <h3>内置组件transition：实现CSS3的过渡效果</h3>
+        <button type="button" class="btn" @click="isShowBox=!isShowBox">切换</button>
+        <div class="container">
+            <transition name="box">
+                <!--用组件transition包起来，名称为box-->
+                <div class="box" v-show="isShowBox">
+                    <div class="text">我是box</div>
+                </div>
+            </transition>
+        </div>
+
+        <!--Vue路由：vue-router-->
+        <h3>Vue路由：vue-router</h3>
+        <div>
+            <!--导航栏：使用router-link组件来视图导航，to属性指定目标地址-->
+            <div class="router_nav">
+                <div class="router_nav_item">
+                    <router-link to="/vue">简易VUE</router-link>
+                </div>
+                <div class="router_nav_item">
+                    <router-link to="/es6">趣味ES6</router-link>
+                </div>
+                <div class="router_nav_item">
+                    <router-link to="/career">人在职场</router-link>
+                </div>
+            </div>
+            <!--内容：使用router-view组件来渲染视图-->
+            <div class="router_content">
+                <router-view></router-view>
+            </div>
+        </div>
 
     </div>
     <script src="./advance.js"></script>

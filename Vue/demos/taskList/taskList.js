@@ -1,4 +1,4 @@
-//========Vue实战案例：小demo=========
+//========Vue实战案例：任务列表=========
 
 //(1)创建组件
 Vue.component('task', {
@@ -24,7 +24,7 @@ Vue.component('task', {
 new Vue({
     el: '#app',
     data: {
-        title: 'Vue实战案例：小demo',
+        title: 'Vue实战案例：任务列表',
         task: {
             content: '',
             isFinish: false,
