@@ -18,7 +18,12 @@
         <div class="title">{{title}}</div>
         <div class="content">
             <div class="content_title">计算器</div>
-            <div class="screen_div"></div>
+            <div class="screen_div">
+                <div class="screen_content">
+                    <div class="screen_result">{{result}}</div>
+                    <div class="screen_input">{{input}}</div>
+                </div>
+            </div>
             <div class="keyboard_div">
                 <keyboard :keyvalue="item" v-for="item in keys"></keyboard>
             </div>

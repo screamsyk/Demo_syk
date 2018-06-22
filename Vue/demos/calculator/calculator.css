@@ -48,9 +48,23 @@ html,body{
     color: #fff;
 }
 .screen_div{
+    position: relative;
     margin: 0 10px;
     height: 200px;
     background-color: #f2f4f6;
+}
+.screen_content{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    text-align: right;
+}
+.screen_result{
+    font-size:30px;
+}
+.screen_input{
+    opacity: 0.8;
+    padding: 5px 0;
 }
 .keyboard_div{
     height: 240px;
