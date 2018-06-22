@@ -107,3 +107,51 @@ new Vue({
 //---getters：读取，用于读取state中的状态，即数据，具体比较类似计算属性computed
 //---mutations：变化，用于改变state中的状态，即数据，我咋觉得叫setters更合情理~v~
 //--------------注意使用mutations，需要用store.commit()方法，参数为mutations中的方法名，也可以传更多参数
+
+
+//----------------------Vue推荐http请求插件：axios--------------------------
+
+//(1)安装：npm install axios --save
+
+//(2)get请求：请求参数放在params中
+let url = '';
+axios.get(url, {
+    params: {//参数
+        type: 'get',
+        id: 10
+    }
+}).then(function (res) {
+    //成功
+}).catch(function (err) {
+    //失败
+});
+
+//(3)post请求：
+axios.post(url, {//请求参数放在对象中
+    type: 'post',
+    id: 10
+}).then(function () {
+    //成功
+}).catch(function () {
+    //失败
+});
+//等同于:
+axios({
+    method: 'post',
+    url: url,
+    data: {
+        name: '前端君'
+    }
+});
+
+//(4)并发请求：axios.all()以及axios.spread()
+function get1() {
+    axios.get('/file1');
+}
+function get2() {
+    axios.get('file2');
+}
+axios.all([get1(), get2()]).then(axios.spread(function (res1, res2) {
+    console.log(res1);
+    console.log(res2);
+}));
