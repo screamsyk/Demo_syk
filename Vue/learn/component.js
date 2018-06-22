@@ -66,14 +66,14 @@ var componentB = {
     template: '<div>局部组件B</div>'
 }
 //---方法二：单文件组件.vue文件，如componentC.vue
-import componentC from './componentC.vue';
+//import componentC from './componentC.vue';//目前大多数浏览器本身并不支持import这个ES6模块语法，但可以用babel和webpack等插件实现使用
 
 //---然后在new Vue()创建Vue实例时，通过配置项components进行配置
 new Vue({
-    el:'#app2',
-    components:{
-        'component-a':componentA,//组件名:组件定义对象
-        'component-b':componentB,
-        'component-c':componentC
+    el: '#app2',
+    components: {
+        'component-a': componentA,//组件名:组件定义对象
+        'component-b': componentB,
+        //'component-c':componentC//单文件组件
     }
 });
