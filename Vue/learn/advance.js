@@ -47,6 +47,10 @@
 const router = new VueRouter({
     routes: [
         {
+            path: '/',
+            redirect: '/vue'//路由重定向
+        },
+        {
             path: '/vue',
             component: {
                 template: '<div><h1>简易Vue</h1></div>'
