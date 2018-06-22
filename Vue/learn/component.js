@@ -1,6 +1,6 @@
 //==============Vue组件=============
 
-//(1)创建组件（必须先于Vue实例的创建）
+//(1)创建组件（必须先于Vue实例的创建），用于父组件——>子组件通信
 Vue.component('my-article', {
     template: `<div style="padding:10px;margin-bottom:10px;box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;">
     <div>
