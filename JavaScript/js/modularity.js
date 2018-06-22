@@ -56,7 +56,7 @@ var module3 = (function ($, _) {
 //---UMD
 
 //(3)ES6
-//---ES6是ECMA国际标准化组织于2015年6月提出的JavaScript语法标准，新增特性：module模块化，通过关键字export导出，import导入（可以导入非js文件）
+//---ES6是ECMA国际标准化组织于2015年6月提出的JavaScript语法标准，新增特性：module模块化，通过关键字export导出，import导入（可以导入非js文件，但目前大多浏览器不支持）
 //---ES6模块化认为，一个模块就是一个文件。
 //---假设module-A就是一个文件module-A.js，其中可以用export导出变量和函数供其他模块使用
 {

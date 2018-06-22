@@ -45,7 +45,35 @@ new Vue({
     }
 });
 
-//(3)Vue组件之间的通信
+//(4)Vue组件之间的通信
 //---props：实现父组件向子组件传递数据（父组件——>子组件，单向）
 //---自定义事件：使用组件API中的$emit(eventName,data)方法来触发一个事件，父组件监听这个事件，实现子组件向父组件发送数据等（子组件——>父组件，单向）
 //---vuex：状态管理，用于非父子组件之间的通信
+
+
+//-----------------------全局组件与局部组件-------------------------------
+
+//(1)全局组件：就是用Vue.component()定义的组件，在整个应用程序的生命周期中都可以使用
+
+//(2)局部组件：为了解决全局组件命名冲突的问题，以及使用webpack打包时所有全局组件会打包在一起的问题
+
+//(3)局部组件的定义：
+//---方法一：将组件定义成简单的js对象
+var componentA = {
+    template: '<div>局部组件A</div>'
+}
+var componentB = {
+    template: '<div>局部组件B</div>'
+}
+//---方法二：单文件组件.vue文件，如componentC.vue
+import componentC from './componentC.vue';
+
+//---然后在new Vue()创建Vue实例时，通过配置项components进行配置
+new Vue({
+    el:'#app2',
+    components:{
+        'component-a':componentA,//组件名:组件定义对象
+        'component-b':componentB,
+        'component-c':componentC
+    }
+});

@@ -12,15 +12,26 @@
 </head>
 
 <body>
-    <!--组件-->
+    <!--全局组件-->
     <div id="app">
         <h3>单个组件：</h3>
-        <my-article :detail="article"></my-article><!--将数据article当做实参，属性detail当作形参，向组件内部传入数据-->
+        <my-article :detail="article"></my-article>
+        <!--将数据article当做实参，属性detail当作形参，向组件内部传入数据-->
         <h3>组件复用：</h3>
         <my-article :detail="item" v-for="item in articles"></my-article>
         <h3>子组件——>父组件通信：</h3>
-        <son @connect="say"></son><!--父组件中监听子组件触发的事件，注意say不要写()，不然得不到子组件传递的数据-->
+        <son @connect="say"></son>
+        <!--父组件中监听子组件触发的事件，注意say不要写()，不然得不到子组件传递的数据-->
     </div>
+
+    <!--局部组件-->
+    <div id="app2">
+        <h3>局部组件</h3>
+        <component-a></component-a>
+        <component-b></component-b>
+        <component-c></component-c>
+    </div>
+
     <script src="./component.js"></script>
 </body>
 
