@@ -99,7 +99,7 @@ function test1(obj: { name: string }) {//类型批注，可以看出test()函数
 }
 //等同于用interface写
 interface objType {//接口objType就相当于一个名字，代表含有名称为name且类型为string的属性的对象
-    name: string
+    name: string;
 }
 function test2(obj: objType) {//将接口interface作为类型批注
     console.log(obj.name);
@@ -112,7 +112,7 @@ function test2(obj: objType) {//将接口interface作为类型批注
 
 //(2)interface指定只读属性
 interface Point {
-    readonly x: number,//用readonly表明属性只读，不可修改
+    readonly x: number;//用readonly表明属性只读，不可修改
     y: number
 }
 {
@@ -122,12 +122,12 @@ interface Point {
     //arr[0]=3;//会报错，因为ReadonlyArray把数组置为只读，不可修改
 }
 
-//(3)接口interface:作为对象的类型批注
+//(3)接口interface:作为对象的类型批注，注意每个属性是用分号;隔开，而不是用逗号,隔开
 interface Shape {
-    type: string,
-    width: number,
-    readonly height: number,//readonly代表只读属性
-    color?: string,//?代表可选属性，这个参数可传可不传
+    type: string;
+    width: number;
+    readonly height: number;//readonly代表只读属性
+    color?: string;//?代表可选属性，这个参数可传可不传
 }
 function add3(shape: Shape) {
     var area = shape.width * shape.height;
@@ -293,7 +293,7 @@ function fun3(a: string, b?: string, c: number = 12) {
 }
 fun3('hello world');//这里?和指定默认值，这两种方式，都可以让函数的参数变成不必传
 
-//(4)rset参数和spread操作符（即ES6中的扩展运算符...），可以给函数指定任意参数
+//(4)rest参数和spread操作符（即ES6中的扩展运算符...），可以给函数指定任意参数
 function fun4(...arr: Array<any>) {
     arr.forEach(v => console.log(v));
 }
