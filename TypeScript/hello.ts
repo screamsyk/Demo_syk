@@ -79,6 +79,8 @@ function fn(name: string): void {//无类型就是void，函数参数也可以�
     let v: void = undefined;//void，空值（只能赋值undefined和null），普通函数没有返回值会返回undefined，所以没有返回值的函数也可以用void类型批注
     let un: undefined = undefined;//undefined
     let nu: null = null;//null
+    let padding: number | string;//联合类型，即多种类型之一，这里既可以是number也可以使string，用竖线|分隔每个类型，区分类型时常常用到类型断言
+    let margin: number & string;//交叉类型，即包含多种类型，常用于对象的类型批注
 }
 
 //(2)类型断言（告诉编译器，数据准确的类型，编译器就不必再进行类型检查了，有点类似类型转换）
@@ -88,7 +90,11 @@ function fn(name: string): void {//无类型就是void，函数参数也可以�
     let num2: number = (someValue as string).length;//用关键字as是类型断言的另一种形式，而JSX中只支持as，不支持<>
 }
 
-//(3)TypeScript中的变量声明可以用ES6中新增的特性let、const、解构赋值等，用法和ES6中的一样
+//(3)类型别名（给类型换个名称）
+type Name = string;
+var names: Name;
+
+//(4)TypeScript中的变量声明可以用ES6中新增的特性let、const、解构赋值等，用法和ES6中的一样
 
 
 //---------------------------------TS特性：接口interface-------------------------------
@@ -233,6 +239,7 @@ class animal {
     private color: string;//私有属性，只能在【本类的类体】中访问
     protected type: string;//受保护属性，只能在【本类的类体】中和【子类的类体】中访问
     weight: number;//默认公有
+    readonly heart: string;//只读属性
 
     //定义方法
     run() {
@@ -240,29 +247,30 @@ class animal {
     }
 
     //类的构造方法（必须有），this指向实例化后的对象，在构造方法中可以定义属性
-    constructor(name: string, color: string, type: string, weight: number) {
+    constructor(name: string, color: string, type: string, weight: number, heart: string) {
         this.name = name;
         this.color = color;
         this.type = type;
         this.weight = weight;
+        this.heart = heart;
     }
 }
 
 //(2)基于类实例化dog对象
-var dog = new animal('旺财', "black", "dog", 40);
+var dog = new animal('旺财', "black", "dog", 40, '内心');
 console.log(dog.run());
 console.log(dog.name);
 //console.log(dog.color);私有属性不可访问
 console.log(dog.weight);
 
-//(3)继承类（关键字extends）
+//(3)继承类（extends关键字）
 class cat extends animal {
     sex: string;//新增属性type
     eat() {
         return "I like to eat mouse";
     }
     constructor(name: string, color: string, type: string, weight: number, sex: string) {
-        super(name, color, type, weight);//super()方法相当于父类的构造方法，而super相当于父类实例this
+        super(name, color, type, weight, sex);//super()方法相当于父类的构造方法，而super相当于父类实例this
         this.sex = sex;
     }
 }
@@ -271,6 +279,32 @@ console.log(tomCat.name);
 //console.log(tomCat.color);私有属性不可访问
 console.log(tomCat.weight);
 //console.log(tomCat.type);受保护的属性不可访问
+
+//(4)类的私有属性的读取和修改方法（get和set关键字）
+class Employee {
+    private money: number;
+    get getMoney() {
+        return this.money;
+    }
+    set setMoney(money: number) {
+        this.money = money;
+    }
+    constructor() {
+        this.money = 1000;
+    }
+}
+
+//(5)类的静态属性（static关键字），即可以直接通过类访问，不需要实例化对象，也不需要构造函数中构造
+class Book {
+    static type: string = '书籍';
+}
+
+//(6)抽象类（abstract关键字），即用作其他类继承用，而不用来实例化
+abstract class Dream {
+    static type: string = "抽象类";
+    abstract say(): void;//抽象方法，不在类中实现，而是在子类中实现，感觉类似接口interface
+}
+
 
 
 //----------------------------------TS新特性：函数---------------------------------
@@ -300,6 +334,11 @@ function fun4(...arr: Array<any>) {
 fun4(1, 2, 3, 4);
 
 //(5)generator函数（ES6中的生成器函数，但目前TS还不支持）
+
+//(6)泛型（<>），用于指定具体的类型，说明传入的类型与返回的类型应该是相同的。
+function identity<T>(arg: T): T {
+    return arg;
+}
 
 
 
@@ -335,3 +374,10 @@ class AppComponent{//当声明这个类时，注解就告诉angular框架要去�
 //---使用npm install typings -g，安装typings
 //---使用typings search jquery，查找想找的类型定义文件，如jquery
 //---使用typings install jquery --save --source dt --global，安装jquery的类型定义文件
+
+
+//-----------------------------TS新特性：命名空间-------------------------------------------
+
+//(1)TS规定内部模块称为命名空间，外部模块称为模块，即module{}等同于namespace{}
+
+//(2)TS通过命名空间和模块来组织代码，方便代码的分类和管理，实际上就是全局作用域下一个普通的JavaScript对象
