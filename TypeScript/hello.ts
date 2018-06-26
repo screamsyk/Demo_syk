@@ -218,7 +218,7 @@ var obj = {
     objName: '对象名称',
     fn1: function () {
         setTimeout(function () {
-            console.log(this.objName)//传统函数中this指向：执行该函数的对象
+            //this.objName//传统函数中this指向：执行该函数的对象
         }, 10);
     },
     fn2: function () {
