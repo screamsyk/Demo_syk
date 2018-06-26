@@ -34,7 +34,7 @@
 //(3)src子结构
 //---app/：存放Angular组件
 //---app/app.component.{css,html,spec.ts,ts}：根组件
-//---app/app.module.ts：定义AppModule根模块，为Angular描述如何用组件来组装应用
+//---app/app.module.ts：定义AppModule根模块，为Angular描述如何用组件来组装应用，同时其他组件也在其中声明和使用
 //---assets/：存放图片等静态资源
 //---environments/：存放各个环境（如开发环境和生成环境）所需要的配置
 //---browserslist：一个目标浏览器的配置文件，用来在不同的前端工具之间共享目标浏览器

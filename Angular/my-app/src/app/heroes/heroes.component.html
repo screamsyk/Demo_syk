@@ -1,10 +1,16 @@
 <!--漫威超级英雄-->
 <div class="heroes_div">
-    <div class="btns_div">
-      <div class="btn"></div>
-      <div class="btn"></div>
-    </div>
-    <div class="dashbord_div"></div>
-    <div class="list_div"></div>
-    
+  <h1>{{title}}</h1>
+  <div class="btns_div">
+    <div class="btn">网格展示</div>
+    <div class="btn">列表展示</div>
   </div>
+  <div class="dashbord_div">
+    <div class="hero_div" *ngFor="let hero of heroes">
+      <img src="../../assets/heroes/{{hero.name}}.png" height="300px">
+      <div class="hero_name">{{hero.name}}</div>
+    </div>
+  </div>
+  <div class="list_div"></div>
+
+</div>
