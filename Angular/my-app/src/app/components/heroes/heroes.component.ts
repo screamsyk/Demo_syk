@@ -4,8 +4,9 @@
 //(1)从@angular/core中导入Component（修饰器，或者说注解）、OnInit（生命周期接口）
 import { Component, OnInit } from '@angular/core';
 import { Hero } from './hero';//引入hero类
+import { HeroService } from '../../services/hero.service';//导入服务，HeroService类
 
-//(2)修饰器，告诉Angular框架要去加载这些内容
+//(2)修饰器，告诉Angular框架要去加载这些内容，为了表示当前这个类是干啥的，是组件还是服务
 @Component({
     selector: 'app-heroes',//组件的选择器（css元素选择器），即组件的名称，用于在html中使用，如<app-heroes></app-heroes>
     templateUrl: './heroes.component.html',//组件的模板
@@ -16,20 +17,20 @@ import { Hero } from './hero';//引入hero类
 export class Heroes implements OnInit {
     title: string = "漫威超级英雄";
     heroes: Hero[] = [//有多个超级英雄，使用*ngFor进行数组遍历，如果想得到索引，则可以写成*ngFor="let hero of heroes;let i = index"，这样i就代表索引
-        { id: 1, name: 'captain',img:'captain.png' },
-        { id: 2, name: 'ironman' ,img:'ironman.png'},
-        { id: 3, name: 'spiderman' ,img:'spiderman.png'},
-        { id: 4, name: 'thanos' ,img:'thanos.png'},//可以用管道符（|）加上管道（如uppercase，即过滤器），将name转成大写，有很多内置的管道
+        { id: 1, name: 'captain', img: 'captain.png' },//可以用管道符（|）加上管道（如uppercase，即过滤器），将name转成大写，有很多内置的管道
     ];
     selectedHero: Hero;//被选中的超级英雄
     selectHero(hero: Hero) {//选中超级英雄
         this.selectedHero = hero;
     }
-    constructor() {//构造方法
+    getHeroes() {
+        this.heroes = this.heroes.concat(this.heroService.getHeroes());
+    }
+    constructor(private heroService: HeroService) {//构造方法，在其中加入了参数，表明：1、创建了一个私有属性，2、把它当做服务HeroServie的实例
 
     }
     ngOnInit() {//接口OnInit指定要实现的方法，属于生命周期钩子，在组件创建完成时调用
-
+        this.getHeroes();//通过服务获取数据
     }
 }
 
