@@ -13,6 +13,11 @@
 
 //(5)这样我们就利用Angular CLI这一命令行工具创建好了我们的Angular应用，超简单快捷
 
+//(6)一些常用的Angular CLI命令：每个命令都可以用--help来查找帮助
+//---ng new <project name>：创建Angular项目，会自动生成对应的文件
+//---ng serve --open：启动服务器，在浏览器中打开
+//---ng generate <schematic type> <schematic type>：快速生成组件、服务等等
+
 
 //--------------------项目结构-----------------------------
 
@@ -32,7 +37,7 @@
 //---tslint.json：代码风格配置
 
 //(3)src子结构
-//---app/：存放Angular组件
+//---app/：存放Angular组件、服务等
 //---app/app.component.{css,html,spec.ts,ts}：根组件
 //---app/app.module.ts：定义AppModule根模块，为Angular描述如何用组件来组装应用，同时其他组件也在其中导入和声明。注意所有要用的组件都要导入和声明，而启动则只需要启动根组件！
 //---assets/：存放图片等静态资源

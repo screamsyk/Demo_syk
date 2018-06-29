@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';//导入FormsModule，这样才能用ngModel等指令
 
 //导入所有的组件
-import { AppComponent } from './appInit/app.component';//根组件
-import { Heroes } from './heroes/heroes.component';
-import { heroDetail } from './heroDetail/heroDetail.component';
+import { AppComponent } from './components/appRoot/app.component';//根组件
+import { Heroes } from './components/heroes/heroes.component';
+import { heroDetail } from './components/heroDetail/heroDetail.component';
 
 @NgModule({
   declarations: [//声明：所有要用的组件都需要在这里声明
