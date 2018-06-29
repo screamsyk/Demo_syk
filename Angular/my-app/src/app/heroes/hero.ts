@@ -1,5 +1,6 @@
 //英雄类
-export class hero{
+export class Hero{
     id:number;
-    name:string
+    name:string;
+    img:string
 }

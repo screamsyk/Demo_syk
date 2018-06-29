@@ -7,11 +7,11 @@
     min-height: 100px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
 }
-.heroes_div:before{
+.dashbord_div:before{
     display: table;
     content: "";
 }
-.heroes_div:after{
+.dashbord_div:after{
     display: table;
     content: "";
     clear: both;
@@ -47,4 +47,15 @@
     height: 40px;
     line-height:40px;
     text-align: center
+}
+.list_item{
+    height: 60px;
+    line-height: 40px;
+    font-weight: bold;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+    margin:5px;
+    padding: 10px;
+}
+.selected{
+    background-color: #f2f4f6;
 }

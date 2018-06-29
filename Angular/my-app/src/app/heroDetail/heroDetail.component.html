@@ -1,0 +1,12 @@
+<div *ngIf="oneHero">
+    <div>
+        <h2>详情组件——>超级英雄：{{oneHero.name}}的详情</h2>
+        <span>id: </span>{{oneHero.id}}</div>
+    <img src="../../assets/heroes/{{oneHero.img}}" height="300px">
+    <div>
+        <label>name:
+            <input [(ngModel)]="oneHero.name" placeholder="name" />
+        </label>
+    </div>
+
+</div>

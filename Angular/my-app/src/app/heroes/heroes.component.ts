@@ -3,7 +3,7 @@
 
 //(1)从@angular/core中导入Component（修饰器，或者说注解）、OnInit（生命周期接口）
 import { Component, OnInit } from '@angular/core';
-import { hero } from './hero';//引入hero类
+import { Hero } from './hero';//引入hero类
 
 //(2)修饰器，告诉Angular框架要去加载这些内容
 @Component({
@@ -15,12 +15,16 @@ import { hero } from './hero';//引入hero类
 //(3)创建类，之后要在app.module.ts中使用
 export class Heroes implements OnInit {
     title: string = "漫威超级英雄";
-    heroes: hero[] = [//有多个超级英雄，使用*ngFor进行数组遍历
-        { id: 1, name: 'captain' },
-        { id: 2, name: 'ironman' },
-        { id: 3, name: 'spiderman' },
-        { id: 4, name: 'thanos' },
+    heroes: Hero[] = [//有多个超级英雄，使用*ngFor进行数组遍历，如果想得到索引，则可以写成*ngFor="let hero of heroes;let i = index"，这样i就代表索引
+        { id: 1, name: 'captain',img:'captain.png' },
+        { id: 2, name: 'ironman' ,img:'ironman.png'},
+        { id: 3, name: 'spiderman' ,img:'spiderman.png'},
+        { id: 4, name: 'thanos' ,img:'thanos.png'},//可以用管道符（|）加上管道（如uppercase，即过滤器），将name转成大写，有很多内置的管道
     ];
+    selectedHero: Hero;//被选中的超级英雄
+    selectHero(hero: Hero) {//选中超级英雄
+        this.selectedHero = hero;
+    }
     constructor() {//构造方法
 
     }
@@ -28,3 +32,15 @@ export class Heroes implements OnInit {
 
     }
 }
+
+//(4)一些Angular常用的指令
+//---*ngFor：用于遍历数组和对象，用的是for...of...循环，所以遍历的是值，不是键（注意要写*），如果想得到索引，则可以写成*ngFor="let hero of heroes;let i = index"，这样i就代表索引
+//---*ngIf：用于显示和隐藏html元素
+//---(click)：绑定click事件，用小括号()括起来
+//---[href]：绑定html属性，用中括号[]括起来
+//---[(ngModel)]：双向数据绑定，用于表单元素
+//---[class.selected]：动态css类.selected
+
+//(5)父组件与子组件通信：@input和@output修饰器
+//---Angular提供了修饰器@input和@output来控制组件数据的输入和输出
+//---父组件——>子组件：
