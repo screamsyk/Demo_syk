@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from './hero';//引入hero类
 import { HeroService } from '../../services/hero.service';//导入服务，HeroService类
 import { ChangeDetectorRef } from '@angular/core';//导入服务，ChangeDetectorRef类
+import { HttpClient } from '@angular/common/http';//http请求
+import { catchError, map, tap } from 'rxjs/operators';
 
 //(2)修饰器，告诉Angular框架要去加载这些内容，为了表示当前这个类是干啥的，是组件还是服务
 @Component({
@@ -32,12 +34,13 @@ export class Heroes implements OnInit {
             this.heroes = response;
         });
     }
-    constructor(private heroService: HeroService, private changeDetectorRef: ChangeDetectorRef) {//构造方法，在其中加入了参数，表明：1、创建了一个私有属性，2、把它当做服务HeroServie的实例
+    constructor(private heroService: HeroService, private changeDetectorRef: ChangeDetectorRef, private http: HttpClient) {//构造方法，在其中加入了参数，表明：1、创建了一个私有属性，2、把它当做服务HeroServie的实例
 
     }
     ngOnInit() {//接口OnInit指定要实现的方法，属于生命周期钩子，在组件创建完成时调用
         //this.getHeroes();//通过服务获取数据
         this.getHeroesRxJS();
+        this.http.get('http://192.168.11.218:6080/arcgis/rest/services/CQboundary/MapServer/0?f=pjson').pipe();
     }
 }
 
