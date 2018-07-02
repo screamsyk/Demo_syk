@@ -16,7 +16,8 @@ export class heroDetail implements OnInit, OnChanges {
         this.oneHero = {
             id: 1,
             name: 'captain',
-            img: 'captain.png'
+            img: 'captain.png',
+            state:'inactive'
         };
     }
     ngOnInit() {

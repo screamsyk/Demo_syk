@@ -5,10 +5,10 @@
     <div class="btn">网格展示</div>
     <div class="btn">列表展示</div>
   </div>
-  
+
   <!--网格-->
   <div class="dashbord_div">
-    <div class="hero_div" *ngFor="let hero of heroes">
+    <div class="hero_div" *ngFor="let hero of heroes" [@heroState]="hero.state" (click)="hero.state=hero.state=='inactive'?'active':'inactive'">
       <img src="../../assets/heroes/{{hero.img}}" height="300px">
       <div class="hero_name">{{hero.name|uppercase}}</div>
     </div>

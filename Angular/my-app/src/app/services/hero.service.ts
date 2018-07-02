@@ -15,10 +15,10 @@ import { Hero } from '../components/heroes/hero';
 //(4)导出服务类
 export class HeroService {
     private heroes = [
-        { id: 1, name: 'thor', img: 'Thor.jpg' },
-        { id: 2, name: 'ironman', img: 'ironman.png' },
-        { id: 3, name: 'spiderman', img: 'spiderman.png' },
-        { id: 4, name: 'thanos', img: 'thanos.png' },
+        { id: 1, name: 'thor', img: 'Thor.jpg', state: 'inactive' },
+        { id: 2, name: 'ironman', img: 'ironman.png', state: 'inactive' },
+        { id: 3, name: 'spiderman', img: 'spiderman.png', state: 'inactive' },
+        { id: 4, name: 'thanos', img: 'thanos.png', state: 'inactive' },
     ];
     getHeroes() {//这里通过方法获取了数据，但常常数据是异步获取的，所以要用到一个异步编程库RxJS，其中有个对象Observable，表示可观察序列，是promise的升级版
         return this.heroes;

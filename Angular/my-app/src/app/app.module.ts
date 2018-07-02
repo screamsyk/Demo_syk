@@ -1,6 +1,7 @@
 //导入模块
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';//动画模块
+import { NgModule } from '@angular/core';//导入NgModule模块化系统
 import { FormsModule } from '@angular/forms';//导入FormsModule，这样才能用ngModel等指令
 import { HttpClientModule } from '@angular/common/http';//导入http模块
 
@@ -24,7 +25,8 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]//启动：由于是单页面应用，所以只需要启动根组件（注意：不要启动其他的组件，不然很可能视图渲染失败）
