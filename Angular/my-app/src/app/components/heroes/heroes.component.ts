@@ -50,7 +50,7 @@ export class Heroes implements OnInit {
             this.heroes = this.heroes.concat(response);
         });
     }
-    constructor(private heroService: HeroService, private changeDetectorRef: ChangeDetectorRef, private http: HttpClient) {//构造方法，在其中加入了参数，表明：1、创建了一个私有属性，2、把它当做服务HeroServie的实例
+    constructor(private heroService: HeroService, private changeDetectorRef: ChangeDetectorRef, private http: HttpClient) {//构造方法，依赖注入，在其中加入了参数，表明：1、创建了一个私有属性，2、把它当做服务HeroServie的实例
 
     }
     ngOnInit() {//接口OnInit指定要实现的方法，属于生命周期钩子，在组件创建完成时调用
