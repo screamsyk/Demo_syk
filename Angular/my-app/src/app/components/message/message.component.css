@@ -1,0 +1,29 @@
+*{
+    box-sizing: border-box;
+}
+.message_div{
+    position: fixed;
+    top:100px;
+    right: 20px;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+    height: 100px;
+    width: 300px;
+    border-left: 4px solid #3399ff;
+    padding: 20px;
+    background-color: #fff;
+}
+.message_title{
+    margin-bottom: 10px;
+}
+.message_content{
+    font-size:14px;
+    color:#8c8c8c
+}
+.message_close{
+    position: absolute;
+    font-size:20px;
+    color: #bfbfbf;
+    top:5px;
+    right: 10px;
+}

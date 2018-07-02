@@ -5,6 +5,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from './hero';//引入hero类
 import { HeroService } from '../../services/hero.service';//导入服务，HeroService类
+import { ChangeDetectorRef } from '@angular/core';//导入服务，ChangeDetectorRef类
 
 //(2)修饰器，告诉Angular框架要去加载这些内容，为了表示当前这个类是干啥的，是组件还是服务
 @Component({
@@ -26,11 +27,17 @@ export class Heroes implements OnInit {
     getHeroes() {
         this.heroes = this.heroes.concat(this.heroService.getHeroes());
     }
-    constructor(private heroService: HeroService) {//构造方法，在其中加入了参数，表明：1、创建了一个私有属性，2、把它当做服务HeroServie的实例
+    getHeroesRxJS() {
+        this.heroService.getHeroesRxJS().subscribe(response => {//Observable可观察序列的订阅方法（注意：这里一定要用箭头函数，为了修正this的指向，不然回调函数执行时this就不是实例对象了，而是window全局对象）
+            this.heroes = response;
+        });
+    }
+    constructor(private heroService: HeroService, private changeDetectorRef: ChangeDetectorRef) {//构造方法，在其中加入了参数，表明：1、创建了一个私有属性，2、把它当做服务HeroServie的实例
 
     }
     ngOnInit() {//接口OnInit指定要实现的方法，属于生命周期钩子，在组件创建完成时调用
-        this.getHeroes();//通过服务获取数据
+        //this.getHeroes();//通过服务获取数据
+        this.getHeroesRxJS();
     }
 }
 

@@ -40,6 +40,7 @@
 //---app/：存放Angular组件、服务等
 //---app/app.component.{css,html,spec.ts,ts}：根组件
 //---app/app.module.ts：定义AppModule根模块，为Angular描述如何用组件来组装应用，同时其他组件也在其中导入和声明。注意所有要用的组件都要导入和声明，而启动则只需要启动根组件！
+//---app/app-routing.module.ts：存放路由
 //---assets/：存放图片等静态资源
 //---environments/：存放各个环境（如开发环境和生成环境）所需要的配置
 //---browserslist：一个目标浏览器的配置文件，用来在不同的前端工具之间共享目标浏览器
