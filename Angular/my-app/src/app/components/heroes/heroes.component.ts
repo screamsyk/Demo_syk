@@ -58,6 +58,11 @@ export class Heroes implements OnInit {
         this.getHeroesRxJS();
         this.http.get('http://192.168.11.218:6080/arcgis/rest/services/CQboundary/MapServer/0?f=pjson').pipe();
     }
+    changeState(hero: Hero) {
+        var state = hero.state;
+        this.heroes.forEach(item => item.state = 'inactive');
+        hero.state = state == 'inactive' ? 'active' : 'inactive';
+    }
 }
 
 //(4)一些Angular常用的指令
