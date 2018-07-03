@@ -7,6 +7,7 @@ import { RouterModule, Routes, Router } from '@angular/router';//路由模块
 //(2)导入路由时用到的组件
 import { Heroes } from './components/heroes/heroes.component';
 import { heroDetail } from './components/heroDetail/heroDetail.component';
+import { SharePlatform } from './components/sharePlatform/sharePlatform.component';
 
 //(3)定义路由
 const routes: Routes = [
@@ -22,10 +23,14 @@ const routes: Routes = [
     {
         path: 'detail/:id',//路由参数
         component: heroDetail
+    },
+    {
+        path: 'sharePlatform',
+        component: SharePlatform
     }
 ]
 
-//(4)修饰器，告诉Angular这个类是干啥的
+//(4)修饰器，告诉Angular这个类是干啥的，它是一个模块
 @NgModule({
     imports: [RouterModule.forRoot(routes)],//在应用的顶级配置这个路由器，并在html的<router-outlet></router-outlet>标签中显示，通过router-link属性跳转
     exports: [RouterModule]

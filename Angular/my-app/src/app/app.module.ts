@@ -10,6 +10,7 @@ import { AppComponent } from './components/appRoot/app.component';//根组件
 import { Heroes } from './components/heroes/heroes.component';
 import { heroDetail } from './components/heroDetail/heroDetail.component';
 import { Message } from './components/message/message.component';
+import { SharePlatform } from './components/sharePlatform/sharePlatform.component';
 
 //路由模块
 import { AppRoutingModule } from './app-routing.module';
@@ -19,14 +20,15 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     Heroes,
     heroDetail,
-    Message
+    Message,
+    SharePlatform
   ],
   imports: [//导入：导入模块
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule
+    BrowserModule,//浏览器视图控制*ngFor
+    FormsModule,//表单双向绑定
+    AppRoutingModule,//路由
+    HttpClientModule,//http请求
+    BrowserAnimationsModule//动画
   ],
   providers: [],
   bootstrap: [AppComponent]//启动：由于是单页面应用，所以只需要启动根组件（注意：不要启动其他的组件，不然很可能视图渲染失败）
