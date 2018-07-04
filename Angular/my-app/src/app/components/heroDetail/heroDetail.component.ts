@@ -12,12 +12,12 @@ import { Location } from '@angular/common';//浏览器路由跳转相关
 })
 export class heroDetail implements OnInit, OnChanges {
     @Input() oneHero: Hero //@Input()修饰器，是用来定义模块的输入的，用来让父模块往子模块传递内容，在html中通过[oneHero]="selectedHero"来指定值
-    constructor(private activatedRoute: ActivatedRoute,private location:Location) {
+    constructor(private activatedRoute: ActivatedRoute, private location: Location) {//依赖注入，无需关注依赖的类的实现
         this.oneHero = {
             id: 1,
             name: 'captain',
             img: 'captain.png',
-            state:'inactive'
+            state: 'inactive'
         };
     }
     ngOnInit() {

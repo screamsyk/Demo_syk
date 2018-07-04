@@ -1,4 +1,18 @@
+.platform_head{
+    background-color: #2a303c;
+    color:#fff;
+    height: 65px;
+    line-height: 65px;
+}
 .platform_title{
-    font-size: 20px;
-    font-weight: bold;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    font-size: 25px;
+    color: #fff;
+}
+@media screen and (max-width:700px){
+    .platform_title{
+        font-size: 14px;
+    }
 }
