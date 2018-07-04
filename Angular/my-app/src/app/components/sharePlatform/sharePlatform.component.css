@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+    font-family: 'pingfang SC','helvetica neue',arial,'hiragino sans gb','microsoft yahei ui','microsoft yahei',simsun,sans-serif;
+}
 .platform_head{
     background-color: #2a303c;
     color:#fff;
@@ -5,14 +9,148 @@
     line-height: 65px;
 }
 .platform_title{
-    display: inline-block;
-    height: 40px;
-    line-height: 40px;
-    font-size: 25px;
+    float: left;
+    font-size: 22px;
     color: #fff;
+    padding: 0 40px 0 20px;
 }
 @media screen and (max-width:700px){
     .platform_title{
         font-size: 14px;
     }
+}
+.platform_nav{
+    float: left;
+    font-size:14px;
+}
+.platform_head ul{
+    list-style-type: disc;
+}
+.platform_head li{
+    display: inline-block
+}
+.platform_head a{
+    display: inline-block;
+    height: 65px;
+    line-height: 65px;
+    padding: 0 15px
+}
+.platform_head a:hover{
+    color:#00a4ff;
+    border-bottom: 1px solid #00a4ff
+}
+.platform_slider{
+    position: relative;
+}
+.platform_slider_intro{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color:#fff
+}
+.platform_slider_text{
+    width: 1120px;
+    margin: auto;
+    font-size:46px;
+    font-weight: 400;
+    margin-top:150px;
+}
+@media screen and (max-width:1400px){
+    .platform_slider_text{
+        margin-top:60px;
+    }
+}
+.platform_slider_p{
+    margin-top:20px;
+    font-size: 18px;
+    line-height: 36px;
+}
+.platform_user{
+    float: right;
+    font-size:12px;
+    padding:0 10px; 
+}
+.img-circle{
+    height:50%;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+
+/*选项卡*/
+.platform_catalog_list{
+    padding: 0;
+    box-shadow: 0 1px 2px #ddd;
+    height: 100px;
+    line-height: 100px;
+}
+.platform_catalog_tabs{
+    max-width: 1200px;
+    min-width: 1000px;
+    margin: 0 auto;
+}
+.platform_catalog_tab{
+    font-size:18px;
+    font-weight: bold;
+    display: inline-block;
+    width: 33.3333%;
+    text-align: center;
+}
+.platform_catalog_tab:hover{
+    color:#00a4ff;
+    border-bottom: 3px solid #00a4ff
+}
+.platform_catalogs{
+    max-width: 1200px;
+    min-width: 1000px;
+    margin: 0 auto;
+    padding:10px 0;
+}
+.platform_catalogs:before{
+    display: table;
+    content: " ";
+}
+.platform_catalogs:after{
+    display: table;
+    content: " ";
+    clear: both;
+}
+.platform_catalog_item{
+    float: left;
+    width: 20%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 5px;
+    height: 60px;
+    line-height: 60px;
+}
+.platform_catalog_item:hover{
+    background-color: #ddd;
+}
+.catalog_img{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    max-width: 100%;
+    vertical-align: middle;
+    border: 0;
+    background: url(../../../assets/platform/readLogo.png)
+}
+.catalog_name{
+    display: inline-block;
+    padding:0 10px;
+}
+
+/*动态新闻等文章*/
+.platform_article_div{
+    min-height: 600px;
+    background-color: #f7f8fa;
+}
+
+/*页尾*/
+.platform_end{
+    min-height: 600px;
+    background-color: #2e3033;
 }

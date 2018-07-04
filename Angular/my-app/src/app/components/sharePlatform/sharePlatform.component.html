@@ -4,10 +4,80 @@
             <img src="../../../assets/platform/logobar.png" style="vertical-align: middle;height: 40px;">
             <span>重庆市社会公共信息资源共享平台</span>
         </div>
+        <div class="platform_nav">
+            <ul>
+                <li>
+                    <a style="color:#00a4ff;border-bottom: 1px solid #00a4ff">首页</a>
+                </li>
+                <li>
+                    <a>资源目录</a>
+                </li>
+                <li>
+                    <a>信息查询</a>
+                </li>
+                <li>
+                    <a>应用接口</a>
+                </li>
+                <li>
+                    <a>互动交流</a>
+                </li>
+                <li>
+                    <a>系统管理</a>
+                </li>
+            </ul>
+        </div>
+        <div class="platform_user">
+            <ul>
+                <li>
+                    <a>
+                        <span style="margin-right: 10px">超级管理员</span>
+                        <img class="img-circle" alt="image" src="../../../assets/platform/user0.png">
+                    </a>
+                </li>
+                <li>
+                    <a>注册</a>
+                </li>
+                <li>
+                    <a>登录</a>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="platform_body">
+
+        <!--轮播图-->
         <div class="platform_slider">
             <img src="../../../assets/platform/slider1.png" width="100%">
+            <div class="platform_slider_intro">
+                <div class="platform_slider_text">
+                    <span>轻松共享 快速访问</span>
+                    <p class="platform_slider_p">权威数据来自权威部门 权威部门共享权威数据</p>
+                </div>
+            </div>
         </div>
+
+        <!--资源目录列表-->
+        <div class="platform_catalog_list">
+            <div class="platform_catalog_tabs">
+                <div class="platform_catalog_tab">主题信息资源目录</div>
+                <div class="platform_catalog_tab" style="color:#00a4ff;border-bottom: 3px solid #00a4ff">部门信息资源目录</div>
+                <div class="platform_catalog_tab">基础信息资源目录</div>
+            </div>
+        </div>
+        <div class="platform_catalogs">
+            <div class="platform_catalog_item" *ngFor="let item of catalogs">
+                <div class="catalog_img" [ngStyle]="item.style"></div>
+                <div class="catalog_name" title="{{item.name}}">{{item.name}}</div>
+            </div>
+        </div>
+
+        <!--动态新闻等-->
+        <div class="platform_article_div">
+
+        </div>
+        
+    </div>
+    <div class="platform_end">
+
     </div>
 </div>
