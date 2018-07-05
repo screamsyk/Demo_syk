@@ -22,7 +22,7 @@
                     <a>互动交流</a>
                 </li>
                 <li>
-                    <a>系统管理</a>
+                    <a href="http://www.jq22.com/yanshi10489" target="_blank">系统管理</a>
                 </li>
             </ul>
         </div>
@@ -73,9 +73,43 @@
 
         <!--动态新闻等-->
         <div class="platform_article_div">
-
+            <div class="platform_articles">
+                <div class="platform_article">
+                    <div class="platform_article_title">
+                        <span>平台新闻</span>
+                        <span class="more">更多</span>
+                    </div>
+                    <div class="platform_article_item" *ngFor="let item of articles">
+                        <span class="platform_article_item_i"></span>
+                        <span>{{item.title}}</span>
+                        <span style="float: right;margin-right: 30px">{{item.createTime}}</span>
+                    </div>
+                </div>
+                <div class="platform_article">
+                    <div class="platform_article_title">
+                        <span>共享动态</span>
+                        <span class="more">更多</span>
+                    </div>
+                    <div class="platform_article_item" *ngFor="let item of articles">
+                        <span class="platform_article_item_i"></span>
+                        <span>{{item.title}}</span>
+                        <span style="float: right;margin-right: 30px">{{item.createTime}}</span>
+                    </div>
+                </div>
+                <div class="platform_article">
+                    <div class="platform_article_title">
+                        <span>工作动态</span>
+                        <span class="more">更多</span>
+                    </div>
+                    <div class="platform_article_item" *ngFor="let item of articles">
+                        <span class="platform_article_item_i"></span>
+                        <span>{{item.title}}</span>
+                        <span style="float: right;margin-right: 30px">{{item.createTime}}</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        
+
     </div>
     <div class="platform_end">
 
