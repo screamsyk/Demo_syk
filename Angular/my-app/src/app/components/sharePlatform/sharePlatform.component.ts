@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';//http请求需要用到
-import { ResponseType } from './response.type';//接口返回类型
 
 @Component({
     selector: 'share-platform',
@@ -15,12 +14,12 @@ export class SharePlatform implements OnInit {
     catalogs: object[];
     getCatalogs() {
         var url = 'http://192.168.11.230:8080/seplatform_portal/service/homepage/deptList.do?num=30&orgId=1';
-        this.http.get<ResponseType>(url).subscribe(response => {
+        this.http.get(url).subscribe((response:any) => {//这里需要把response指定为any类型，注意加上小括号，不然会进行类型检测
             if (response.code === "20000") {
                 response.data = response.data.slice(0, response.data.length - 5);
                 for (let i in response.data) {
                     response.data[i].style = {
-                        "background-position": "0 " + "-" + 40 * i + "px"
+                        "background-position": "0 " + "-" + 40 * Number(i) + "px"//i需要转成数字，不然会提醒i必须是数字或者any
                     };
                 }
                 this.catalogs = response['data'];
