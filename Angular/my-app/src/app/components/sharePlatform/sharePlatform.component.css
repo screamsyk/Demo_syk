@@ -148,7 +148,7 @@
 /*动态新闻等文章*/
 .platform_article_div{
     min-height: 600px;
-    background-color: #f7f8fa;
+    background-color: #f2f4f6;
 }
 .platform_articles{
     max-width: 1300px;
@@ -220,6 +220,12 @@
 }
 .platform_article:hover .more{
     color:#00a4ff;
+}
+
+/*图标*/
+.platform_echarts{
+    min-height: 600px;
+    background-color: #fff;
 }
 
 /*页尾*/
