@@ -1,0 +1,79 @@
+<!--DOCTYPE（文档类型是html）-->
+<!DOCTYPE html>
+
+<!--lang（指定语言为中文）-->
+<html lang="zh-CN">
+
+<head>
+
+    <!--字符编码-->
+    <meta charset="utf-8" />
+
+    <!--设置浏览器兼容性-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--设置视图大小-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--不区分大小写（HTML4和HTML5都不区分大小写，XHTML则严格区分大小写）-->
+    <tiTle>HTML5学习</Title>
+</head>
+
+<body>
+
+    <!--布尔值（HTML4中选中必须写成checked="checked"，而HTML5中只需要加上checked就代表选中了，移除checked就代表没有选中）-->
+    <input type="checkbox" checked="checked">html4
+    <input type="checkbox" checked>html5
+
+    <!--省略引号（HTML5中写属性值可以写双引号""、单引号''或者不写）-->
+    <input type="checkbox">双引号
+    <input type='checkbox'>单引号
+    <input type=checkbox>不写引号
+
+    <!--新增的标签-->
+    <div>
+        <h3>新增标签</h3>
+        <mark>mark标签：标识内容</mark>
+        <br> progress进度条：
+        <progress max="100" value="60"></progress>
+        <br> time时间（用于搜索引擎）：
+        <time datetime="2018-07-08T15:40Z">15:40</time>
+        <br>
+        <ruby>ruby标签：对某个字进行注释
+            <rt>注释内容</rt>
+            <rp>浏览器不支持这样时显示什么</rp>
+        </ruby>
+        <div>
+            wbr软换行，在字符不足在
+            <wbr></wbr>
+            一行显示时才换行
+        </div>
+        <canvas id="canvasId">canvas绘图标签</canvas>
+        <script>
+            //canvas默认宽高为300px*150px
+            var canvas = document.getElementById('canvasId');
+            var pen = canvas.getContext('2d');
+            pen.fillStyle = '#f09999';
+            pen.fillRect(0, 0, 100, 100);//参数分别为原点的坐标x和y，以及绘图的宽和高
+        </script>
+        <details>
+            <span>details详情标签</span>
+        </details>
+        <h4>datalist数据提示标签</h4>
+        <input type="text" list="cars">
+        <datalist id="cars">
+            <option>路虎</option>
+            <option>奔驰</option>
+            <option>宝马</option>
+            <option>法拉利</option>
+        </datalist>
+        <menu>
+            <li>menu菜单标签</li>
+        </menu>
+    </div>
+
+    <!--删除的标签（很多就不提了），再看看一些新增的属性-->
+    <!--charset="utf-8"-->
+</body>
+
+</html>
