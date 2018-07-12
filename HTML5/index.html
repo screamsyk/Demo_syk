@@ -17,6 +17,17 @@
 
     <!--不区分大小写（HTML4和HTML5都不区分大小写，XHTML则严格区分大小写）-->
     <tiTle>HTML5学习</Title>
+
+    <!--样式-->
+    <style>
+        .dropDiv {
+            width: 300px;
+            height: 250px;
+            line-height: 250px;
+            text-align: center;
+            border: 2px #ddd dashed
+        }
+    </style>
 </head>
 
 <body>
@@ -32,61 +43,193 @@
 
     <!--新增的标签-->
     <div>
-        <h3>新增标签</h3>
-        <mark>mark标签：标识内容</mark>
-        <br> progress进度条：
-        <progress max="100" value="60"></progress>
-        <br> time时间（用于搜索引擎）：
-        <time datetime="2018-07-08T15:40Z">15:40</time>
-        <br>
-        <ruby>ruby标签：对某个字进行注释
-            <rt>注释内容</rt>
-            <rp>浏览器不支持这样时显示什么</rp>
-        </ruby>
+        <h2>新增标签</h2>
         <div>
-            wbr软换行，在字符不足在
-            <wbr></wbr>
-            一行显示时才换行
+            （1）mark：
+            <mark>mark标签：标识内容</mark>
         </div>
-        <canvas id="canvasId">canvas绘图标签</canvas>
-        <script>
-            //canvas默认宽高为300px*150px
-            var canvas = document.getElementById('canvasId');
-            var pen = canvas.getContext('2d');
-            pen.fillStyle = '#f09999';
-            pen.fillRect(0, 0, 100, 100);//参数分别为原点的坐标x和y，以及绘图的宽和高
-        </script>
-        <details>
-            <span>details详情标签</span>
-        </details>
-        <h4>datalist数据提示标签</h4>
-        <input type="text" list="cars">
-        <datalist id="cars">
-            <option>路虎</option>
-            <option>奔驰</option>
-            <option>宝马</option>
-            <option>法拉利</option>
-        </datalist>
-        <menu>
-            <li>menu菜单标签</li>
-        </menu>
-
-        <!--video标签：视频（controls属性表明是否显示控制按钮，source标签用来加载各种不同类型的视频）-->
-        <h3>video视频</h3>
-        <video width="400" height="300" controls>
-            <source type="video/ogg" src="./movie.ogg" >
-            你的浏览器不支持video标签
-        </video>
-
-        <!--audio标签：音频-->
-        <audio controls>
-            <source type="audio/ogg" src="./song.ogg">
-            你的浏览器不支持audio标签
-        </audio>
+        <div>
+            （2）progress进度条：
+            <progress max="100" value="60"></progress>
+        </div>
+        <div>
+            （3）time时间（用于搜索引擎）：
+            <time datetime="2018-07-08T15:40Z">15:40</time>
+        </div>
+        <div>
+            （4）ruby（表示注释）：
+            <ruby>
+                <rt>注释内容</rt>
+                <rp>浏览器不支持这样时显示什么</rp>
+            </ruby>
+        </div>
+        <div>
+            （5）wbr软换行：在字符不在屏幕中 <wbr>一行显示时才换行
+        </div>
+        <div>
+            （6）canvas画布（这算是html5中最有特色的了，默认宽和高为300*150px）：
+            <br>
+            <canvas id="canvasId">你的浏览器不支持canvas标签</canvas>
+            <script>
+                var canvas = document.getElementById('canvasId');//获取canvas元素
+                var pen = canvas.getContext('2d');//获取上下文，即内部使用的外部变量，画笔
+                pen.fillStyle = '#f09999';//设置画笔的填充色
+                pen.fillRect(0, 0, 100, 100);//画矩形，参数分别为画布距离左上角原点的坐标x和y，以及绘图的宽和高
+            </script>
+        </div>
+        <div>
+            （7）details详情：
+            <details>
+                <span>这里是详情内容</span>
+            </details>
+        </div>
+        <div>
+            （8）datalist（输入数据时，推荐类似数据）：
+            <input type="text" list="cars">
+            <datalist id="cars">
+                <option>路虎</option>
+                <option>奔驰</option>
+                <option>宝马</option>
+                <option>法拉利</option>
+            </datalist>
+        </div>
+        <div>
+            （9）menu菜单
+            <menu>
+                <li>menu菜单标签</li>
+                <li>menu菜单标签</li>
+            </menu>
+        </div>
+        <div>
+            （10）video视频和source资源：
+            <br>
+            <!--video标签：视频（controls属性表明是否显示控制按钮，source标签用来加载各种不同类型的视频）-->
+            <video id="videoId" width="400" height="300" controls>
+                <source type="video/ogg" src="./movie.ogg"> 你的浏览器不支持video标签
+            </video>
+        </div>
+        <div>
+            （11）audio音频和source资源：
+            <br>
+            <!--audio标签：音频-->
+            <audio controls>
+                <source type="audio/ogg" src="./song.ogg"> 你的浏览器不支持audio标签
+            </audio>
+        </div>
     </div>
 
-    <!--删除的标签（很多就不提了），再看看一些新增的属性-->
-    <!--charset="utf-8"-->
+    <!--拖放-->
+    <div>
+        <h2>拖放</h2>
+        <!--draggable属性：控制是否可以拖放，默认为true，设为false就不能拖放了-->
+        <!--ondragstart事件属性：开始拖拽时干啥-->
+        <img id="imgId" src="./flower.png" draggable="true" ondragstart="dragStart(event)">
+        <div class="dropDiv" ondragover="dragOver(event)" ondrop="drop(event)">
+            拖放至此处
+        </div>
+        <script>
+            //开始拖拽
+            function dragStart(event) {
+                event.dataTransfer.setData('id', event.target.id);//设置数据，保存拖拽的元素的id
+            }
+            //结束拖拽
+            function dragOver(event) {
+                event.preventDefault();//阻止默认的处理，即默认不允许放置
+            }
+            //开始放置
+            function drop(event) {
+                event.preventDefault();//同样也要阻止默认的处理
+                var id = event.dataTransfer.getData('id');//获取数据，即拖拽的元素的id
+                var element = document.getElementById(id);//获取拖拽的元素
+                event.target.appendChild(element);//将其放到放置的目标元素上
+            }
+        </script>
+    </div>
+
+    <!--canvas画布-->
+    <div>
+        <h2>canvas画布</h2>
+        <div>
+            <div>（1）矩形</div>
+            <canvas id="canvasId1" width="300" height="100"></canvas>
+            <script>
+                var canvas = document.getElementById('canvasId1');//画布canvas
+                var cxt = canvas.getContext('2d');//2d画笔cxt
+                cxt.fillStyle = "#f2f4f6";//填充色
+                cxt.fillRect(0, 0, 300, 100);//画矩形
+            </script>
+        </div>
+        <div>
+            <div>（2）线条</div>
+            <canvas id="canvasId2" width="300" height="300"></canvas>
+            <script>
+                var canvas = document.getElementById('canvasId2');//画布canvas
+                var cxt = canvas.getContext('2d');//2d画笔cxt
+                cxt.moveTo(150, 10);//移动画笔到此点
+                cxt.lineTo(100, 200);//连线到此点
+                cxt.moveTo(150, 10);
+                cxt.lineTo(200, 200);
+                cxt.moveTo(125, 100);
+                cxt.lineTo(175, 100);
+                cxt.stroke();//stroke()方法用来表示开始绘制用moveTo()和lineTo()设置的线条路径，不使用这个方法的话是画不出来线条的
+            </script>
+        </div>
+        <div>
+            <div>（3）圆形</div>
+            <canvas id="canvasId3" width="300" height="200"></canvas>
+            <script>
+                var canvas = document.getElementById('canvasId3');//画布canvas
+                var cxt = canvas.getContext('2d');//2d画笔cxt
+                cxt.fillStyle = "#016dcf";//填充色
+                cxt.beginPath();//开始设置路径，主要作用于有多个路径的时候，划分一下，这样才好一次画多个图形，所以在这个示例中其实是不需要的
+                cxt.arc(70, 70, 40, 0, Math.PI * 2, true);//圆形路径，参数为中心点坐标x和y，半径，起始角度，结束角度，true代表逆时针
+                cxt.closePath();//结束设置路径
+                cxt.fill();//开始填充
+            </script>
+        </div>
+        <div>
+            <div>（4）渐变色</div>
+            <canvas id="canvasId4" width="300" height="200"></canvas>
+            <script>
+                var canvas = document.getElementById('canvasId4');//画布canvas
+                var cxt = canvas.getContext('2d');//2d画笔cxt
+                var grd = cxt.createLinearGradient(0, 0, 175, 150);//创建线形渐变，参数为渐变开始点的坐标x和y，渐变结束点的坐标x和y
+                grd.addColorStop(0, '#ff0000');//设置渐变色，参数为渐变开始到结束之间的位置0.0~0.1，渐变到该位置时的颜色（这里为0，代表初始为红色）
+                grd.addColorStop(1, '#00ff00');//（这里为1，代表结束为绿色）
+                cxt.fillStyle = grd;//将线形渐变作为填充色
+                cxt.fillRect(0, 0, 300, 200);//画矩形
+            </script>
+        </div>
+        <div>
+            <div>（5）绘制图像</div>
+            <canvas id="canvasId5" width="300" height="200"></canvas>
+            <script>
+                var canvas = document.getElementById('canvasId5');//画布canvas
+                var cxt = canvas.getContext('2d');//2d画笔cxt
+                var img = new Image();//创建图片对象
+                img.src = "./flower.png";//指定图片路径
+                cxt.drawImage(img, 10, 10);//绘制图片，参数为图片对象，图片左上角的坐标x和y
+            </script>
+        </div>
+        <div>
+            <div>（6）绘制图像的特殊用法：绘制视频</div>
+            <canvas id="canvasId6" width="300" height="200"></canvas>
+            <script>
+                var canvas = document.getElementById('canvasId6');//画布canvas
+                var cxt = canvas.getContext('2d');//2d画笔cxt
+                var v = document.getElementById('videoId');//获取视频元素
+                var i;//定时器
+                v.addEventListener('play', function () {
+                    i = window.setInterval(function () {//播放时开始绘制
+                        cxt.drawImage(v, 0, 0, 300, 200)
+                    }, 20);
+                }, false);
+                v.addEventListener('pause', function () { window.clearInterval(i); }, false);//暂停或结束时停止绘制
+                v.addEventListener('ended', function () { clearInterval(i); }, false);
+            </script>
+        </div>
+    </div>
+
 </body>
 
 </html>
