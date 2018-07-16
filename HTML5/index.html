@@ -1,13 +1,13 @@
 <!--DOCTYPE（文档类型是html）-->
 <!DOCTYPE html>
 
-<!--lang（指定语言为中文）-->
-<html lang="zh-CN">
+<!--lang（指定语言为中文）；manifest（启用应用程序缓存）-->
+<html lang="zh-CN" manifest="demo.appcache">
 
 <head>
 
     <!--字符编码-->
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
 
     <!--设置浏览器兼容性-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,6 +40,28 @@
     <input type="checkbox">双引号
     <input type='checkbox'>单引号
     <input type=checkbox>不写引号
+
+    <!--html自闭合标签-->
+    <div>
+        <h2>html自闭合标签</h2>
+        <div>自闭合标签，只需要写开始标签就行了，不需要写结束标签，同时也不推荐在开始标签中写斜杠/</div>
+        <ul>
+            <li>meta：设置页面元信息的 </li>
+            <li>base：设置网页所有链接的相对目录(如根目录)的 </li>
+            <li>br：换行 </li>
+            <li>hr：水平线 </li>
+            <li>img：图像 </li>
+            <li>input：表单元素 </li>
+            <li>col：在表格table中定义一个或多个列的属性 </li>
+            <li>frame：定义框架的一个窗口（已遗弃）</li>
+            <li>link：定义文档与外部资源的关系的链接 </li>
+            <li>area：标签定义图像映射内部的区域（图像映射指的是带有可点击区域的图像）</li>
+            <li>param：元素允许您为插入 XHTML 文档的对象规定 run-time 设置</li>
+            <li>embed：HTML5 中新增的,标签定义了一个容器，用来嵌入外部应用或者互动程序</li>
+            <li>keygen：该对象提供了一个安全的方式来验证用户</li>
+            <li>source：标签为媒体元素（比如 和 ）定义媒体资源</li>
+        </ul>
+    </div>
 
     <!--新增的标签-->
     <div>
@@ -184,6 +206,7 @@
                 cxt.beginPath();//开始设置路径，主要作用于有多个路径的时候，划分一下，这样才好一次画多个图形，所以在这个示例中其实是不需要的
                 cxt.arc(70, 70, 40, 0, Math.PI * 2, true);//圆形路径，参数为中心点坐标x和y，半径，起始角度，结束角度，true代表逆时针
                 cxt.closePath();//结束设置路径
+                cxt.stroke();//开始画线
                 cxt.fill();//开始填充
             </script>
         </div>
@@ -226,6 +249,32 @@
                 }, false);
                 v.addEventListener('pause', function () { window.clearInterval(i); }, false);//暂停或结束时停止绘制
                 v.addEventListener('ended', function () { clearInterval(i); }, false);
+            </script>
+        </div>
+    </div>
+
+    <!--SVG矢量图形-->
+    <div>
+        <h2>SVG矢量图形</h2>
+        <div>
+            <svg height="190">
+                <polygon points="100,10 40,180 190,60 10,60 160,180" style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;" />
+            </svg>
+        </div>
+    </div>
+
+    <!--web存储-->
+    <div>
+        <h2>web存储</h2>
+        <div>
+            <ul>
+                <li>cookie：类型是字符串，存储少量数据（大约4kb），有存储的时间限制</li>
+                <li>localStorage：没有时间限制的数据存储</li>
+                <li>sessionStorage：针对一次会话的数据存储，浏览器的开启和关闭（只要是共享同个session的页面都关闭了，就代表会话结束，不一定是把浏览器关闭了）就是一次会话</li>
+            </ul>
+            <script>
+                localStorage.lastname = "Smith";
+                sessionStorage.firstname = "well";
             </script>
         </div>
     </div>
