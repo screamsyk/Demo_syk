@@ -1,0 +1,2 @@
+CSS3是CSS的升级版本，3是版本号，它在CSS2.1的基础上增加了很多强大的新功能。 
+目前主流浏览器chrome、safari、firefox、opera、甚至360都已经支持了CSS3大部分功能了，IE10以后也开始全面支持CSS3了。

@@ -1,0 +1,25 @@
+/*圆角效果*/
+.border_radius{
+    height: 100px;
+    width: 100px;
+    background-color: #f2f4f6;
+    border-radius: 50px;
+    -webkit-border-radius:50px;/*Chrome和Safari浏览器*/
+    -moz-border-radius:50px;/*firefox浏览器*/
+    -ms-border-radius:50px;/*IE浏览器*/
+    -o-border-radius:50px;/*Opera浏览器*/
+}
+/*阴影*/
+.box_shadow{
+    height: 100px;
+    width: 100px;
+    border:1px solid #ccc;
+    margin-bottom: 40px;
+    box-shadow:5px 5px 5px 5px #ddd;
+}
+.box_shadow_inset{
+    height: 100px;
+    width: 100px;
+    border:1px solid #ccc;
+    box-shadow:5px 5px 5px 5px #ddd inset;
+}
