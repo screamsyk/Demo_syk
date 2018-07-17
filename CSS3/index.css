@@ -1,25 +1,150 @@
 /*圆角效果*/
-.border_radius{
-    height: 100px;
-    width: 100px;
-    background-color: #f2f4f6;
-    border-radius: 50px;
-    -webkit-border-radius:50px;/*Chrome和Safari浏览器*/
-    -moz-border-radius:50px;/*firefox浏览器*/
-    -ms-border-radius:50px;/*IE浏览器*/
-    -o-border-radius:50px;/*Opera浏览器*/
+.border_radius {
+  height: 100px;
+  width: 100px;
+  background-color: #f2f4f6;
+  border-radius: 50px;
+  -webkit-border-radius: 50px; /*Chrome和Safari浏览器*/
+  -moz-border-radius: 50px; /*firefox浏览器*/
+  -ms-border-radius: 50px; /*IE浏览器*/
+  -o-border-radius: 50px; /*Opera浏览器*/
 }
 /*阴影*/
-.box_shadow{
-    height: 100px;
-    width: 100px;
-    border:1px solid #ccc;
-    margin-bottom: 40px;
-    box-shadow:5px 5px 5px 5px #ddd;
+.box_shadow {
+  height: 100px;
+  width: 100px;
+  border: 1px solid #ccc;
+  margin-bottom: 40px;
+  box-shadow: 5px 5px 5px 5px #ddd;
 }
-.box_shadow_inset{
-    height: 100px;
-    width: 100px;
-    border:1px solid #ccc;
-    box-shadow:5px 5px 5px 5px #ddd inset;
+.box_shadow_inset {
+  height: 100px;
+  width: 100px;
+  border: 1px solid #ccc;
+  box-shadow: 5px 5px 5px 5px #ddd inset;
+}
+/*边框背景*/
+.border_image {
+  height: 100px;
+  width: 100px;
+  border: 15px solid #ddd;
+  border-image: url(./borderImg.png) 20 40 10 20;
+}
+/*RGBA*/
+.RGBA {
+  height: 100px;
+  width: 100px;
+  background-color: rgba(235, 160, 179, 0.5);
+}
+/*线形渐变背景*/
+.linear_gradient {
+  height: 100px;
+  width: 300px;
+  background-image: linear-gradient(
+    to right,
+    #fff,
+    #000,
+    red,
+    blue,
+    yellow,
+    green,
+    gray
+  );
+}
+/*文字溢出*/
+.text_overflow {
+  height: 30px;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/*嵌入字体*/
+@font-face {
+  font-family: 'newFont'; /*字体名称*/
+  src: url(./FontAwesome.otf); /*字体所在地址*/
+}
+.font_face {
+  font-family: 'newFont';
+  font-size: 20px;
+  font-weight: bold;
+}
+/*文本阴影*/
+.text_shadow {
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: 5px 5px 1px #aaa;
+}
+/*背景图起始位置*/
+.background_origin {
+  height: 200px;
+  width: 300px;
+  padding: 40px;
+  background: url(backgroundImg.png) no-repeat;
+  /*必须写no-repeat才有效*/
+  background-origin: content-box;
+  /*必须写在background后面才有效*/
+  background-color: #ddd;
+}
+/*背景图裁剪*/
+.background_clip {
+  height: 200px;
+  width: 200px;
+  padding: 20px;
+  background: url(backgroundImg.png) no-repeat;
+  background-clip: content-box; /*超出内容区的背景图会被裁剪掉*/
+}
+/*背景图大小*/
+.background_size {
+  height: 200px;
+  width: 300px;
+  background: url(backgroundImg.png) no-repeat;
+  background-size: contain;
+}
+/*多背景图*/
+.multi_background {
+  height: 200px;
+  width: 300px;
+  padding: 20px;
+  background: url(backgroundImg.png) no-repeat, url(./borderImg.png) no-repeat;
+  background-origin: content-box, border-box;
+}
+/*背景导航*/
+.background_menu {
+  height: 60px;
+  line-height: 60px;
+  background-color: rgba(210, 53, 125, 1);
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px 0px #333;
+  color: #fff;
+}
+.background_menu ul {
+  list-style-type: none;
+}
+.background_menu li {
+  position: relative;
+  display: inline-block;
+  padding: 0 10px;
+}
+.background_menu li:after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 40px;
+  top: 10px;
+  right: -1px;
+  background-image: linear-gradient(to bottom, red, blue, red);
+}
+.background_menu li:last-child:after {
+  display: none;
+}
+/*属性选择器*/
+li[attr^=value]{
+    background-color: #d2357d;
+}
+li[attr$=value]{
+    background-color: green;
+}
+li[attr*=AvalueB]{
+    background-color: blue;
 }

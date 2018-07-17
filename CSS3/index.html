@@ -37,7 +37,104 @@
             <div class="box_shadow"></div>
             <div class="box_shadow_inset"></div>
         </div>
+        <div>
+            （3）边框背景图（border-image:url(图片路径) [分别对应上右下左切割图片的宽度] [图片延伸方式：round repeat stretch]）
+            <div class="border_image"></div>
+        </div>
     </div>
+
+    <!--CSS3颜色-->
+    <div>
+        <h2>CSS3颜色</h2>
+        <div>
+            （1）RGBA（R:红，G:绿，B:蓝，A:透明度）
+            <div class="RGBA"></div>
+        </div>
+        <div>
+            （2）线形渐变背景（linear-gradient(方向如从上往下to bottom,起始颜色,结束颜色)）
+            <div class="linear_gradient"></div>
+        </div>
+    </div>
+
+    <!--CSS3文字与字体-->
+    <div>
+        <h2>CSS3文字与字体</h2>
+        <div>
+            （1）文字溢出（text-overflow）
+            <div class="text_overflow">text-overflow用来设置是否使用一个省略标记（...）标示对象内文本的溢出。</div>
+        </div>
+        <div>
+            （2）嵌入字体（@font-face）
+            <div class="font_face">嵌入字体@font-face</div>
+        </div>
+        <div>
+            （3）文本阴影（text-shadow:x轴偏移量 y轴偏移量 阴影模糊半径 阴影颜色）
+            <div class="text_shadow">文本阴影</div>
+        </div>
+    </div>
+
+    <!--CSS3背景-->
+    <div>
+        <h2>CSS3背景</h2>
+        <div>
+            （1）背景图片的原始起始位置（background-origin:border-box|padding-box|content-box）
+            <div class="background_origin"></div>
+        </div>
+        <div>
+            （2）背景图片裁剪（background-clip:border-box|padding-box|content-box|no-clip）
+            <div class="background_clip"></div>
+        </div>
+        <div>
+            （3）背景图大小（background-size:auto原始大小|长度值|百分比|cover等比缩放填满容器|contain等比缩放至每一边都完全在容器里面）
+            <div class="background_size"></div>
+        </div>
+        <div>
+            （4）多背景图
+            <div class="multi_background"></div>
+        </div>
+        <div>
+            （5）导航背景菜单
+            <div class="background_menu">
+                <ul>
+                    <li>首页</li>
+                    <li>资源目录</li>
+                    <li>数据共享</li>
+                    <li>信息查询</li>
+                    <li>应用接口</li>
+                    <li>互动交流</li>
+                    <li>系统管理</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--CSS3选择器-->
+    <div>
+        <h2>CSS3选择器</h2>
+        <div>
+            （1）属性选择器：E[attr^=value]属性attr以value开头的元素E；E[attr$=value]属性attr以value结尾的元素E；E[attr*=value]属性attr包含value的元素E
+            <ul>
+                <li attr="valueA">属性attr以value开头的元素</li>
+                <li attr="Bvalue">属性attr以value结尾的元素</li>
+                <li attr="AvalueB">属性attr包含value的元素</li>
+            </ul>
+        </div>
+        <div>
+            （2）结构性伪类选择器：root（也称为根选择器，在html中也就是指html标签）
+            <ul>
+                <li>对比:root{}和html{}，考虑浏览器的兼容性，更推荐使用:root{}来写html元素的样式</li>
+            </ul>
+        </div>
+        <div>
+            （3）结构性伪类选择器：not（也称为否定选择器，表示选择除了某个元素外的所有元素）
+            <ul class="not">
+                <li>设置样式</li>
+                <li>不设置样式</li>
+                <li>设置样式</li>
+            </ul>
+        </div>
+    </div>
+
 </body>
 
 </html>
