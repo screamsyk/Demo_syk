@@ -8,6 +8,8 @@ require('angular-ui-router');
 require('ocLazyLoad');
 require('angular-cookies');
 require('angular-ui-bootstrap');
+require('sweetalert');
+require('angular-sweetalert');
 
 //其他js
 require('jquery');

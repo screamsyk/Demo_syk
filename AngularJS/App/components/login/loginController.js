@@ -16,5 +16,9 @@ define(['angular'], function (angular) {
             $state.go('main.homePage');
         }
 
+        $scope.test=function(){
+            swal("Hello world!");
+        }
+
     }]);
 });
