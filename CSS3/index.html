@@ -129,8 +129,73 @@
             （3）结构性伪类选择器：not（也称为否定选择器，表示选择除了某个元素外的所有元素）
             <ul class="not">
                 <li>设置样式</li>
-                <li>不设置样式</li>
+                <li class="notLi">不设置样式</li>
                 <li>设置样式</li>
+            </ul>
+        </div>
+        <div>
+            （4）结构性伪类选择器：empty（表示选择内容为空元素）
+            <ul class="empty">
+                <li>有内容</li>
+                <li>
+                    <!--没有内容-->
+                </li>
+                <li>有内容</li>
+            </ul>
+        </div>
+        <div>
+            （5）结构性伪类选择器：target（也称为目标选择器，用来匹配文档(页面)的url的某个标志符如#的目标元素，这里就指id为target的元素）
+            <div>
+                <a href="#target">跳到目标元素target</a>
+                <div id="target">目标元素target</div>
+            </div>
+        </div>
+        <div>
+            （6）结构性伪类选择器：first-child（元素集合中的的第一个元素）、last-child（元素集合中的最后一个元素）
+            <ul>
+                <li class="childLi">元素集合中的的第一个元素</li>
+                <li class="childLi">元素集合中的的第二个元素</li>
+                <li class="childLi">元素集合中的的第三个元素</li>
+                <li class="childLi">元素集合中的的最后一个元素</li>
+            </ul>
+        </div>
+        <div>
+            （7）结构性伪类选择器：nth-child(n)（匹配单个或多个元素，可以写成数字1,2,3,4等，也可以写成2n+1，或者奇数odd，偶数even，注意n的起始值为0，元素的位置起始值为1，顺序从上到下）
+            <ul>
+                <li class="nthChildLi">元素集合中的的第一个元素</li>
+                <li class="nthChildLi">元素集合中的的第二个元素</li>
+                <li class="nthChildLi">元素集合中的的第三个元素</li>
+                <li class="nthChildLi">元素集合中的的第四个元素</li>
+                <li class="nthChildLi">元素集合中的的第五个元素</li>
+                <li class="nthChildLi">元素集合中的的第六个元素</li>
+            </ul>
+        </div>
+        <div>
+            （8）结构性伪类选择器：nth-last-child(n)（与nth-child(n)相似，唯一区别是顺序是从下到上）
+            <ul>
+                <li class="nthLastChildLi">元素集合中的的第一个元素</li>
+                <li class="nthLastChildLi">元素集合中的的第二个元素</li>
+                <li class="nthLastChildLi">元素集合中的的第三个元素</li>
+                <li class="nthLastChildLi">元素集合中的的第四个元素</li>
+                <li class="nthLastChildLi">元素集合中的的第五个元素（倒数第二个元素为红色）</li>
+                <li class="nthLastChildLi">元素集合中的的第六个元素</li>
+            </ul>
+        </div>
+        <div>
+            （9）first-of-type和first-child作用一样，nth-of-type(n)和nth-child(n)作用一样，last-of-type和last-child作用一样，nth-last-of-type和nth-last-child作用一样
+        </div>
+        <div>
+            （10）结构性伪类选择器：only-child（元素集合中只有一个元素，才会生效），only-of-type效果一样
+            <ul>
+                <li class="onlyChildLi">元素集合中的的第一个元素</li>
+                <li class="onlyChildLi">元素集合中的的第二个元素</li>
+                <li class="onlyChildLi">元素集合中的的第三个元素</li>
+                <li class="onlyChildLi">元素集合中的的第四个元素</li>
+                <li class="onlyChildLi">元素集合中的的第五个元素</li>
+                <li class="onlyChildLi">元素集合中的的第六个元素</li>
+            </ul>
+            <ul>
+                <li class="onlyChildLi">元素集合中的的第一个元素</li>
             </ul>
         </div>
     </div>

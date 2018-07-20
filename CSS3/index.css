@@ -148,3 +148,43 @@ li[attr$=value]{
 li[attr*=AvalueB]{
     background-color: blue;
 }
+/*结构性伪类选择器not*/
+.not li:not(.notLi){
+  color:#18a0ff;
+}
+/*结构性伪类选择器empty*/
+.empty li:empty{
+  height: 30px;
+  background-color: #18a0ff;
+}
+/*结构性伪类选择器target*/
+:target{
+  background-color: #18a0ff;
+  padding:40px;
+  color:#fff;
+}
+/*结构性伪类选择器first-child和last-child*/
+.childLi:first-child{
+  color:red;
+}
+.childLi:last-child{
+  color:blue;
+}
+/*结构性伪类选择器nth-child(n)*/
+.nthChildLi:nth-child(2n+1){/*奇数位为蓝色*/
+  color:blue;
+}
+.nthChildLi:nth-child(even){/*偶数位为青色*/
+  color:greenyellow;
+}
+.nthChildLi:nth-child(2){/*第二个为红色*/
+  color:red;
+}
+/*结构性伪类选择器nth-last-child(n)*/
+.nthLastChildLi:nth-last-child(2){/*倒数第二个元素为红色*/
+  color:red;
+}
+/*only-child*/
+.onlyChildLi:only-child{
+  color: #18a0ff;
+}
