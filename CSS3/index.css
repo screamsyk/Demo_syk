@@ -188,3 +188,20 @@ li[attr*=AvalueB]{
 .onlyChildLi:only-child{
   color: #18a0ff;
 }
+/*enabled和disabled*/
+.abled input:enabled{
+  background-color: #18a0ff;
+}
+.abled input:disabled{
+  background-color: #d2357d;
+}
+/*checked*/
+.checked input:checked{
+  height: 40px;
+  width: 40px;
+}
+/*伪元素选择器::selection*/
+::selection{
+  color:#fff;
+  background-color: gold;
+}
