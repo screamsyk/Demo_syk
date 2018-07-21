@@ -160,7 +160,6 @@ li[attr*=AvalueB]{
 /*结构性伪类选择器target*/
 :target{
   background-color: #18a0ff;
-  padding:40px;
   color:#fff;
 }
 /*结构性伪类选择器first-child和last-child*/
@@ -200,8 +199,87 @@ li[attr*=AvalueB]{
   height: 40px;
   width: 40px;
 }
+/*read-only和read-write*/
+.readOnlgy input:read-only{
+  background-color: #ccc;
+}
+.readOnlgy input:read-write{
+  background-color: aqua;
+}
 /*伪元素选择器::selection*/
 ::selection{
   color:#fff;
   background-color: gold;
+}
+/*伪元素选择器::before和::after*/
+.beforeAfter{
+  position: relative;
+  height: 200px;
+  width: 300px;
+  line-height: 200px;
+  text-align: center;
+  box-shadow: 0 0 5px #aaa;
+  background-color: #fff;
+}
+.beforeAfter::before,
+.beforeAfter::after{
+  content: "";
+  position: absolute;
+  top:50%;
+  right: 10px;
+  width: 280px;
+  height: 50%;
+  box-shadow: 0 0 20px #000;
+  z-index: -10;
+  border-radius: 20%;
+}
+/*图片切换*/
+.slider{
+  margin-top:50px;
+  position: relative;
+}
+.slider li{
+  position: relative;
+  display: inline-block;
+  color:#fff;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+}
+.slider li::before{
+  content: "";
+  position: absolute;
+  top:-40px;
+  right: 15px;
+  width: 70px;
+  height: 70px;
+  background-color: #18a0ff;
+  border-radius: 50%;
+  border:2px solid #fff;
+}
+.slider li:nth-child(1){
+  background-color: #13636f;
+}
+.slider li:nth-child(2){
+  background-color: #e51134;
+}
+.slider li:nth-child(3){
+  background-color: #6eb36c;
+}
+.slider li:nth-child(4){
+  background-color: #e26843;
+}
+.backgroundImg{
+  height: 300px;
+  width: 100%;
+  background-color: #f2f4f6;
+  z-index: -1;
+}
+.backgroundImg img{
+  display: none;
+  height: 100%;
+}
+:target{
+  display: unset !important;
 }
