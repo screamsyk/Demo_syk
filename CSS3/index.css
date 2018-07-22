@@ -283,3 +283,144 @@ li[attr*=AvalueB]{
 :target{
   display: unset !important;
 }
+/*变形：旋转rotate*/
+.rotateS,
+.rotateN{
+  margin-top:50px;
+  margin-bottom: 50px;
+  height: 150px;
+  width: 150px;
+  background-color: #f2f4f6;
+  text-align: center;
+  line-height: 150px;
+}
+.rotateS{
+  transform: rotate(45deg);
+}
+.rotateN{
+  transform: rotate(-45deg);
+}
+/*变形：扭曲skew*/
+.skewH,
+.skewV,
+.skewHV{
+  height: 200px;
+  line-height: 200px;
+  width: 200px;
+  text-align: center;
+  background-color: #f2f4f6;
+}
+.skewH{
+  transform: skewX(30deg)
+}
+.skewV{
+  transform: skewY(30deg)
+}
+.skewHV{
+  transform:skew(30deg,30deg);
+}
+/*缩放*/
+.scale{
+  height: 200px;
+  line-height: 200px;
+  width: 200px;
+  text-align: center;
+  background-color: #f2f4f6;
+  transform: scale(0.99,0.55)
+}
+/*位移*/
+.translate{
+  height: 200px;
+  line-height: 200px;
+  width: 200px;
+  text-align: center;
+  background-color: #f2f4f6;
+  transform: translate(50px,0px)
+}
+/*变换矩阵*/
+.matrix{
+  height: 200px;
+  line-height: 200px;
+  width: 200px;
+  text-align: center;
+  background-color: #f2f4f6;
+  transform: matrix(1,0,0,1,50,0);
+}
+/*过渡*/
+.transition_div{
+  position: relative;
+  height: 200px;
+  width:200px;
+  background-color: #f2f4f6;
+  overflow: hidden;
+}
+.transition{
+  position: absolute;
+  top:0;
+  left:-200px;
+  width:100%;
+  height: 100%;
+  background-color: #e51134;
+  transition: all 0.4s ease-in-out
+}
+.transition_div:hover .transition{
+  left:0;
+  height: 100px;
+}
+/*关键帧、动画*/
+@keyframes animateTest{
+  0%{
+    background-color:red;
+  }
+  20%{
+    background-color:orange;
+  }
+  40%{
+    background-color:yellow;
+  }
+  60%{
+    background-color:green;
+  }
+  80%{
+    background-color: greenyellow;
+  }
+  90%{
+    background-color: blue;
+  }
+  100%{
+    background-color: blueviolet;
+  }
+}
+.animation_div{
+  height: 100px;
+  line-height: 100px;
+  width: 100px;
+  text-align: center;
+  animation: animateTest 5s ease-in-out infinite alternate;
+}
+/*多列布局columns*/
+.columns{
+  -webkit-columns: 150px 3;
+  -moz-columns: 150px 3;
+  -o-columns:150px 3;
+  -ms-columns: 150px 3;
+  columns: 150px 3;
+  column-gap:3em;
+  column-rule: 2px dotted green;
+}
+.columns p:first-child{
+  column-span: all;
+}
+/*伸缩布局flex*/
+.flexbox{
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}
+.flexbox_item{
+  height: 100px;
+  width: 100px;
+  background-color: #18a0ff;
+  margin:5px;
+  flex: 200
+}

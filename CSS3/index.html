@@ -256,6 +256,104 @@
         </div>
     </div>
 
+    <!--CSS3变形（transform）-->
+    <div>
+        <h2>CSS3变形（transform）</h2>
+        <div>
+            （1）旋转（rotate(20deg)，角度为正，则按默认中心点，即对角线相交点，顺时针旋转；角度为负则按默认中心点逆时针旋转）
+            <div class="rotateS">顺时针旋转45度</div>
+            <div class="rotateN">逆时针旋转45度</div>
+        </div>
+        <div>
+            （2）扭曲（skew()，让元素倾斜显示，会改变元素的形状，可以设置在水平方向和垂直方向上的扭曲角度）
+            <div class="skewH">skewX()水平方向上扭曲</div>
+            <div class="skewV">skewY()垂直方向上扭曲</div>
+            <div class="skewHV">skew()水平、垂直方向扭曲</div>
+        </div>
+        <div>
+            （3）缩放（scale()，让元素按比例在水平方向和垂直方向上进行放大和缩小，默认值为1，可取0.01~0.99缩小，1.01即以上放大）
+            <div class="scale">水平方向和垂直方向上缩放</div>
+        </div>
+        <div>
+            （4）位移（translate()，让元素在水平方向和垂直方向上进行位移）
+            <div class="translate">水平方向和垂直方向上位移</div>
+        </div>
+        <div>
+            （5）矩阵（matrix(a,b,c,d,e,f)，需要有数学上的变换矩阵知识）
+            <div class="matrix">变换矩阵</div>
+        </div>
+        <div>
+            （6）变形的原点（transform-origin，默认是对角线交点，而设置原点的坐标位置）
+        </div>
+    </div>
+
+    <!--CSS3动画-->
+    <div>
+        <h2>CSS3动画</h2>
+        <div>
+            （1）过渡（transition，这是个复合属性，即把好几个属性写在这一个里，利用这个可以实现响应式动画）
+            <ul>
+                <li>transition-property：指明哪些CSS属性变化时需要过渡</li>
+                <li>transition-duration：完成过渡需要的时间</li>
+                <li>transition-timing-function：过渡函数，默认只有5种，常用ease-in-out</li>
+                <li>transition-delay：延迟多久才执行过渡</li>
+            </ul>
+            <div class="transition_div">
+                <div class="transition"></div>
+            </div>
+        </div>
+        <div>
+            （2）关键帧（keyframes，用于定义动画，指定动画每个步骤时的样式，常以@keyframes 动画名{}）
+        </div>
+        <div>
+            （3）动画（animation，这是个复合属性，即把好几个属性写在这一个里，利用这个可以实现动画）
+            <ul>
+                <li>animation-name：通过keyframes关键帧定义的动画的名称</li>
+                <li>animation-duration：完成一次动画需要的时间</li>
+                <li>animation-timing-function：动画的播放方式，默认只有5种，常用ease-in-out</li>
+                <li>animation-delay：延迟多久才执行动画</li>
+                <li>animation-iteration-count：动画的执行次数，无限次为infinite</li>
+                <li>animation-direction：每次动画的播放顺序，normal代表每次都是从0%到100%，alternate代表偶数次时0%到100%，奇数次时100%到0%</li>
+                <li>animation-play-state：控制动画的播放状态，running播放，paused暂停</li>
+                <li>animation-fill-mode：动画开始前和动画结束后要执行的操作（none:结束后回到开始时的样式，forwards：结束后保持结束时的样式，backwards:动画每次播放时都从初始帧开始，both：同时具有forwards和backwards的效果）</li>
+            </ul>
+            <div class="animation_div">动画</div>
+        </div>
+    </div>
+
+    <!--CSS3布局-->
+    <div>
+        <h2>CSS3布局</h2>
+        <div>
+            （1）多列布局（columns属性，为的是实现像报纸和杂志一样的布局，主要有两个参数：列宽和列数）
+            <ul>
+                <li>columns-width：auto每列的默认宽度</li>
+                <li>columns-count：允许的最大列数</li>
+                <li>columns-grap：列的间距</li>
+                <li>columns-rule：列与列之间的边框的样式</li>
+                <li>columns-span：指定占多少列，只有none和all，all代表占满所有列</li>
+            </ul>
+            <div class="columns">
+                <p>为了能在Web页面中方便实现类似报纸、杂志那种多列排版的布局，W3C特意给CSS3增加了一个多列布局模块（CSS Multi Column Layout Module）。它主要应用在文本的多列布局方面。对于文本的多列布局，我想大家并不陌生，因为报纸和杂志上我们随处可见，这种布局在报纸和杂志上都使用了几十年了，但需要在Web页面上实现文本的多列布局，正如下图所示。</p>
+                <p>为了能在Web页面中方便实现类似报纸、杂志那种多列排版的布局，W3C特意给CSS3增加了一个多列布局模块（CSS Multi Column Layout Module）。它主要应用在文本的多列布局方面。对于文本的多列布局，我想大家并不陌生，因为报纸和杂志上我们随处可见，这种布局在报纸和杂志上都使用了几十年了，但需要在Web页面上实现文本的多列布局，正如下图所示。</p>
+            </div>
+        </div>
+        <div>
+            （2）盒模型（box-sizing，第一种是w3c的标准模型content-box：设置的宽度只指内容的宽度，另一种是IE的传统模型border-box：设置的宽度包含内容的宽度，以及到边框的宽度）
+            <div>
+                <img src="./boxModel.jpg" width="400px">
+            </div>
+        </div>
+        <div>
+            （3）伸缩布局（Flexbox布局，即伸缩布局盒模型，常用于设计比较复杂的页面，可以轻松的实现屏幕和浏览器窗口大小发生变化时保持元素的相对位置和大小不变）
+            <div class="flexbox">
+                <div class="flexbox_item">1</div>
+                <div class="flexbox_item">2</div>
+                <div class="flexbox_item">3</div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
