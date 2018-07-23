@@ -354,6 +354,134 @@
         </div>
     </div>
 
+    <!--CSS3媒体查询（media queries）-->
+    <div>
+        <h2>CSS3媒体查询（media queries）</h2>
+        <div>
+            （1）背景：随着科学技术的发展，网页的浏览终端越来越多样化，目前有以下5种基本的浏览终端：
+            <ul>
+                <li>宽屏电视</li>
+                <li>台式电脑</li>
+                <li>笔记本电脑</li>
+                <li>平板电脑</li>
+                <li>智能手机</li>
+            </ul>
+            尽管无法保证在每一种浏览终端所看到的网页都一模一样，但至少要使网页能适配用户的浏览终端，而使用CSS3的media queries媒体查询功能就可以实现一个网页适配不同的终端
+        </div>
+        <div>
+            （2）媒体类型（media type，在CSS2中很常见也很有用的属性，可以通过媒体类型对不同的设备指定不同的样式），目前有以下10种：
+            <ul>
+                <li>all：所有设备</li>
+                <li>screen：电脑显示器</li>
+                <li>print：打印用纸或打印预览视图</li>
+                <li>braille：盲人用点字触觉反馈设备</li>
+                <li>embossed：盲文打印机</li>
+                <li>handheld：便携设备</li>
+                <li>projection：各种投影设备</li>
+                <li>speech：语音或音频合成器</li>
+                <li>tv：电视机类型设备</li>
+                <li>tty：使用固定密度字母栅格的媒介，比如电传打字机和终端</li>
+            </ul>
+        </div>
+        <div>
+            （3）媒体类型的使用方法：
+            <ul>
+                <li>link标签的media属性：
+                    <strong>href="./style.css" media="screen"</strong>
+                </li>
+                <li>@importurl方法：
+                    <strong>@importurl(./style.css) screen;</strong>
+                </li>
+                <li>CSS3新引进的@media方法：
+                    <strong>@media screen{我们的样式}</strong>
+                </li>
+            </ul>
+        </div>
+        <div>
+            （4）媒体查询的使用方法：
+            <ul>
+                <li>基本结构：
+                    <strong>@media 媒体类型 and ( 媒体特性 ) { 我们的样式 }</strong>
+                </li>
+                <li>多个媒体特性：
+                    <strong>@media only print and (max-width: 1200px) and (min-width: 800px){样式代码}</strong>
+                </li>
+                <li>only关键字：
+                    <strong>@media only print and (max-width: 1200px){样式代码}</strong>
+                </li>
+                <li>not关键字：
+                    <strong>@media not print and (max-width: 1200px){样式代码}</strong>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--CSS3响应式设计-->
+    <div>
+        <h2>CSS3响应式设计</h2>
+        <div>
+            （1）效果：响应式设计能让网页在不同的设备中展现不同的设计风格，前提是：
+            <ul>
+                <li>网页有灵活的网格基础：
+                    <strong>流体网格：即每个网格格子都是以百分比控制的大小，这样就能让网格随时根据屏幕按比例缩放</strong>
+                </li>
+                <li>引用的图片必须是可伸缩的：
+                    <strong>弹性图片：图片大小不是固定的，也是百分比，如img{max-width:100%}</strong>
+                </li>
+                <li>不同的显示风格，需要在媒体查询media queries中写入不同的样式：
+                    <strong>主要断点：如@media screen and (max-width:1000px){}</strong>
+                </li>
+            </ul>
+        </div>
+        <div>
+            （2）技巧：
+            <ul>
+                <li>尽量少用无关紧要的div</li>
+                <li>少用内联元素inline</li>
+                <li>少用js或flash</li>
+                <li>少用绝对定位和浮动样式</li>
+                <li>摒弃：任何冗余结构和不使用100%设置</li>
+                <li>使用HTML5 Doctype和相关指南</li>
+                <li>重置好样式，即把浏览器默认的样式设为我们想要的样式，避免浏览器的影响</li>
+                <li>一个简单的有语义的核心布局</li>
+                <li>给重要的网页元素使用简单的技巧，比如导航菜单之类元素</li>
+            </ul>
+        </div>
+        <div>
+            （3）meta标签：在响应式设计中，可视区域meta标签是不可或缺的，meta name=”viewport” content=””，content的内容如下：
+            <ul>
+                <li>width：可视区域的宽度或者device-width</li>
+                <li>height：可视区域的高度或者device-height</li>
+                <li>initial-scale：初始缩放比例，默认为1，即没有缩放</li>
+                <li>maximun-scale：最大缩放比例</li>
+                <li>minimun-scale：最小缩放比例</li>
+                <li>user-scalable：用户是否可以缩放可视区域，yes、no</li>
+            </ul>
+        </div>
+    </div>
+
+    <!--用户界面和其他重要属性-->
+    <div>
+        <h2>用户界面和其他重要属性</h2>
+        <div>
+            （1）自由缩放属性resize（在此之前要实现缩放，要用js等做很多操作，而使用resize则很快：resize: none | both | horizontal | vertical | inherit，注意必须要设置overflow属性才能使resize属性生效）
+            <div class="resize"></div>
+        </div>
+        <div>
+            （2）外轮廓属性outline（与border边框相似，但不占空间，主要用来和border一起设置双边框）
+            <div class="outline"></div>
+        </div>
+        <div>
+            （3）生成内容属性content（用来在元素前后插入内容，现在可以用伪类:before和:after，或者伪元素::before和::after，配合content使用），可取值如下：
+            <ul>
+                <li>none：不生成任何内容</li>
+                <li>attr()：插入标签属性值</li>
+                <li>url()：使用指定的绝对或相对地址插入一个外部资源</li>
+                <li>string：字符串</li>
+            </ul>
+        </div>
+    </div>
+
 </body>
 
 </html>

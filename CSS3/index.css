@@ -424,3 +424,24 @@ li[attr*=AvalueB]{
   margin:5px;
   flex: 200
 }
+/*自由缩放属性*/
+.resize{
+  overflow: hidden;
+  height: 200px;
+  line-height: 200px;
+  width: 200px;
+  background-color: #18a0ff;
+  text-align: center;
+  resize: horizontal;
+  -webkit-resize: horizontal;
+  -moz-resize: horizontal;
+  -o-resize: horizontal;
+  -ms-resize: horizontal;
+}
+/*外轮廓属性outline*/
+.outline{
+  padding: 20px;
+  margin: 30px;
+  outline: red solid 2px;
+  border: 2px solid green;
+}
