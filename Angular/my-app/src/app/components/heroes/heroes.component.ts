@@ -72,6 +72,7 @@ export class Heroes implements OnInit {
 //---[href]：绑定html属性，用中括号[]括起来
 //---[(ngModel)]：双向数据绑定，用于表单元素
 //---[class.selected]：动态css类.selected
+//---[@heroState]：动画触发器
 
 //(5)父组件与子组件通信：@input和@output修饰器
 //---Angular提供了修饰器@input和@output来控制组件数据的输入和输出

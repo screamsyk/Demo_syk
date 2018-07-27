@@ -1,9 +1,12 @@
-//导入模块
+//导入内置模块
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';//动画模块
 import { NgModule } from '@angular/core';//导入NgModule模块化系统
 import { FormsModule } from '@angular/forms';//导入FormsModule，这样才能用ngModel等指令
 import { HttpClientModule } from '@angular/common/http';//导入http模块
+
+//导入自定义模块
+import { AppRoutingModule } from './app-routing.module';//路由
 
 //导入所有的组件
 import { AppComponent } from './components/appRoot/app.component';//根组件
@@ -12,9 +15,7 @@ import { heroDetail } from './components/heroDetail/heroDetail.component';
 import { Message } from './components/message/message.component';
 import { SharePlatform } from './components/sharePlatform/sharePlatform.component';
 
-//路由模块
-import { AppRoutingModule } from './app-routing.module';
-
+//模块修饰器：表明下面的AppModule类是一个模块，这里是根模块，为Angular描述如何用组件来组装应用
 @NgModule({
   declarations: [//声明：所有要用的组件都需要在这里声明
     AppComponent,
