@@ -69,11 +69,25 @@ export class Heroes implements OnInit {
 //---*ngFor：用于遍历数组和对象，用的是for...of...循环，所以遍历的是值，不是键（注意要写*），如果想得到索引，则可以写成*ngFor="let hero of heroes;let i = index"，这样i就代表索引
 //---*ngIf：用于显示和隐藏html元素
 //---(click)：绑定click事件，用小括号()括起来
-//---[href]：绑定html属性，用中括号[]括起来
+//---[href]：绑定href等属性，用中括号[]括起来
+//---[ngClass]：绑定动态class
+//---[ngStyle]：绑定动态style
+//---[style.font-size.px]：单独指定样式的值
 //---[(ngModel)]：双向数据绑定，用于表单元素
+//---[ngModel]：单向数据绑定
 //---[class.selected]：动态css类.selected
 //---[@heroState]：动画触发器
 
 //(5)父组件与子组件通信：@input和@output修饰器
 //---Angular提供了修饰器@input和@output来控制组件数据的输入和输出
-//---父组件——>子组件：
+//---父组件——>子组件（方式：属性）：
+//-------------------------------子组件中@input childAttr:string; 
+//-------------------------------父组件中<child [childAttr]="fatherAttr"></child>
+//---子组件——>父组件（方式：事件）：
+//-------------------------------子组件中@output customEvent = new EventEmitter<{text: string}>();customEvent.emit({text: message});
+//-------------------------------父组件中<child (customEvent)="doSth($event.text)"></child>
+
+//(6)Angular指令：分为3种
+//---组件（component）：即用@Component修饰器修饰的类，用于构建UI组件，继承于 Directive 类
+//---属性指令：用于改变组件的外观或行为
+//---结构指令：动态添加或删除DOM，改变布局等

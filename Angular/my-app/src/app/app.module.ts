@@ -15,6 +15,9 @@ import { heroDetail } from './components/heroDetail/heroDetail.component';
 import { Message } from './components/message/message.component';
 import { SharePlatform } from './components/sharePlatform/sharePlatform.component';
 
+//导入所有的指令
+import { Greet } from './directives/greet.directive';
+
 //模块修饰器：表明下面的AppModule类是一个模块，这里是根模块，为Angular描述如何用组件来组装应用
 @NgModule({
   declarations: [//声明：所有要用的组件都需要在这里声明
@@ -22,7 +25,8 @@ import { SharePlatform } from './components/sharePlatform/sharePlatform.componen
     Heroes,
     heroDetail,
     Message,
-    SharePlatform
+    SharePlatform,
+    Greet
   ],
   imports: [//导入：导入模块
     BrowserModule,//浏览器视图控制*ngFor

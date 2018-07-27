@@ -113,7 +113,7 @@ new Vue({
 
 //(5)绑定数据的方法，以及一些常用的Vue指令：
 //---mustache语法（即小胡子，双大括号{{}}）：在html标签中使用<div>{{number}}</div>来绑定数据number
-//---v-model指令：在html标签中当属性使用，通过<div v-model="number"></div>来双向绑定数据number，用于html表单控件
+//---v-model指令：在html标签中当属性使用，通过<input v-model="number">来双向绑定数据number，用于html表单控件
 //---v-html指令：在html标签中当属性使用，通过<div v-html="testHtml"></div>来绑定带html内容的数据testHtml，这样可以显示html内容
 //---v-bind指令：绑定标签的属性值，如<a v-bind:href=""></a>，<img v-bind:src="">
 //----------------简写为冒号:，如<a :href=""></a>
