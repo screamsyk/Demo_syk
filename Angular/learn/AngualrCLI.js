@@ -14,9 +14,15 @@
 //(5)这样我们就利用Angular CLI这一命令行工具创建好了我们的Angular应用，超简单快捷
 
 //(6)一些常用的Angular CLI命令：每个命令都可以用--help来查找帮助
-//---ng new <project name>：创建Angular项目，会自动生成对应的文件
+//---ng new <project name>：创建Angular项目，会自动生成对应的文件（--skip-install可以跳过创建过程中的npm包的安装）
 //---ng serve --open：启动服务器，在浏览器中打开
-//---ng generate <schematic type> <schematic type>：快速生成组件、服务等等
+//---ng generate <schematic type> <schematic name>：快速生成组件、服务等等
+//---ng test：单元测试.spec.ts文件
+//---ng build：打包
+
+//(7)Angular CLI的组成：
+//---Amber CLI：实现项目结构的创建和组织
+//---webpack：实现项目的打包、运行、测试
 
 
 //--------------------项目结构-----------------------------
