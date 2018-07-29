@@ -8,6 +8,12 @@ import { HttpClientModule } from '@angular/common/http';//导入http模块
 //导入自定义模块
 import { AppRoutingModule } from './app-routing.module';//路由
 
+//导入第三方模块NG-ZORRO
+import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import { registerLocaleData } from '@angular/common';
+import zh from '@angular/common/locales/zh';
+registerLocaleData(zh);
+
 //导入所有的组件
 import { AppComponent } from './components/appRoot/app.component';//根组件
 import { Heroes } from './components/heroes/heroes.component';
@@ -33,9 +39,10 @@ import { Greet } from './directives/greet.directive';
     FormsModule,//表单双向绑定
     AppRoutingModule,//路由
     HttpClientModule,//http请求
-    BrowserAnimationsModule//动画
+    BrowserAnimationsModule,//动画
+    NgZorroAntdModule//NG-ZORRO
   ],
-  providers: [],
+  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]//启动：由于是单页面应用，所以只需要启动根组件（注意：不要启动其他的组件，不然很可能视图渲染失败）
 })
 export class AppModule { }

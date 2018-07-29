@@ -3,6 +3,28 @@
 <!--组件-->
 <app-message></app-message>
 
+<!--NG-ZORRO-->
+<div>
+  <h2>NG-ZORRO</h2>
+  <button nz-button nzType="primary">Primary</button>
+  <i class="anticon anticon-logout"></i>
+  <nz-breadcrumb>
+    <nz-breadcrumb-item>
+      Home
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a>Application List</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      An Application
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <nz-pagination [nzPageIndex]="3" [nzTotal]="500" nzShowSizeChanger [nzPageSize]="10" [nzShowTotal]="totalTemplate"></nz-pagination>
+  <ng-template #totalTemplate let-total>
+    共 {{total}} 条数据
+  </ng-template>
+</div>
+
 <!--指令-->
 <div>
   <h2>指令</h2>
@@ -12,9 +34,15 @@
 <!--路由-->
 <h2>路由跳转</h2>
 <ul>
-  <li><a routerLink="/heroes">跳转到英雄界面</a></li>
-  <li><a routerLink="/detail/2">跳转到英雄详情界面</a></li>
-  <li><a routerLink="/sharePlatform">跳转到共享平台界面</a></li>
+  <li>
+    <a routerLink="/heroes">跳转到英雄界面</a>
+  </li>
+  <li>
+    <a routerLink="/detail/2">跳转到英雄详情界面</a>
+  </li>
+  <li>
+    <a routerLink="/sharePlatform">跳转到共享平台界面</a>
+  </li>
 </ul>
 
 <!--路由出口-->
