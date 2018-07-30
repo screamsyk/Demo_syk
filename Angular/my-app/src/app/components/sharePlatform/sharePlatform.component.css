@@ -25,6 +25,7 @@
 }
 .platform_head ul{
     list-style-type: disc;
+    margin:0;
 }
 .platform_head li{
     display: inline-block
