@@ -1,0 +1,138 @@
+<!--NG-ZORRO-->
+<div>
+    <h2>{{title}}</h2>
+    <div>
+        <h3>（1）按钮</h3>
+        <button nz-button nzType="primary">
+            <i class="anticon anticon-search"></i>Primary</button>
+        <button nz-button nzType="default" [nzLoading]="true">Default</button>
+        <button nz-button nzType="dashed" [nzSize]="'large'">Dashed</button>
+        <button nz-button nzType="danger">Danger</button>
+    </div>
+    <div>
+        <h3>（2）图标</h3>
+        <i class="anticon anticon-logout"></i>
+    </div>
+    <div>
+        <h3>（3）栅格系统</h3>
+        <div nz-row>
+            <div nz-col nzSpan="12">col-12</div>
+            <div nz-col nzSpan="12">col-12</div>
+        </div>
+        <div nz-row>
+            <div nz-col nzSpan="12">col-12</div>
+            <div nz-col nzSpan="8">col-8</div>
+            <div nz-col nzSpan="4">col-4</div>
+        </div>
+    </div>
+    <div>
+        <h3>（4）布局</h3>
+        <nz-layout>
+            <nz-header>
+                页头
+            </nz-header>
+            <nz-content>
+                <nz-layout>
+                    <nz-sider>
+                        侧边栏
+                    </nz-sider>
+                    <nz-content>
+                        页体
+                    </nz-content>
+                </nz-layout>
+            </nz-content>
+            <nz-footer>
+                页尾
+            </nz-footer>
+        </nz-layout>
+    </div>
+    <div>
+        <h3>（5）固钉</h3>
+        <nz-affix [nzOffsetTop]="true">
+            <button nz-button nzType="primary">固钉：始终显示在页面中，当滚动页面而超出页面显示区时，将其固定在页面顶部</button>
+        </nz-affix>
+    </div>
+    <div>
+        <h3>（6）面包屑</h3>
+        <nz-breadcrumb>
+            <nz-breadcrumb-item>
+                Home
+            </nz-breadcrumb-item>
+            <nz-breadcrumb-item>
+                <a>Application List</a>
+            </nz-breadcrumb-item>
+            <nz-breadcrumb-item>
+                An Application
+            </nz-breadcrumb-item>
+        </nz-breadcrumb>
+    </div>
+    <div>
+        <h3>（7）下拉菜单</h3>
+        <nz-dropdown [nzPlacement]="'topRight'" [nzTrigger]="'click'">
+            <a nz-dropdown>
+                下拉菜单
+                <i class="anticon anticon-down"></i>
+            </a>
+            <ul nz-menu nzSelectable>
+                <li nz-menu-item>菜单一</li>
+                <li nz-menu-item>
+                    <a>菜单二</a>
+                </li>
+                <li nz-menu-divider></li>
+                <li nz-menu-item [nzDisabled]="true">菜单三</li>
+                <li nz-submenu>
+                    <span title>菜单四：拥有子菜单</span>
+                    <ul>
+                        <li nz-menu-item>子菜单一</li>
+                        <li nz-menu-item>子菜单二</li>
+                        <li nz-submenu>
+                            <span title>子菜单三：拥有子子菜单</span>
+                            <ul>
+                                <li nz-menu-item>子子菜单一</li>
+                                <li nz-menu-item>子子菜单二</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nz-dropdown>
+    </div>
+    <div>
+        <h3>（8）右键菜单</h3>
+        <div style="background: rgb(190, 200, 200); padding: 32px;text-align: center" (contextmenu)="contextMenu($event,template)">
+            <ng-template #template>
+                <ul nz-menu nzInDropDown (nzClick)="close($event)">
+                    <li nz-menu-item>菜单一</li>
+                    <li nz-menu-item>
+                        <a>菜单二</a>
+                    </li>
+                    <li nz-menu-divider></li>
+                    <li nz-menu-item [nzDisabled]="true">菜单三</li>
+                    <li nz-submenu>
+                        <span title>菜单四：拥有子菜单</span>
+                        <ul>
+                            <li nz-menu-item>子菜单一</li>
+                            <li nz-menu-item>子菜单二</li>
+                            <li nz-submenu>
+                                <span title>子菜单三：拥有子子菜单</span>
+                                <ul>
+                                    <li nz-menu-item>子子菜单一</li>
+                                    <li nz-menu-item>子子菜单二</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </ng-template>
+            <span>右键菜单的区域</span>
+        </div>
+    </div>
+    <div>
+        <h3>（4）分页条</h3>
+        <nz-pagination [nzPageIndex]="3" [nzTotal]="500" nzShowSizeChanger [nzPageSize]="10" [nzShowTotal]="totalTemplate"></nz-pagination>
+        <ng-template #totalTemplate let-total>
+            共 {{total}} 条数据
+        </ng-template>
+    </div>
+    <div style="height: 1200px;"></div>
+</div>

@@ -8,6 +8,7 @@ import { RouterModule, Routes, Router } from '@angular/router';//路由模块
 import { Heroes } from './components/heroes/heroes.component';
 import { heroDetail } from './components/heroDetail/heroDetail.component';
 import { SharePlatform } from './components/sharePlatform/sharePlatform.component';
+import { ngZorroDemo } from './components/ngZorroDemo/ngZorroDemo.component';
 
 //(3)定义路由
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
     {
         path: 'sharePlatform',
         component: SharePlatform
+    },
+    {
+        path: 'ngZorroDemo',
+        component: ngZorroDemo
     }
 ]
 

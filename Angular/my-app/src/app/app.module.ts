@@ -20,6 +20,7 @@ import { Heroes } from './components/heroes/heroes.component';
 import { heroDetail } from './components/heroDetail/heroDetail.component';
 import { Message } from './components/message/message.component';
 import { SharePlatform } from './components/sharePlatform/sharePlatform.component';
+import { ngZorroDemo } from './components/ngZorroDemo/ngZorroDemo.component';
 
 //导入所有的指令
 import { Greet } from './directives/greet.directive';
@@ -32,7 +33,8 @@ import { Greet } from './directives/greet.directive';
     heroDetail,
     Message,
     SharePlatform,
-    Greet
+    Greet,
+    ngZorroDemo
   ],
   imports: [//导入：导入模块
     BrowserModule,//浏览器视图控制*ngFor

@@ -1,0 +1,40 @@
+[nz-col]{
+    background-color: #f2f4f6;
+    border:1px solid #ddd;
+    height: 40px;
+    line-height: 40px;
+}
+ul{
+    list-style-type: none;
+}
+
+  :host ::ng-deep .ant-layout-header,
+  :host ::ng-deep .ant-layout-footer {
+    background: #7dbcea;
+    color: #fff;
+  }
+
+  :host ::ng-deep .ant-layout-footer {
+    line-height: 1.5;
+  }
+
+  :host ::ng-deep .ant-layout-sider {
+    background: #3ba0e9;
+    color: #fff;
+    line-height: 120px;
+  }
+
+  :host ::ng-deep .ant-layout-content {
+    background: rgba(16, 142, 233, 1);
+    color: #fff;
+    min-height: 120px;
+    line-height: 120px;
+  }
+
+  :host > ::ng-deep .ant-layout {
+    margin-bottom: 48px;
+  }
+
+  :host ::ng-deep .ant-layout:last-child {
+    margin: 0;
+  }
