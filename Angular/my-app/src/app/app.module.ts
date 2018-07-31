@@ -14,6 +14,14 @@ import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 registerLocaleData(zh);
 
+//导入第三方模块NgProgressModule
+import { NgProgressModule } from '@ngx-progressbar/core';//顶部页面加载进度条模块
+const config = {
+  tricklSpeed: 200,//加载速度
+  min: 20,//加载的初始进度
+  meteor: false
+}
+
 //导入所有的组件
 import { AppComponent } from './components/appRoot/app.component';//根组件
 import { Heroes } from './components/heroes/heroes.component';
@@ -42,7 +50,8 @@ import { Greet } from './directives/greet.directive';
     AppRoutingModule,//路由
     HttpClientModule,//http请求
     BrowserAnimationsModule,//动画
-    NgZorroAntdModule//NG-ZORRO
+    NgZorroAntdModule,//NG-ZORRO
+    NgProgressModule.forRoot(config)
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]//启动：由于是单页面应用，所以只需要启动根组件（注意：不要启动其他的组件，不然很可能视图渲染失败）
