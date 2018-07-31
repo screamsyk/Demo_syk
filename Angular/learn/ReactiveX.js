@@ -65,3 +65,49 @@ inputStream.debounceTime(250)//减少多余请求，即防止误操作，时间�
 inputStream.pluck('target', 'value')//参数值
 inputStream.switchMap(url => Http.get(url))//发送请求
 inputStream.subscribe(data => render(data));//获取数据
+
+
+//-------------------RxJS进阶（更深入的理解）-------------------------
+
+//(1)Observable（可观察序列）是多个值的惰性推送集合，下面是常用数据的拉取和推送所用到的对象（拉取：消费者读取数据，推送：生产者发送数据）
+//---单个值的拉取：Function
+//---多个值的拉取：Iterator
+//---单个值的推送：Promise
+//---多个值的推送：Observable
+var observable = Rx.Observable.create(function subscribe(observer) {//订阅后，利用特殊的观察者同步推送值1，2，3
+    observer.next(1);//next()发送一个值，比如数字、字符串、对象，等等
+    observer.next(2);
+    observer.next(3);
+    observer.complete();//complete()，之后不再发送任何值
+    observer.error();//error()，发送一个 JavaScript 错误 或 异常
+});
+var subscription = observable.subscribe(x => console.log(x));//订阅
+subscription.unsubscribe();//取消订阅
+
+//(2)Observer（观察者）是一组回调函数的集合，用来对值执行发出和处理
+var observer = {
+    next: x => console.log('Observer got a next value: ' + x),
+    error: err => console.error('Observer got an error: ' + err),
+    complete: () => console.log('Observer got a complete notification'),
+};
+observable.subscribe(observer);
+
+//(3)Subject（主题）既是一种特殊的Observable，也是Observer，通常的Observable只能进行单播（把数据推送给单个观察者），而Subject可以进行多播（把数据推送给多个观察者）
+var subject = new Rx.Subject(0);//初始值为0
+subject.subscribe({//作为Observable可观察序列
+    next: (v) => console.log('observerA: ' + v)
+});
+subject.subscribe({
+    next: (v) => console.log('observerB: ' + v)
+});
+subject.next(1);//作为Observer观察者，要给Subjetc提供新值，只要调用 next(theValue)，它会将值多播给已注册监听该Subject的观察者们
+subject.next(2);
+
+//(4)BehavoirSubject（行为主题）是Subject的一个变体，发送的值始终是最新的值
+var subject = new Rx.BehaviorSubject(0); // 0是初始值
+
+//(5)ReplaySubject（重演主题）和BehavoirSubject类似，不过可以通过缓存发送旧值
+var subject = new Rx.ReplaySubject(3); //为新的订阅者缓冲3个值，这样下次有订阅时，就可以得到发送的最后3次发送的值了
+
+//(6)AsyncSubject是Subject的一个变体，只有当执行 complete()后，它才会将执行的最后一个值发送给观察者。
+var subject = new Rx.AsyncSubject();
