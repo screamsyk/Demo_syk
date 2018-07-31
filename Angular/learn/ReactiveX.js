@@ -93,14 +93,14 @@ var observer = {
 observable.subscribe(observer);
 
 //(3)Subject（主题）既是一种特殊的Observable，也是Observer，通常的Observable只能进行单播（把数据推送给单个观察者），而Subject可以进行多播（把数据推送给多个观察者）
-var subject = new Rx.Subject(0);//初始值为0
+var subject = new Rx.Subject();
 subject.subscribe({//作为Observable可观察序列
     next: (v) => console.log('observerA: ' + v)
 });
 subject.subscribe({
     next: (v) => console.log('observerB: ' + v)
 });
-subject.next(1);//作为Observer观察者，要给Subjetc提供新值，只要调用 next(theValue)，它会将值多播给已注册监听该Subject的观察者们
+subject.next(1);//作为Observer观察者，要给Subjetc提供新值，必须调用next(theValue)，只订阅是没用的，它会将值多播给已注册监听该Subject的观察者们
 subject.next(2);
 
 //(4)BehavoirSubject（行为主题）是Subject的一个变体，发送的值始终是最新的值
