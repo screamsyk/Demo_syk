@@ -7,7 +7,6 @@ import { RouterModule, Routes, Router } from '@angular/router';//路由模块
 //(2)导入路由时用到的组件
 import { Heroes } from './components/heroes/heroes.component';
 import { heroDetail } from './components/heroDetail/heroDetail.component';
-import { SharePlatform } from './components/sharePlatform/sharePlatform.component';
 import { ngZorroDemo } from './components/ngZorroDemo/ngZorroDemo.component';
 
 //(3)定义路由
@@ -27,7 +26,7 @@ const routes: Routes = [
     },
     {
         path: 'sharePlatform',
-        component: SharePlatform
+        loadChildren: './components/sharePlatform/sharePlatform.module#SharePlatformModule'//懒加载，新的模块和路由
     },
     {
         path: 'ngZorroDemo',

@@ -27,7 +27,6 @@ import { AppComponent } from './components/appRoot/app.component';//根组件
 import { Heroes } from './components/heroes/heroes.component';
 import { heroDetail } from './components/heroDetail/heroDetail.component';
 import { Message } from './components/message/message.component';
-import { SharePlatform } from './components/sharePlatform/sharePlatform.component';
 import { ngZorroDemo } from './components/ngZorroDemo/ngZorroDemo.component';
 
 //导入所有的指令
@@ -40,7 +39,6 @@ import { Greet } from './directives/greet.directive';
     Heroes,
     heroDetail,
     Message,
-    SharePlatform,
     Greet,
     ngZorroDemo
   ],
