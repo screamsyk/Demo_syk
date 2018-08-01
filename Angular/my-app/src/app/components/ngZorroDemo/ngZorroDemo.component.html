@@ -128,8 +128,154 @@
         </div>
     </div>
     <div>
-        <h3>（4）分页条</h3>
-        <nz-pagination [nzPageIndex]="3" [nzTotal]="500" nzShowSizeChanger [nzPageSize]="10" [nzShowTotal]="totalTemplate"></nz-pagination>
+        <h3>（9）导航菜单</h3>
+        <div>
+            <button (click)="menuType='horizontal'" nz-button nzType="primary" style="margin:0 10px 5px 0">横向菜单</button>
+            <button (click)="menuType='inline'" nz-button nzType="primary" style="margin:0 10px 5px 0">纵向菜单</button>
+            <button (click)="menuTheme='light'" nz-button nzType="primary" style="margin:0 10px 5px 0">亮色主题菜单</button>
+            <button (click)="menuTheme='dark'" nz-button nzType="primary" style="margin:0 10px 5px 0">暗色主题菜单</button>
+            <button (click)="message.info('全局提示')" nz-button nzType="primary" style="margin:0 10px 5px 0">显示全局提示</button>
+        </div>
+        <ul nz-menu [nzMode]="menuType" [nzTheme]="menuTheme">
+            <li nz-menu-item>
+                <i class="anticon anticon-mail"></i> Navigation One</li>
+            <li nz-menu-item nzDisabled>
+                <i class="anticon anticon-appstore"></i> Navigation Two</li>
+            <li nz-submenu>
+                <span title>
+                    <i class="anticon anticon-setting"></i> Navigation Three - Submenu</span>
+                <ul>
+                    <li nz-menu-group>
+                        <span title>Item 1</span>
+                        <ul>
+                            <li nz-menu-item>Option 1</li>
+                            <li nz-menu-item>Option 2</li>
+                        </ul>
+                    </li>
+                    <li nz-menu-group>
+                        <span title>Item 2</span>
+                        <ul>
+                            <li nz-menu-item>Option 3</li>
+                            <li nz-menu-item>Option 4</li>
+                            <li nz-submenu>
+                                <span title>Sub Menu</span>
+                                <ul>
+                                    <li nz-menu-item nzDisabled>Option 5</li>
+                                    <li nz-menu-item>Option 6</li>
+                                </ul>
+                            </li>
+                            <li nz-submenu nzDisabled>
+                                <span title>Disabled Sub Menu</span>
+                                <ul>
+                                    <li nz-menu-item>Option 5</li>
+                                    <li nz-menu-item>Option 6</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li nz-menu-item>
+                <a href="https://ng.ant.design" target="_blank" rel="noopener noreferrer">Navigation Four - Link</a>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <h3>（10）表格和模板变量（表格是自带了分页条的）</h3>
+        <!--表格：模板引用变量，指的就是DOM元素-->
+        <nz-table #nzTable nzBordered [nzScroll]="{ y: '800px',x:'1300px' }" [nzData]="dataSet" [nzPageSize]="10" [nzTotal]="dataSet.length"
+            [nzShowTotal]="totalTemplate1" nzShowSizeChanger nzShowQuickJumper>
+            <thead (nzSortChange)="sort($event)" nzSingleSort>
+                <tr>
+                    <th nzWidth="150px" nzLeft="0px"></th>
+                    <th nzWidth="150px" nzShowCheckbox nzShowRowSelection [nzSelections]="listOfSelection" [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate"
+                        (nzCheckedChange)="checkAll($event)"></th>
+                    <th nzWidth="150px">序号</th>
+                    <th nzWidth="150px" nzShowSort [nzSortKey]="'key'">编号编号编号编号编号编号编号编号编号编号编号编号编号编号编号</th>
+                    <th nzWidth="150px" nzShowSort [nzSortKey]="'name'">姓名</th>
+                    <th nzWidth="150px" nzShowSort [nzSortKey]="'age'">年龄</th>
+                    <th nzWidth="150px">地址</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-template ngFor let-item [ngForOf]="dataSet" let-index="index">
+                    <tr>
+                        <td nzShowExpand [(nzExpand)]="item.expand" nzLeft="0px"></td>
+                        <td nzShowCheckbox [(nzChecked)]="item.checked" (nzCheckedChange)="refreshStatus($event)"></td>
+                        <td>{{index+1}}</td>
+                        <td>{{item.key}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.age}}</td>
+                        <td>{{item.address}}</td>
+                        <td>
+                            <a href="#" (click)="edit(i)">编辑</a>
+                            <nz-divider nzType="vertical"></nz-divider>
+                            <nz-popconfirm [nzTitle]="'确认删除?'" (nzOnConfirm)="deleteRow(data.key)">
+                                <a nz-popconfirm>删除</a>
+                            </nz-popconfirm>
+                        </td>
+                    </tr>
+                    <tr [nzExpand]="item.expand">
+                        <td></td>
+                        <td colspan="7">
+                            <div style="float: left;width:50%;min-height: 100px;background-color: #fff">
+                                <nz-table [nzData]="dataSet" [nzPageSize]="10" [nzLoading]="true">
+                                    <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>编号</th>
+                                            <th>姓名</th>
+                                            <th>年龄</th>
+                                            <th>地址</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let i of dataSet;let index=index">
+                                            <td>{{index+1}}</td>
+                                            <td>{{item.key}}</td>
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.age}}</td>
+                                            <td>{{item.address}}</td>
+                                        </tr>
+                                    </tbody>
+                                </nz-table>
+                            </div>
+                            <div style="float: left;width:50%;min-height: 100px;background-color: #fff">
+                                <nz-table [nzData]="dataSet2" [nzPageSize]="10" [nzLoading]="true">
+                                    <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>编号</th>
+                                            <th>姓名</th>
+                                            <th>年龄</th>
+                                            <th>地址</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let i of dataSet2;let index=index">
+                                            <td>{{index+1}}</td>
+                                            <td>{{item.key}}</td>
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.age}}</td>
+                                            <td>{{item.address}}</td>
+                                        </tr>
+                                    </tbody>
+                                </nz-table>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </tbody>
+        </nz-table>
+        <ng-template #totalTemplate1 let-total1 let-range="range">
+            当前显示第 {{range[0]}} 到 {{total1
+            <=range[1]?total1:range[1]}} 条数据，共 {{total1}} 条数据 </ng-template>
+    </div>
+    <div>
+        <h3>（11）分页条</h3>
+        <nz-pagination [nzPageIndex]="3" [nzTotal]="500" [nzPageSize]="10" [nzShowTotal]="totalTemplate" nzShowSizeChanger [nzPageSizeOptions]="[100,200]"
+            nzShowQuickJumper></nz-pagination>
         <ng-template #totalTemplate let-total>
             共 {{total}} 条数据
         </ng-template>
