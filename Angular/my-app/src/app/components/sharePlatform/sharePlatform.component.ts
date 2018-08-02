@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';//http请求需要用到
+import { HttpService } from '../../services/http.service';//导入自定义的HttpService
 
 @Component({
     selector: 'share-platform',
@@ -8,14 +8,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';//http请求需�
 })
 
 export class SharePlatform implements OnInit {
-    constructor(private http: HttpClient) {//依赖注入
+    constructor(private httpService: HttpService) {//依赖注入
 
     }
     catalogs: object[];
     articles: object[];
     getCatalogs() {
         var url = 'http://192.168.11.230:8080/seplatform_portal/service/homepage/deptList.do?num=30&orgId=1';
-        this.http.get(url).subscribe((response: any) => {//这里需要把response指定为any类型，注意加上小括号，不然会进行类型检测
+        this.httpService.getJson(url).subscribe((response: any) => {//这里需要把response指定为any类型，注意加上小括号，不然会进行类型检测
             if (response.code === "20000") {
                 response.data = response.data.slice(0, response.data.length - 5);
                 for (let i in response.data) {
@@ -27,9 +27,9 @@ export class SharePlatform implements OnInit {
             }
         });
     }
-    getArticles(){
+    getArticles() {
         var url = 'http://192.168.11.230:8080/seplatform_portal/service/sharedDynamic/getNewsPage.do?pageNo=1&pageSize=8&title=&source=&author=';
-        this.http.get(url).subscribe((response: any) => {//这里需要把response指定为any类型，注意加上小括号，不然会进行类型检测
+        this.httpService.getJson(url).subscribe((response: any) => {//这里需要把response指定为any类型，注意加上小括号，不然会进行类型检测
             if (response.code === "20000") {
                 this.articles = response.data.result;
             }
