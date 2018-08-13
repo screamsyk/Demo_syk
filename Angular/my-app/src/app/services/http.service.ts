@@ -82,7 +82,7 @@ export class HttpService {
         const httpOptions = {
             params: new HttpParams().set('data', data)
         }
-        return this.http.post(url, httpOptions);
+        return this.http.post(url, data, httpOptions);
     }
 
 }
