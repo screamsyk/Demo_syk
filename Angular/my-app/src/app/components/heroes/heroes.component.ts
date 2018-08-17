@@ -69,6 +69,7 @@ export class Heroes implements OnInit {
 //---*ngFor：用于遍历数组和对象，用的是for...of...循环，所以遍历的是值，不是键（注意要写*），如果想得到索引，则可以写成*ngFor="let hero of heroes;let i = index"，这样i就代表索引
 //---*ngIf：用于显示和隐藏html元素
 //---(click)：绑定click事件，用小括号()括起来
+//---(keydown.enter)：绑定键盘事件，参考Angular4基础教程（https://segmentfault.com/a/1190000009819720#articleHeader11）
 //---[href]：绑定href等属性，用中括号[]括起来
 //---[ngClass]：绑定动态class
 //---[ngStyle]：绑定动态style
