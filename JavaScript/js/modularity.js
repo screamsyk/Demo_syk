@@ -74,6 +74,11 @@ var module3 = (function ($, _) {
     import { b as bFn } from './module-A.js';//用as指定引入的变量的别名
     import c, { a } from './module-A.js';//导出匿名函数和变量a，匿名的必须放在前面
 }
+//---注意import分为两种，一种是导入外部的模块，并立即执行，一种是导入外部的变量或函数等。
+{
+    import "./module-A.js";//这种不写from，就像引入js文件一样，立即执行。所以我们只想引入文件时，就采用这种
+    import * as all from "./module-A.js"//这种导入外部的变量或函数，并不会执行js文件的内容，而是只生成一个动态的只读引用，等到真的需要用到时，再到模块里面去取值
+}
 
 //(4)commonJS
 //---commonJS是Node.js采用并实现的模块化规范，由一个团队提出的用于服务器端的模块化规范，具体哪个团队不太清楚~v~
