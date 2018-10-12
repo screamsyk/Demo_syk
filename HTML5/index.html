@@ -20,6 +20,9 @@
 
     <!--样式-->
     <style>
+        *{
+            line-height: 30px;
+        }
         .dropDiv {
             width: 300px;
             height: 250px;
@@ -31,15 +34,38 @@
 </head>
 
 <body>
-
-    <!--布尔值（HTML4中选中必须写成checked="checked"，而HTML5中只需要加上checked就代表选中了，移除checked就代表没有选中）-->
-    <input type="checkbox" checked="checked">html4
-    <input type="checkbox" checked>html5
-
-    <!--省略引号（HTML5中写属性值可以写双引号""、单引号''或者不写）-->
-    <input type="checkbox">双引号
-    <input type='checkbox'>单引号
-    <input type=checkbox>不写引号
+    <!--html入门-->
+    <div>
+        <h2>html入门</h2>
+        <ul>
+            <li>HTML元素：一般包含开始标签、内容、结束标签，但空元素只有开始标签，如img元素</li>
+            <li>HTML元素标签：不区分大小写</li>
+            <li>HTML元素属性：
+                <ul>
+                    <li>写在开始标签中，包含属性名、等号、属性值，而属性值可以写双引号""、单引号''或者不写，推荐双引号</li>
+                    <li>
+                        <input type="checkbox">双引号
+                        <input type='checkbox'>单引号
+                        <input type=checkbox>不写引号
+                    </li>
+                    <li>另外存在布尔属性，只需要写属性名，如checked、disabled</li>
+                    <li>
+                        <input type="checkbox" checked="checked">HTML4中选中必须写成checked="checked"
+                        <input type="checkbox" checked>HTML5中只需要加上checked就代表选中
+                    </li>
+                </ul>
+            </li>
+            <li>HTML空白：无论用了多少空白(包括空白字符，包括换行), 当渲染这些代码的时候，HTML解释器会将连续出现的空白字符减少为一个单独的空格符</li>
+            <li>meta元素：元数据是指描述数据的数据，一般都包含了name 和 content 特性:
+                <ul>
+                    <li>name 特性指定了meta 元素的类型; 说明该元素包含了什么类型的信息。</li>
+                    <li>content 指定了实际的元数据内容。</li>
+                    <li>例子：name="description" content="网站的描述信息"，经常被使用在搜索引擎显示的结果页</li>
+                </ul>
+            </li>
+            <li>a元素：用于链接，可以在其中放入任意元素，实现特殊链接。另外作为下载链接时，最好加上下载属性download="下载"</li>
+        </ul>
+    </div>
 
     <!--html自闭合标签-->
     <div>
@@ -87,6 +113,7 @@
         </div>
         <div>
             （5）wbr软换行：在字符不在屏幕中 <wbr>一行显示时才换行
+
         </div>
         <div>
             （6）canvas画布（这算是html5中最有特色的了，默认宽和高为300*150px）：
