@@ -520,9 +520,9 @@ li[attr*=AvalueB]{
 }
 .tab::before{
   left: -20px;
-  background: radial-gradient(circle at top left,transparent 20px,#aaa 0);
+  background: radial-gradient(circle at top left,transparent 20px,#aaa 21px);
 }
 .tab::after{
   right: -20px;
-  background: radial-gradient(circle at top right,transparent 20px,#aaa 0);
+  background: radial-gradient(circle at top right,transparent 20px,#aaa 21px);
 }
