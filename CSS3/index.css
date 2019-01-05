@@ -27,6 +27,7 @@
 .border_image {
   height: 100px;
   width: 100px;
+  background: #aaa;
   border: 15px solid #ddd;
   border-image: url(./borderImg.png) 20 40 10 20;
 }
