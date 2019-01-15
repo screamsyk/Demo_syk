@@ -489,20 +489,29 @@
     <div>
         <h2>CSS3 特殊效果</h2>
         <div>
-            （1）分享图标
+            （1）分享图标：主要利用了border以及border-radius可以设置不同边圆角大小
             <div class="icon-share">
                 <div class="icon-share-tail"></div>
                 <div class="icon-share-triangle"></div>
             </div>
         </div>
         <div>
-            （2）内外圆角标签页
+            （2）内外圆角标签页：主要利用了径向渐变效果radial-gradient，从透明到不透明渐变
             <div class="tab"></div>
         </div>
         <div>
             （3）3D透视图效果：主要是在父元素上添加CSS3属性perspective（由于浏览器支持性，也需添加-webkit-perspective），使得对应的3D变换的元素能呈现透视效果
             <div class="perspective_super">
                 <div class="perspective_div">3D透视图效果</div>
+            </div>
+        </div>
+        <div>
+            （4）引导遮罩效果：主要利用了box-shadow的扩展半径，将内容以外的东西用阴影遮盖
+            <div class="guide-div">
+                <div class="guide-content">这是内容，当然还有其他一些东西</div>
+                <div class="guide-area">
+                    <div class="guide-tip">提示：这是内容</div>
+                </div>
             </div>
         </div>
     </div>
