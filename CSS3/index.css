@@ -573,18 +573,25 @@ li[attr*=AvalueB]{
 }
 .guide-tip{
   position: absolute;
+  top: -40px;
+  left: 0;
+  width: 150px;
+  color: #fff;
+}
+.guide-next{
+  position: absolute;
   top: -50px;
-  left: 0px;
+  left: 140px;
   height: 40px;
   line-height: 40px;
-  width: 150px;
+  width: 100px;
   text-align: center;
   border-radius: 4px;
   color: rgb(176, 190, 197);
   border: 1px solid rgb(176, 190, 197);
   transition: all 0.25s;
 }
-.guide-tip:hover{
+.guide-next:hover{
   color: #fff;
   border-color: #fff;
 }
