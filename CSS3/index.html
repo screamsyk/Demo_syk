@@ -14,6 +14,7 @@
     <div>
         <h2>CSS3简介</h2>
         <h5>CSS3是CSS的升级版本，3是版本号，目前主流浏览器都支持CSS3，除了IE9及以下版本</h5>
+        <h5>为了知道浏览器是否支持某个css属性，可以通过 Can I Use ... ?（http://caniuse.com）这个网站进行查询</h5>
         <h5>不同浏览器需要不同的前缀，它表示该CSS属性或规则并未成为W3C标准，是浏览器的私有属性，为了良好的兼容性，最好加上前缀：</h5>
         <div>
             <ul>
@@ -21,6 +22,16 @@
                 <li>-moz-：firefox浏览器</li>
                 <li>-ms-：IE浏览器</li>
                 <li>-o-：Opera浏览器</li>
+            </ul>
+        </div>
+        <div>
+            比如想写：background: linear-gradient(90deg, yellow, red);那么，兼容性写法如下，利用css的层叠生效机制把标准格式放在最下方，这样能确保标准的覆盖浏览器自带的
+            <ul>
+                <li>background: -webkit-linear-gradient(0deg, yellow, red);</li>
+                <li>background: -moz-linear-gradient(0deg, yellow, red);</li>
+                <li>background: -ms-linear-gradient(0deg, yellow, red);</li>
+                <li>background: -o-linear-gradient(0deg, yellow, red);</li>
+                <li>background: linear-gradient(90deg, yellow, red);</li>
             </ul>
         </div>
     </div>
@@ -38,7 +49,8 @@
             <div class="box_shadow_inset"></div>
         </div>
         <div>
-            （3）边框背景图（border-image:url(图片路径) [分别对应上右下左切割图片的宽度（例如上10，就是以图片为基准，从top为0的位置裁剪到top为10的位置，在把图片在上边框进行填充）] [图片延伸方式：round repeat stretch]）
+            （3）边框背景图（border-image:url(图片路径) [分别对应上右下左切割图片的宽度（例如上10，就是以图片为基准，从top为0的位置裁剪到top为10的位置，在把图片在上边框进行填充）]
+            [图片延伸方式：round repeat stretch]）
             <div class="border_image"></div>
         </div>
     </div>
@@ -228,9 +240,6 @@
             <div class="beforeAfter">
                 <span>伪元素选择器：::before和::after</span>
             </div>
-            <div class="beforeAfter2">
-                <span>伪元素选择器：::before和::after</span>
-            </div>
         </div>
         <div>
             （16）图片切换
@@ -337,8 +346,10 @@
                 <li>columns-span：指定占多少列，只有none和all，all代表占满所有列</li>
             </ul>
             <div class="columns">
-                <p>为了能在Web页面中方便实现类似报纸、杂志那种多列排版的布局，W3C特意给CSS3增加了一个多列布局模块（CSS Multi Column Layout Module）。它主要应用在文本的多列布局方面。对于文本的多列布局，我想大家并不陌生，因为报纸和杂志上我们随处可见，这种布局在报纸和杂志上都使用了几十年了，但需要在Web页面上实现文本的多列布局，正如下图所示。</p>
-                <p>为了能在Web页面中方便实现类似报纸、杂志那种多列排版的布局，W3C特意给CSS3增加了一个多列布局模块（CSS Multi Column Layout Module）。它主要应用在文本的多列布局方面。对于文本的多列布局，我想大家并不陌生，因为报纸和杂志上我们随处可见，这种布局在报纸和杂志上都使用了几十年了，但需要在Web页面上实现文本的多列布局，正如下图所示。</p>
+                <p>为了能在Web页面中方便实现类似报纸、杂志那种多列排版的布局，W3C特意给CSS3增加了一个多列布局模块（CSS Multi Column Layout
+                    Module）。它主要应用在文本的多列布局方面。对于文本的多列布局，我想大家并不陌生，因为报纸和杂志上我们随处可见，这种布局在报纸和杂志上都使用了几十年了，但需要在Web页面上实现文本的多列布局，正如下图所示。</p>
+                <p>为了能在Web页面中方便实现类似报纸、杂志那种多列排版的布局，W3C特意给CSS3增加了一个多列布局模块（CSS Multi Column Layout
+                    Module）。它主要应用在文本的多列布局方面。对于文本的多列布局，我想大家并不陌生，因为报纸和杂志上我们随处可见，这种布局在报纸和杂志上都使用了几十年了，但需要在Web页面上实现文本的多列布局，正如下图所示。</p>
             </div>
         </div>
         <div>
@@ -467,7 +478,8 @@
     <div>
         <h2>用户界面和其他重要属性</h2>
         <div>
-            （1）自由缩放属性resize（在此之前要实现缩放，要用js等做很多操作，而使用resize则很快：resize: none | both | horizontal | vertical | inherit，注意必须要设置overflow属性才能使resize属性生效）
+            （1）自由缩放属性resize（在此之前要实现缩放，要用js等做很多操作，而使用resize则很快：resize: none | both | horizontal | vertical |
+            inherit，注意必须要设置overflow属性才能使resize属性生效）
             <div class="resize"></div>
         </div>
         <div>
@@ -513,6 +525,12 @@
                     <div class="guide-tip">提示：这是内容</div>
                     <div class="guide-next" onclick="document.getElementsByClassName('guide-area')[0].className+=' guide-area-next'">下一步</div>
                 </div>
+            </div>
+        </div>
+        <div>
+            （5）翘边阴影：主要利用了skew扭曲、伪元素::before和::after，再用box-shadow实现
+            <div class="raiseAngle">
+                <span>翘边阴影</span>
             </div>
         </div>
     </div>

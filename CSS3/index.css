@@ -234,39 +234,6 @@ li[attr*=AvalueB]{
   z-index: -10;
   border-radius: 20%;
 }
-.beforeAfter2{
-  position: relative;
-  height: 200px;
-  width: 300px;
-  line-height: 200px;
-  text-align: center;
-  box-shadow: 0 0 5px #aaa;
-  background-color: #fff;
-  margin-top:50px;
-  margin-left: 50px;
-}
-.beforeAfter2::before{
-  content: "";
-  position: absolute;
-  top:86px;
-  left:4px;
-  width: 290px;
-  height: 100px;
-  transform: skew(5deg,5deg);
-  box-shadow: 0 10px 20px #000;
-  z-index: -1;
-}
-.beforeAfter2::after{
-  content: "";
-  position: absolute;
-  top:86px;
-  right: 4px;
-  width: 290px;
-  height: 100px;
-  transform: skew(-5deg,-5deg);
-  box-shadow: 0 10px 20px #000;
-  z-index: -1;
-}
 /*图片切换*/
 .slider{
   margin-top:50px;
@@ -599,4 +566,37 @@ li[attr*=AvalueB]{
 .guide-next:hover{
   color: #fff;
   border-color: #fff;
+}
+/*翘边阴影*/
+.raiseAngle{
+  position: relative;
+  height: 200px;
+  width: 300px;
+  line-height: 200px;
+  text-align: center;
+  box-shadow: 0 0 5px #aaa;
+  background-color: #fff;
+  margin:50px 0 50px 50px;
+}
+.raiseAngle::before{
+  content: "";
+  position: absolute;
+  top:86px;
+  left:4px;
+  width: 290px;
+  height: 100px;
+  transform: skew(5deg,5deg);
+  box-shadow: 5px 10px 20px #000;
+  z-index: -1;
+}
+.raiseAngle::after{
+  content: "";
+  position: absolute;
+  top:86px;
+  right: 4px;
+  width: 290px;
+  height: 100px;
+  transform: skew(-5deg,-5deg);
+  box-shadow: -5px 10px 20px #000;
+  z-index: -1;
 }
