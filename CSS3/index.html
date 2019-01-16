@@ -25,13 +25,34 @@
             </ul>
         </div>
         <div>
-            比如想写：background: linear-gradient(90deg, yellow, red);那么，兼容性写法如下，利用css的层叠生效机制把标准格式放在最下方，这样能确保标准的覆盖浏览器自带的
+            （1）浏览器兼容性机制：比如想写：background: linear-gradient(90deg, yellow,
+            red);那么，兼容性写法如下，利用css的层叠生效机制把标准格式放在最下方，这样能确保标准的覆盖浏览器自带的
             <ul>
                 <li>background: -webkit-linear-gradient(0deg, yellow, red);</li>
                 <li>background: -moz-linear-gradient(0deg, yellow, red);</li>
                 <li>background: -ms-linear-gradient(0deg, yellow, red);</li>
                 <li>background: -o-linear-gradient(0deg, yellow, red);</li>
                 <li>background: linear-gradient(90deg, yellow, red);</li>
+            </ul>
+        </div>
+        <div>
+            （2）浏览器回退机制：也是利用CSS的层叠生效机制，即在下方的会覆盖上方的，如果下方的不生效，就使用上方能生效的。为的是保证在低版本浏览器中网站也能运行，不至于完全挂掉。比如设置渐变时，在上方放一个非渐变
+            <ul>
+                <li>background: rgb(255, 128, 0);</li>
+                <li>background: -moz-linear-gradient(0deg, yellow, red);</li>
+                <li>background: -o-linear-gradient(0deg, yellow, red);</li>
+                <li>background: -webkit-linear-gradient(0deg, yellow, red);</li>
+                <li>background: linear-gradient(90deg, yellow, red);</li>
+            </ul>
+            另外也可以利用辅助类，或者css新特性@support，但慎用，因为好多不支持
+            <ul>
+                <li>h1 { color: gray; }</li>
+                <li>@supports (text-shadow: 0 0 .3em gray) {</li>
+                <li>h1 {</li>
+                <li>color: transparent;</li>
+                <li>text-shadow: 0 0 .3em gray;</li>
+                <li>}</li>
+                <li>}</li>
             </ul>
         </div>
     </div>
