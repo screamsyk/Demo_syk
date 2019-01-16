@@ -13,6 +13,7 @@
     <!--css3简介-->
     <div>
         <h2>CSS3简介</h2>
+        <h5>CSS3参考手册[推荐：https://www.css88.com/book/css/quicksearch.htm]</h5>
         <h5>CSS3是CSS的升级版本，3是版本号，目前主流浏览器都支持CSS3，除了IE9及以下版本</h5>
         <h5>为了知道浏览器是否支持某个css属性，可以通过 Can I Use ... ?（http://caniuse.com）这个网站进行查询</h5>
         <h5>不同浏览器需要不同的前缀，它表示该CSS属性或规则并未成为W3C标准，是浏览器的私有属性，为了良好的兼容性，最好加上前缀：</h5>
@@ -84,8 +85,21 @@
             <div class="RGBA"></div>
         </div>
         <div>
-            （2）线形渐变背景（linear-gradient(方向如从上往下to bottom,起始颜色,结束颜色)）
+            （2）HSLA（H:色调hua，S:饱和度saturation，L:亮度lightness，A:透明度Alpha）
+            <ul>
+                <li>色调hua：取值范围0~360，其中0或360代表红色，120代表绿色，240代表蓝色</li>
+                <li>饱和度saturation：取值范围：0.0%~100.0%</li>
+                <li>亮度lightness：取值范围：0.0%~100.0%</li>
+            </ul>
+            <div class="HSLA"></div>
+        </div>
+        <div>
+            （3）线形渐变背景（基本用法：linear-gradient(方向如从上往下to bottom,起始颜色,结束颜色)，详细的还是得看参考手册）
             <div class="linear_gradient"></div>
+        </div>
+        <div>
+            （4）径向渐变背景（基本用法：radial-gradient(circle at left top,起始颜色，结束颜色)，详细的还是看参考手册才行，太多了啊）
+            <div class="radial_gradient"></div>
         </div>
     </div>
 

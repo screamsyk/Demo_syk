@@ -37,6 +37,12 @@
   width: 100px;
   background-color: rgba(235, 160, 179, 0.5);
 }
+/*HSLA*/
+.HSLA{
+  height: 100px;
+  width: 100px;
+  background-color: hsla(180,50%,50%,1);
+}
 /*线形渐变背景*/
 .linear_gradient {
   height: 100px;
@@ -51,6 +57,12 @@
     green,
     gray
   );
+}
+/*线形渐变背景*/
+.radial_gradient{
+  height: 200px;
+  width: 300px;
+  background-image: radial-gradient(circle at 100px center,red 50px,transparent)
 }
 /*文字溢出*/
 .text_overflow {
