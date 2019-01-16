@@ -128,19 +128,27 @@
             <div class="background_origin"></div>
         </div>
         <div>
-            （2）背景图片裁剪（background-clip:border-box|padding-box|content-box|no-clip）
+            （2）背景图片定位（background-position，需要注意的是，设置不同类型的值，意义是不同的）
+            <ul>
+                <li>background-position:left center：使用left center等关键字，指的是对齐规则，而不是坐标规则。这里就代表背景图左对齐，垂直居中</li>
+                <li>background-position:50% 50%：使用百分比，指的是将图像本身（x%, y%）的那个点，与背景区域的（x%, y%）的那个点重合。所以这里就相当于垂直和水平居中</li>
+                <li>background-position:10px 10px：使用长度固定值，代表相对于左上的偏移量</li>
+            </ul>
+        </div>
+        <div>
+            （3）背景图片裁剪（background-clip:border-box|padding-box|content-box|no-clip）
             <div class="background_clip"></div>
         </div>
         <div>
-            （3）背景图大小（background-size:auto原始大小|长度值|百分比|cover等比缩放填满容器|contain等比缩放至每一边都完全在容器里面）
+            （4）背景图大小（background-size:auto原始大小|长度值|百分比|cover等比缩放填满容器|contain等比缩放至每一边都完全在容器里面）
             <div class="background_size"></div>
         </div>
         <div>
-            （4）多背景图
+            （5）多背景图
             <div class="multi_background"></div>
         </div>
         <div>
-            （5）导航背景菜单
+            （6）导航背景菜单
             <div class="background_menu">
                 <ul>
                     <li>首页</li>
@@ -494,6 +502,8 @@
                 <li>重置好样式，即把浏览器默认的样式设为我们想要的样式，避免浏览器的影响</li>
                 <li>一个简单的有语义的核心布局</li>
                 <li>给重要的网页元素使用简单的技巧，比如导航菜单之类元素</li>
+                <li>当图片（或其他元素）以行列式进行布局时，让视口的宽度来决定列的数量。弹性盒布局（即 Flexbox）或者 display: inline-block加上常规的文本折行行为，都可以实现这一点。
+                <li>在使用多列文本时，指定 column-width （列宽）而不是指定column-count （列数），这样它就可以在较小的屏幕上自动显示为单列布局</li>
             </ul>
         </div>
         <div>
@@ -567,6 +577,25 @@
             <div class="raiseAngle">
                 <span>翘边阴影</span>
             </div>
+        </div>
+        <div>
+            （6）半透明边框：使背景通过半透明边框透上来
+            <div>
+                方法一：单纯只利用border的透明色不行，因为透上来的是自己的本身背景，而不是父元素的背景。需要利用background-clip:padding-box对背景进行裁剪
+                <div class="alphaBorder-div">
+                    <div class="alphaBorder-border"></div>
+                </div>
+            </div>
+            <div>
+                方法二：可以利用box-shadow的扩展半径的半透明阴影实现，同时也可以实现多边框效果。
+                <div class="alphaBorder-div">
+                        <div class="alphaBorder"></div>
+                    </div>
+            </div>
+        </div>
+        <div>
+            （7）用一个元素实现边框内圆角、外直角效果：主要利用了border-radius，以及outline和box-shadow结合使用
+            <div class="innerCircleAngle"></div>
         </div>
     </div>
 

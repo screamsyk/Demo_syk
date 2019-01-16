@@ -612,3 +612,48 @@ li[attr*=AvalueB]{
   box-shadow: -5px 10px 20px #000;
   z-index: -1;
 }
+/*半透明边框*/
+.alphaBorder-div{
+  position: relative;
+  height: 400px;
+  width: 600px;
+  background:#6eb36c;
+}
+.alphaBorder-border{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 200px;
+  width: 300px;
+  margin-top: -100px;
+  margin-left: -150px;
+  background-color: #d2357d;
+  background-clip: padding-box;
+  border:20px solid hsla(0,0%,100%,0.5);
+}
+.alphaBorder{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 200px;
+  width: 300px;
+  margin-top: -100px;
+  margin-left: -150px;
+  background-color: #d2357d;
+  border:20px solid hsla(0,0%,100%,0.5);
+  box-shadow: 0px 0px 0px 20px hsla(0,0%,100%,0.5);
+}
+/*边框内圆角、外直角效果*/
+.innerCircleAngle{
+  height: 200px;
+  width: 300px;
+  margin: 20px;
+  background-color: #e26843;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  outline: 10px solid #aaa;
+  box-shadow: 0px 0px 0px 10px #aaa;
+}
