@@ -799,5 +799,5 @@ li[attr*=AvalueB]{
   background-image: linear-gradient(to right,#fb3 20%,transparent 0),
                     linear-gradient(to right,#655 20%,transparent 0),
                     linear-gradient(to right,#ab4 20%,transparent 0);
-  background-size: 83px 100%,43px 100%,67px 100%;
+  background-size: 83px 100%,41px 100%,61px 100%;
 }
