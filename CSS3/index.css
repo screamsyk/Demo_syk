@@ -836,3 +836,14 @@ li[attr*=AvalueB]{
   -webkit-animation: antAnimation 6s linear infinite forwards;
   animation: antAnimation 6s linear infinite forwards;
 }
+.antBorder-3{
+  border-width: 1px;
+  background-size: 110px 80px;
+  -webkit-animation: antAnimation 6s linear infinite forwards;
+  animation: antAnimation 6s linear infinite forwards;
+  -webkit-border-radius:50%;
+  -moz-border-radius:50%;
+  -ms-border-radius:50%;
+  -o-border-radius:50%;
+  border-radius:50%;
+}
