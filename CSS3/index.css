@@ -775,3 +775,29 @@ li[attr*=AvalueB]{
   background-size: 30px 30px;
   background-position: 0 0,-15px 15px,15px -15px,0 0;
 }
+/*伪随机背景*/
+.randomBackground{
+  display: inline-block;
+  height: 200px;
+  width: 400px;
+  background-color: #aaa;
+  margin: 10px;
+}
+.randomBackground-1{
+  background-image: linear-gradient(to right,#fb3 20%,#655 20%,#655 40%,#ab4 40%,#ab4 70%,  #f0e2bd 70%);
+  background-size: 80px 100%;
+}
+.randomBackground-2{
+  background-color: #f0e2bd;
+  background-image: linear-gradient(to right,#fb3 20%,transparent 0),
+                    linear-gradient(to right,#655 20%,transparent 0),
+                    linear-gradient(to right,#ab4 20%,transparent 0);
+  background-size: 80px 100%,40px 100%,60px 100%;
+}
+.randomBackground-3{
+  background-color: #f0e2bd;
+  background-image: linear-gradient(to right,#fb3 20%,transparent 0),
+                    linear-gradient(to right,#655 20%,transparent 0),
+                    linear-gradient(to right,#ab4 20%,transparent 0);
+  background-size: 83px 100%,43px 100%,67px 100%;
+}
