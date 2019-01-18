@@ -1098,3 +1098,64 @@ li[attr*=AvalueB]{
     stroke-dasharray: 157 314
   }
 }
+/*不规则投影*/
+.anomaly-shadow{
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  line-height: 200px;
+  text-align: center;
+  margin: 40px;
+}
+.anomaly-shadow-1{
+  position: relative;
+  background-color: #fb3;
+  box-shadow: 1px 1px 20px #000;
+}
+.anomaly-shadow-1::before{
+  position: absolute;
+  content: '';
+  top:50%;
+  right: -40px;
+  height: 40px;
+  width: 40px;
+  margin-top: -20px;
+  background-color: #fb3;
+}
+.anomaly-shadow-2{
+  position: relative;
+  background-color: #fb3;
+  filter:drop-shadow(1px 1px 10px #000) 
+}
+.anomaly-shadow-2::before{
+  position: absolute;
+  content: '';
+  top:50%;
+  right: -40px;
+  height: 40px;
+  width: 40px;
+  margin-top: -20px;
+  background-color: #fb3;
+}
+.anomaly-shadow-3{
+  position: relative;
+  background-image: linear-gradient(45deg,transparent 30px,#fb3 0);
+  box-shadow: 1px 1px 20px #000;
+}
+.anomaly-shadow-4{
+  position: relative;
+  background-image: linear-gradient(45deg,transparent 30px,#fb3 0);
+  filter:drop-shadow(1px 1px 10px #000) 
+}
+.anomaly-shadow-5{
+  box-sizing: border-box;
+  position: relative;
+  border:10px dashed #fb3;
+  box-shadow: 1px 1px 20px #000;
+}
+.anomaly-shadow-6{
+  box-sizing: border-box;
+  position: relative;
+  border:10px dashed #fb3;
+  filter:drop-shadow(1px 1px 10px #000) 
+}
