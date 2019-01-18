@@ -940,3 +940,161 @@ li[attr*=AvalueB]{
   background-size: 50% 50%;
   background-repeat: no-repeat;
 }
+.shape-6{
+  display: inline-block;
+  height: 180px;
+  width: 180px;
+  line-height: 180px;
+  text-align: center;
+  border: 10px solid #fff;
+  border-image: 1 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="3" height="3"  fill="#58a"><polygon points="1,0 2,0 3,1 3,2 2,3 1,3 0,2 0,1"></polygon></svg>')
+}
+.shape-7{
+    position: relative;
+    display: inline-block;
+    padding: .5em 1em .35em 1em;
+    color: white;
+    margin: 40px;
+}
+.shape-7::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background: #58a;
+  transform-origin: bottom;
+  transform: scaleY(1.3) perspective(.5em) rotateX(5deg);
+  -webkit-transform: scaleY(1.3) perspective(.5em) rotateX(5deg);
+  -moz-transform: scaleY(1.3) perspective(.5em) rotateX(5deg);
+  -ms-transform: scaleY(1.3) perspective(.5em) rotateX(5deg);
+  -o-transform: scaleY(1.3) perspective(.5em) rotateX(5deg);
+}
+.shape-8::before {
+  transform-origin: left;
+}
+.shape-9 {
+  position: relative;
+  display: inline-block;
+  width: 200px; 
+  height: 200px;
+  border-radius: 50%;
+  background: yellowgreen;
+  line-height: 200px;
+  text-align: center;
+  margin: 10px;
+  color: #fff;
+  background-image:linear-gradient(to right, transparent 50%, #655 0);
+}
+.shape-9::before {
+  position: absolute;
+  top:0;
+  left:50%;
+  content: '';
+  display: block;
+  width: 50%;
+  height: 100%;
+  border-radius: 0 100% 100% 0 / 50%;
+  background-color: inherit;
+  transform-origin: left;
+  animation: spin 3s linear infinite, bg 6s step-end infinite;
+  -webkit-animation: spin 3s linear infinite, bg 6s step-end infinite;
+}
+@keyframes spin {
+  from{
+    transform: rotate(0deg)  ;
+    -webkit-transform: rotate(0deg)  ;
+    -moz-transform: rotate(0deg)  ;
+    -ms-transform: rotate(0deg)  ;
+    -o-transform: rotate(0deg)  ;
+  }
+  to{
+    transform: rotate(180deg)  ;
+    -webkit-transform: rotate(180deg)  ;
+    -moz-transform: rotate(180deg)  ;
+    -ms-transform: rotate(180deg)  ;
+    -o-transform: rotate(180deg)  ;
+}
+}
+@keyframes bg {
+  50% { background: #655; }
+}
+.shape-10{
+  display: inline-block;
+  width: 200px; 
+  height: 200px;
+  line-height: 200px;
+}
+.shape-10 circle{
+  fill: yellowgreen;
+  stroke: #655;
+  stroke-width: 50;
+  stroke-dasharray: 30 20;/*虚线长度为30，间距为20*/
+}
+.shape-11{
+  display: inline-block;
+  width: 200px; 
+  height: 200px;
+  line-height: 200px;
+}
+.shape-11 circle{
+  fill: yellowgreen;
+  stroke: #655;
+  stroke-width: 50;
+  stroke-dasharray: 40 314;/*虚线间距为大于半径，如314，扇形区就出来了*/
+}
+.shape-12{
+  display: inline-block;
+  width: 200px; 
+  height: 200px;
+  line-height: 200px;
+}
+.shape-12 circle{
+  fill: yellowgreen;
+  stroke: #655;
+  stroke-width: 50;
+  stroke-dasharray: 40 314;/*虚线间距为大于半径，如314，扇形区就出来了*/
+}
+.shape-13{
+  display: inline-block;
+  width: 200px; 
+  height: 200px;
+  line-height: 200px;
+}
+.shape-13 .circle1{
+  fill: yellowgreen;
+  stroke: #655;
+  stroke-width: 50;
+  stroke-dasharray: 40 314;/*虚线间距为大于半径，如314，扇形区就出来了*/
+}
+.shape-13 .circle2{
+  fill: yellowgreen;
+}
+.shape-14{
+  display: inline-block;
+  width: 200px; 
+  height: 200px;
+  line-height: 200px;
+}
+.shape-14 .circle1{
+  fill: yellowgreen;
+  stroke: #655;
+  stroke-width: 50;
+  stroke-dasharray: 0 314;/*虚线间距为大于半径，如314，扇形区就出来了*/
+  transform: rotate(-90deg);
+  transform-origin: center;
+  animation: shape-14-animation 3s linear infinite;
+}
+.shape-14 .circle2{
+  fill: yellowgreen;
+}
+@keyframes shape-14-animation{
+  form{
+    stroke-dasharray: 0 314;
+  }
+  to{
+    stroke-dasharray: 157 314
+  }
+}
