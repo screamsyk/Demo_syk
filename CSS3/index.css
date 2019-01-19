@@ -1237,3 +1237,33 @@ li[attr*=AvalueB]{
   margin: -30px;
   z-index: -1;
 }
+/*折角效果*/
+.breakAngle-bg{
+  position: relative;
+  height: 300px;
+  width: 300px;
+  background-image: repeating-linear-gradient(45deg,#fb3,#fb3 15px,#fff 16px,#fff 30px);
+}
+.breakAngle{
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  height: 200px;
+  width: 200px;
+  line-height: 200px;
+  text-align: center;
+  color: #fff;
+  background-image: linear-gradient(200deg,transparent 15px,#58a 16px);
+}
+.breakAngle::before{
+  position: absolute;
+  content: '';
+  right: 0;
+  top: 0;
+  width:17px;
+  height: 45px;
+  background-image:linear-gradient(250deg,transparent 15px,#aaa 16px);
+  transform: translateX(-28px) rotate(-50deg);
+  transform-origin:left top;
+  box-shadow:-5px 5px 10px -4px #000;
+}
