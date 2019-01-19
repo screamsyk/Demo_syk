@@ -1267,3 +1267,15 @@ li[attr*=AvalueB]{
   transform-origin:left top;
   box-shadow:-5px 5px 10px -4px #000;
 }
+/*&字符美化*/
+.amp{
+  font-family: Baskerville, "Goudy Old Style", Garamond, Palatino, serif;
+  font-style: italic;
+}
+/*凸版印刷效果*/
+.raisedPrint{
+  padding: 20px;
+  background: hsl(210, 13%, 40%);
+  color: hsl(210, 13%, 75%);
+  text-shadow: 0 -1px 1px black;
+}
