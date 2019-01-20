@@ -1317,3 +1317,47 @@ li[attr*=AvalueB]{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/*隐藏鼠标指针*/
+.no-cursor{
+  cursor: none;
+}
+/*图文不可选中复制*/
+.not-copyed{
+  user-select: none;
+}
+/*宽度随其中最大不可断行元素的宽度*/
+.min-content{
+  max-width: min-content;
+  margin: auto;
+}
+/*精确控制表格列宽*/
+.table-1{
+  width: 600px;
+  margin: 20px;
+}
+.table-1 table{
+  border-collapse: collapse;
+}
+.table-1 tr{
+  border:1px solid #ddd;
+}
+.table-1 td{
+  border:1px solid #ddd;
+  padding: 5px 10px;
+}
+.table-2{
+  width: 600px;
+  margin: 20px;
+}
+.table-2 table{
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+.table-2 tr{
+  border:1px solid #ddd;
+}
+.table-2 td{
+  border:1px solid #ddd;
+  padding: 5px 10px;
+}
