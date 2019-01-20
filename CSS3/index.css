@@ -1279,3 +1279,28 @@ li[attr*=AvalueB]{
   color: hsl(210, 13%, 75%);
   text-shadow: 0 -1px 1px black;
 }
+/*文字外发光效果*/
+.text-shine{
+  height: 200px;
+  width: 200px;
+  text-align: center;
+  line-height: 200px;
+  background-color: #203;
+  color: #ffc;
+  font-size: 25px;
+  font-weight: bold;
+  text-shadow: 0 0 10px #ffc;
+}
+/*文字凸起效果*/
+.text-raised{
+  height: 200px;
+  width: 200px;
+  text-align: center;
+  line-height: 200px;
+  background-color: #58a;
+  color: #fff;
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  text-shadow: 1px 1px #aaa,1px 2px #aaa,2px 3px #aaa,2px 4px #aaa;
+}

@@ -722,6 +722,25 @@
             <div>（18）凸版印刷效果</div>
             <div class="raisedPrint">凸版印刷效果</div>
         </div>
+        <div>
+            <div>（19）文字外发光效果：主要利用text-shadow</div>
+            <div class="text-shine">文字外发光效果</div>
+        </div>
+        <div>
+            <div>（20）文字凸起光效果：主要利用多层text-shadow</div>
+            <div class="text-raised">文字凸起效果</div>
+        </div>
+        <div>
+            <div>（21）环形文字效果：主要利用svg的路径</div>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                    <path id="path1" d="M75,20 a1,1 0 0,0 100,0" />
+                </defs>
+                <text x="10" y="100" style="fill:red;">
+                    <textPath xlink:href="#path1">环形文字效果</textPath>
+                </text>
+            </svg>
+        </div>
     </div>
 
 </body>
