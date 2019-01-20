@@ -1304,3 +1304,16 @@ li[attr*=AvalueB]{
   letter-spacing: 5px;
   text-shadow: 1px 1px #aaa,1px 2px #aaa,2px 3px #aaa,2px 4px #aaa;
 }
+/*多行文本溢出效果*/
+.webkit-box{
+  height: 90px;
+  line-height: 30px;
+  width: 200px;
+  background-color: #58a;
+  color: #fff;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
