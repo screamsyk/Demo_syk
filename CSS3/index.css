@@ -1361,3 +1361,45 @@ li[attr*=AvalueB]{
   border:1px solid #ddd;
   padding: 5px 10px;
 }
+/*回弹效果*/
+.bounce-div{
+  height: 400px;
+  background-image: linear-gradient(to bottom,#c5e4f0,#fff);
+  border-bottom: 10px solid #9dcd1b;
+  padding: 10px;
+  padding-bottom: 0;
+}
+.bounce-ball{
+  width: 50px;
+  height: 50px;
+  background-image: radial-gradient(circle at 15px 15px,#fff,#ec5440);
+  border-radius: 50%;
+  animation: bounce 3s ease-in infinite;
+}
+@keyframes bounce {
+  60%, 80%, to {
+  transform: translateY(350px);
+  animation-timing-function: ease;
+  }
+  70% { transform: translateY(200px); }
+  90% { transform: translateY(310px); }
+}
+/*打字动画*/
+.typing-div{
+  margin: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  width: 460px;
+  animation: typing steps(23) 10s infinite,caret 1s steps(1) infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: .05em solid
+}
+@keyframes typing{
+  from{
+    width: 0;
+  }
+}
+@keyframes caret {
+  50% { border-color: transparent; }
+}
