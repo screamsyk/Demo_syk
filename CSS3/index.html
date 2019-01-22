@@ -808,6 +808,20 @@
             <div>（28）打字动画效果：主要是让容器的宽度成为动画的主体，并用steps把动画分成几帧，帧数取决于字的个数</div>
             <div class="typing-div">打字动画效果：主要是让容器的宽度成为动画的主体</div>
         </div>
+        <div>
+            <div>（29）纽扣效果：主要利用渐变背景制造纽扣大体形状，再使用伪类和box-shadow制造多个线孔，并使用svg弧形文字，以及变化属性</div>
+            <div class="clothes-button">
+                <div class="clothes-button-line"></div>
+                <svg width="100%" height="100%" viewBox="0 -8 100 100">
+                    <defs>
+                        <path d="M 0,50 a 50,50 0 1,1 0,.001" id="textpath1"></path>
+                    </defs>
+                    <text transform="rotate(-90,50,50)" class="clothes-button-text">
+                        <textPath startOffset="50%" xlink:href="#textpath1" baseline-shift="-.7em">CSS揭秘</textPath>
+                    </text>
+                </svg>
+            </div>
+        </div>
     </div>
 
 </body>

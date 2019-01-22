@@ -1403,3 +1403,76 @@ li[attr*=AvalueB]{
 @keyframes caret {
   50% { border-color: transparent; }
 }
+/*纽扣效果*/
+.clothes-button{
+  position: relative;
+  box-sizing: border-box;
+  height: 100px;
+  width: 100px;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.6);
+  background-color: #1f1a14;
+  background-image: radial-gradient(at 50% 5%, #2e281f, #1f1a14),
+  linear-gradient(#0f0d0a, #433a2d),
+  linear-gradient(#5c4f3d, #1c1812);
+  background-origin: content-box, padding-box, border-box;
+  background-clip: content-box, padding-box, border-box;
+  border: 5px solid transparent;
+  transition: all .25s;
+  color:#fff;
+  text-align: center;
+}
+.clothes-button::before{
+  content: '';
+  position: absolute;
+  top:50px;
+  left: 50px;
+  width: 10px;
+  height: 10px;
+  background: #000;
+  border-radius: 50%;
+  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.3),
+  -20px 0px #000, 
+  -20px 1px 1px rgba(255, 255, 255, 0.3),
+  -20px -20px #000, 
+  -20px -19px 1px rgba(255, 255, 255, 0.3),
+  0 -20px #000, 
+  0 -19px 1px rgba(255, 255, 255, 0.3);
+}
+.clothes-button::after,.clothes-button-line{
+  content: '';
+  position: absolute;
+  top:50px;
+  left: 50px;
+  height: 8px;
+  width: 30px;
+  border-radius: 2px;
+  background-color: #394c60;
+  background-image:linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent, transparent, rgba(0, 0, 0, 0.5)), 
+  linear-gradient(0deg, rgba(0, 0, 0, 0.1), transparent 50%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 80%);
+  background-size: 100% 4px;
+  transform-origin: 3.2px 3.8px;
+  transform: rotate(-135deg);
+  box-shadow: 1px 1px 4.5px rgba(0, 0, 0, 0.5);
+}
+.clothes-button-line{
+  transform: translateX(-17px) rotate(-45deg);
+}
+.clothes-button-text{
+  font-size: 17px;
+  text-anchor: middle;
+  letter-spacing: 5px;
+  color: black;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+.clothes-button:hover{
+  transform: scale(1.15);
+}
+.clothes-button:hover .clothes-button-text{
+  color: #ad9c85;
+  fill: currentColor;
+  stroke: currentColor;
+  text-shadow: 0 0 20px;
+}
