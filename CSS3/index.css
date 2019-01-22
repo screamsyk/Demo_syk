@@ -1567,3 +1567,59 @@ li[attr*=AvalueB]{
     translate(-50%, -50%);
   }
 }
+/*立方体*/
+.cube{
+  margin-top: 100px;
+  transform:perspective(500px);
+  transform-style:preserve-3d;
+  position: relative; 
+  transform:rotateX(-30deg) rotateY(30deg);
+  animation:myfirst 10s;
+  animation-iteration-count:infinite;
+  animation-direction:alternate;
+}
+.cube,.top,.bottom,.left,.right,.front,.back{
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  position: absolute;
+}
+.cube .top{
+  background-color: #ff0000;
+  transform:rotatex(90deg) translateZ(100px);
+  opacity: 0.5;
+}
+.cube .bottom{
+  background-color: #ff00ff;
+  transform:rotatex(90deg) translateZ(-100px);
+  opacity: 0.5;
+}
+.cube .left{
+  background-color: yellowgreen;
+  transform: rotateY(-90deg) translateZ(100px);
+  opacity: 0.5;
+
+}
+.cube .right{
+  background-color: green;
+  transform: rotateY(90deg) translateZ(100px);
+  opacity: 0.5;
+
+}
+.cube .front{
+  color:green;
+  background-color: blue;
+  transform: translateZ(100px);
+  opacity: 0.5;
+
+}
+.cube .back{
+  background-color: green;
+  transform: translateZ(-100px);
+  opacity: 0.5;
+}
+@keyframes myfirst
+{
+  0% {transform:rotateX(-30deg) rotateY(30deg);}
+  100% {transform:rotateX(360deg) rotateY(360deg);}
+}
