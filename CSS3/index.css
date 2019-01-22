@@ -1513,3 +1513,57 @@ li[attr*=AvalueB]{
 .photo-frame:hover{
   animation-play-state: running;
 }
+/*环形路径动画*/
+.annular-path{
+  display: inline-block;
+  height: 300px;
+  width: 300px;
+  margin: 20px;
+  background-color: #fb3;
+  border-radius: 50%;
+  text-align: center;
+}
+.annular-path-user-1{
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-image: url(photo.jpg);
+  box-shadow: -1px 1px 5px #333;
+  transform: rotate(0deg);
+  transform-origin: center 150px;
+  animation: annular-animation-1 3s ease infinite;
+}
+@keyframes annular-animation-1{
+  to{
+    transform: rotate(360deg)
+  }
+}
+.annular-path-user-2{
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-image: url(photo.jpg);
+  box-shadow: -1px 1px 5px #333;
+  animation: annular-animation-2 3s ease infinite;
+}
+/*从0deg到360deg顺时针，从360deg到0deg逆时针*/
+@keyframes annular-animation-2{
+  from {
+    transform: translate(50%, 150px)
+    rotate(0deg)
+    translate(-50%, -150px)
+    translate(50%,50%)
+    rotate(360deg)
+    translate(-50%,-50%)
+  }
+  to {
+    transform: translate(50%, 150px)
+    rotate(360deg)
+    translate(-50%, -150px)
+    translate(50%,50%)
+    rotate(0deg)
+    translate(-50%, -50%);
+  }
+}
