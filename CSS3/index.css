@@ -1476,3 +1476,40 @@ li[attr*=AvalueB]{
   stroke: currentColor;
   text-shadow: 0 0 20px;
 }
+/*可移动照片的相框*/
+.photo-frame{
+  position: relative;
+  height: 300px;
+  width: 300px;
+  margin: 20px;
+  border:20px solid transparent;
+  border-radius: 50%;
+  box-shadow: 5px 5px 10px 1px #0f0d0a,6px 6px 10px #aaa inset;
+  background-image:url(photo.jpg),url(frame.png);
+  background-origin: padding-box,border-box;
+  background-clip: padding-box,border-box;
+  background-position: 0 0,left top;
+  animation: photo-animation 5s linear infinite forwards alternate;
+  animation-play-state: paused;
+}
+.photo-frame::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px dashed #291e0a;
+  margin: -10px;
+  border-radius: 50%;
+  -webkit-filter: drop-shadow(1px 1px 1px rgba(255, 255, 255, 0.5));
+  filter:drop-shadow(1px 1px 1px rgba(255, 255, 255, 0.5));
+}
+@keyframes photo-animation{
+  to{
+    background-position: 100% 0,0 100%;
+  }
+}
+.photo-frame:hover{
+  animation-play-state: running;
+}
