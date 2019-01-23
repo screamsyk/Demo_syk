@@ -827,7 +827,7 @@
             <div class="photo-frame"></div>
         </div>
         <div>
-            <div>（31）沿环形路径移动的动画：用两次位移变形（translate）来 代 替 变 形 原 点（transform-origin）的作用，实现只用一个元素就能保持元素在旋转时自己本身的朝向。</div>
+            <div>（31）沿环形路径移动的动画：用两次位移变形（translate）来 代 替 变 形 原 点（transform-origin）的作用，实现只用一个元素就能保持元素在旋转时自己本身的朝向。原理是每个变形函数并不是只对这个元素进行变形，而且会把整个元素的【坐标系统】进行变形，从而影响所有后续的变形操作。这也说明了为什么变形函数的顺序是很重要的</div>
             <div class="annular-path">
                 <div class="annular-path-user-1"></div>
             </div>
