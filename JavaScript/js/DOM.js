@@ -113,3 +113,7 @@ document.getSelection();//获取选中的内容，和window.selection一样
 Element.id;//id属性，区分大小写
 Element.tagName;//标签名称
 Element.dir;//元素节点中的文本方向，和document.dir类似
+Element.accessKey;//用于读写分配给当前元素的快捷键
+Element.draggable;//元素是否可拖动，可读写
+Element.lang;//元素的语言设置，可读写
+Element.tabIndex;
