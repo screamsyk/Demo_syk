@@ -95,3 +95,21 @@ document.createDocumentFragment();//创建DOM片段，存于内存中，不属�
 document.createEvent();//创建一个事件对象，参数是事件类型（参考http://wangdoc.com/javascript/events/index.html）
 document.addEventListener();//添加事件监控
 document.removeEventListener();//移除事件监控
+document.dispatchEvent();//触发事件
+document.hasFocus();//返回是否有元素被激活或获得焦点
+document.adoptNode();//将某个节点及其子节点，从原来所在的文档或DocumentFragment里面移除，归属当前document对象，返回插入后的新节点
+document.importNode();//从原来所在的文档或DocumentFragment里面，拷贝某个节点及其子节点，让它们归属当前document对象，返回插入后的新节点
+document.createNodeIterator();//创建子节点遍历器
+document.createTreeWalker();//创建子树遍历器
+document.execCommand();//如果document.designMode属性设为on，那么整个文档用户可编辑；如果元素的contenteditable属性设为true，那么该元素可编辑。这两种情况下，可以使用document.execCommand()方法，改变内容的样式，比如document.execCommand('bold')会使得字体加粗
+document.queryCommandEnabled();//查询是否支持某个方法
+document.queryCommandSupported();//返回一个布尔值，表示当前是否可用某种样式改变
+document.getSelection();//获取选中的内容，和window.selection一样
+
+
+//--------------------Element节点，即各个html元素节点--------------------
+
+//(1)Element的属性
+Element.id;//id属性，区分大小写
+Element.tagName;//标签名称
+Element.dir;//元素节点中的文本方向，和document.dir类似
