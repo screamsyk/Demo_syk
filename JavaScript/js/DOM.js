@@ -21,6 +21,11 @@
 //---节点树的第一层只有一个元素（Element）节点<html>标签，即根元素节点root node，所以在css中可以用:root{}来指代html{}
 //---除了根节点外，其余节点都有父节点关系（parentNode）、子节点关系（childNodes）、同级节点关系（sibling）
 
+//(5)节点集合
+//---DOM 提供两种节点集合，用于容纳多个节点：NodeList和HTMLCollection。
+//---NodeList可以存放各个类型的节点
+//---HTMLCollection只能存放html元素节点
+
 
 //--------------------document对象-----------------------
 
@@ -69,4 +74,24 @@ document.designMode;//文档是否可编辑，默认为off，设为on后，整�
 document.implementation;//用于创建独立于当前文档的新的 Document 对象，主要用来新生成整个文档
 
 //(6)document的方法
-
+document.open();//会先清除整个文档的内容，再使文档处于可写状态
+document.close();//关闭打开的文档，使文档不可写
+document.write();//向打开的文档中写入内容
+document.writeln();//向打开的文档中写入内容，只是每次写入时，会加上一个换行符\n，但这个换行符只对代码显示有效，如果要让html的显示内容换行，还是得用<br>
+document.querySelector();//参数为css选择器，用于获取对应的元素节点，如果有多个，则返回第一个；如果没有，则返回null
+document.querySelectorAll();//参数为css选择器，可以有多个，用逗号隔开，用于获取多个对应的元素节点。如果参数为*，则返回文档中所有的元素节点
+document.getElementsByTagName();//根据标签名称获取元素节点
+docuemnt.getElementsByClassName();//根据class属性值来获取元素节点
+docuemnt.getElementsByName();//根据name属性值来获取元素节点
+document.getElementById();//根据id属性值来获取元素节点，这个方法比document.querySelector()更快，但只能在document上用，不能在其他元素节点上用。
+document.elementFromPoint();//返回页面指定位置最上层的元素节点
+document.elementsFromPoint();//返回页面指定位置所有的元素节点
+document.caretPositionFromPoint();//返回一个 CaretPosition 对象，包含了指定坐标点在节点对象内部的位置信息。CaretPosition 对象就是光标插入点的概念，用于确定光标点在文本对象内部的具体位置
+document.createElement();//创建元素节点
+document.createTextNode();//创建文本节点，主要用于将如""<p></p>"等含标签的文本插入文档中，而不会被浏览器解析成元素节点，也可以避免XXS攻击
+document.createAttribute();//创建属性节点，创建后可以用元素节点的setAttributeNode()方法把属性节点加到元素节点上
+document.createComment();//创建注释节点
+document.createDocumentFragment();//创建DOM片段，存于内存中，不属于当前文档。常用于修改文档中复杂的DOM结构，在插入文档中，以免引发浏览器不停的渲染。
+document.createEvent();//创建一个事件对象，参数是事件类型（参考http://wangdoc.com/javascript/events/index.html）
+document.addEventListener();//添加事件监控
+document.removeEventListener();//移除事件监控
