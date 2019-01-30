@@ -8,10 +8,10 @@
 //(3)节点
 //---DOM的最小组成单元，就是节点（node）。各个节点组成了DOM树
 //---节点的类型有7种，而且都继承于一个浏览器提供的原生节点Node对象：
-//---Document：DOM树的顶层节点，如document
+//---Document：DOM树的顶层节点，如document，代表整个DOM树
 //---DocumentType：doctype标签，如<!DOCTYPE html>
 //---Element：网页中的各个标签元素，如<html>、<body>等。我们知道元素有开始标签、内容、结束标签组成，而元素实际上就是元素节点，我们只是为了方便叫，就直接叫元素，而不叫元素节点了。
-//---Attribute：网页中各个标签元素的属性，如class="right"
+//---Attribute：网页中各个标签元素的HTML属性，如class="right"
 //---Text：标签之间或标签之内包含的文本
 //---Comment：注释
 //---DocumentFragment：文档片段
@@ -109,11 +109,87 @@ document.getSelection();//获取选中的内容，和window.selection一样
 
 //--------------------Element节点，即各个html元素节点--------------------
 
-//(1)Element的属性
+//(1)Element的特性属性
 Element.id;//id属性，区分大小写
 Element.tagName;//标签名称
 Element.dir;//元素节点中的文本方向，和document.dir类似
 Element.accessKey;//用于读写分配给当前元素的快捷键
 Element.draggable;//元素是否可拖动，可读写
 Element.lang;//元素的语言设置，可读写
-Element.tabIndex;
+Element.tabIndex;//当前元素在 Tab 键遍历时的顺序，为-1的话表示不会tab到此元素
+Element.title;//元素的title属性
+
+//(2)Element的状态属性
+Element.hidden;//元素是否可见（可读写），注意与CSS设置是独立的，而且CSS的设置级别更高，即如果CSS中设置display:none，那么设置了Element.hidden=false也没用
+Element.contentEditable;//元素的内容是否可编辑（可读写）
+Element.isContentEditable;//返回元素的内容是否可编辑（只读）
+Element.attributes;//返回类数组对象，包含元素的各个HTML属性（即在元素开始标签上写了的属性，注意要与对象的属性区分开哦）
+Element.className;//返回元素的class属性值
+Element.classList;//返回一个类数组对象，可以用来获取class属性值中class的个数，以及对class进行增删改等操作
+Element.dataset;//返回一个对象，包含元素的所有“data-”前缀的自定义属性，可以用来读写这些自定义属性
+Element.innerHTML;//返回元素内部的html代码（可读写）
+Element.outerHTML;//返回包含元素在内的所有html代码（可读写），注意当元素没有父元素时，使用outerHTML来赋值会报错
+Element.style;//用于读取元素的style属性，但不能读写class里设置的style
+Element.children;//返回一个类数组对象，包含元素的所有子元素。注意这个只包含元素节点，不包含其他类型的节点
+Element.childElementCount;//返回子元素的个数，与Element.children.length一样
+Element.firstElementChild;//返回当前元素的第一个元素子节点
+Element.lastElementChild;//返回最后一个元素子节点
+Element.nextElementSibling;//返回当前元素节点的后一个同级元素节点
+Element.previousElementSibling;//返回当前元素节点的前一个同级元素节点
+
+//(3)Element的长度、距离属性
+Element.clientHeight;//以盒模型来看，返回的是元素边框内在浏览器客户端显示的高度（即content的显示高度和padding加起来）
+Element.scrollHeight;//以盒模型来看，返回的是元素边框内的滚动高度（即content的实际高度和padding加起来）
+/**
+ *  单位：px，且始终为整数
+ *  只对块级元素有效，行内元素始终返回0
+ *  如果有水平滚动条，还要减去水平滚动条的高度
+ *  注意document.documentElement（即html元素节点）的clientHeight为浏览器窗口高度（即视口高度），document.body.clientHeight才是内容的实际高度，都不包含滚动条。
+ *  注意document.documentElement.scrollHeight和document.body.scrollHeight一样
+ *  元素的scrollHeight只包含元素的content实际高度和padding。就算设置overflow:hidden，返回的也包含了溢出的部分
+ * */
+Element.clientWidth;//与clientHeight类似，只不过一个是高度，一个是宽度
+Element.scrollWidth;//与scrollHeight类似，只不过一个是高度，一个是宽度
+Element.clientLeft;//返回元素的左侧边框的宽度
+Element.clientTop;//返回元素的顶部边框的宽度
+Element.scrollLeft;//返回元素水平滚动条，距离元素边框内，左侧的距离（可读写，当然要存在水平滚动条才能生效）
+Element.scrollTop;//返回元素垂直滚动条，距离元素边框内，顶部的距离（可读写，当然要存在垂直滚动条才能生效）
+Element.offsetParent;//返回最靠近当前元素，且CSS属性中position不为'static'的上层元素。
+/**
+ * 该属性主要用于确定子元素位置偏移的计算基准，Element.offsetTop和Element.offsetLeft就是offsetParent元素计算的
+ * 如果元素是不可见的（display属性为none），或者位置是固定的（position属性为fixed），则offsetParent属性返回null
+ * 如果元素的所有上层节点的position属性都是static，则Element.offsetParent属性指向<body>元素
+ * */
+Element.offsetHeight;//以盒模型来看，返回的是元素除了margin以外的在浏览器客户端显示的高度（即content的显示高度、padding、滚动条、border加起来）
+Element.offsetWidth;//与offsetHeight类似，只不过一个是高度，一个是宽度
+Element.offsetLeft;//返回元素距离其offsetParent边框内，左侧的距离
+Element.offsetTop;//返回元素距离其offsetParent边框内，顶部的距离
+
+//(4)Element的操作HTML属性的方法（这是操作HTML属性的标准方法，一般来说最好都用这个）
+Element.hasAttributes();//返回元素是否有HTML属性
+Element.hasAttribute();//返回元素是否有某个HTML属性
+Element.getAttribute();//获取元素的某个HTML属性值
+Element.setAttribute();//设置元素的某个HTML属性值
+Element.removeAttribute();//删除元素的某个HTML属性值
+Element.getAttributeNames();//返回当前元素的所有HTML属性的名称
+
+//(5)Element的常规方法
+Element.querySelector();
+Element.querySelectorAll();
+Element.getElementsByClassName();
+Element.getElementsByTagName();//这4个方法与document的方法一样，不同点在于查询的范围在元素内部
+Element.closest();//参数为CSS选择器，返回匹配该选择器的、最接近当前节点的一个祖先节点（包括当前节点本身）
+Element.matches();//参数为CSS选择器，返回此元素是否匹配对应的选择器
+Element.addEventListener();
+Element.removeEventListener();
+Element.dispatchEvent();//这3个方法与document的方法一样，不同点在于事件的目标是当前元素，而不是document了
+Element.scrollIntoView();//滚动元素到浏览器的可视区域
+Element.getBoundingClientRect();//返回一个对象，包含元素节点的大小、位置等信息，基本上就是 CSS 盒状模型的所有信息
+Element.getClientRects();//返回一个类似数组的对象，里面是当前元素在页面上形成的所有矩形（所以方法名中的Rect用的是复数）。每个矩形都有bottom、height、left、right、top和width六个属性，表示它们相对于视口的四个坐标，以及本身的高度和宽度
+Element.insertAdjacentElement();//在相对于当前元素的指定位置，插入一个新的元素节点
+Element.insertAdjacentHTML();
+Element.insertAdjacentText();
+Element.remove();//移除此元素节点
+Element.focus();//用于将当前页面的焦点，转移到此元素上
+Element.blur();//用于将焦点从当前元素移除
+Element.click();//在当前元素上模拟一次点击
