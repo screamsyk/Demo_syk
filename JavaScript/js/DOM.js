@@ -92,7 +92,7 @@ document.createTextNode();//创建文本节点，主要用于将如""<p></p>"等
 document.createAttribute();//创建属性节点，创建后可以用元素节点的setAttributeNode()方法把属性节点加到元素节点上
 document.createComment();//创建注释节点
 document.createDocumentFragment();//创建DOM片段，存于内存中，不属于当前文档。常用于修改文档中复杂的DOM结构，在插入文档中，以免引发浏览器不停的渲染。
-document.createEvent();//创建一个事件对象，参数是事件类型（参考http://wangdoc.com/javascript/events/index.html）
+document.createEvent();//创建一个事件对象，参数是事件类型，如UIEvents、MouseEvents、MutationEvents、HTMLEvents
 document.addEventListener();//添加事件监控
 document.removeEventListener();//移除事件监控
 document.dispatchEvent();//触发事件
@@ -217,7 +217,115 @@ EventTarget.dispatchEvent();//参数为Event对象，用于触发对应的事件
 
 //(4)事件代理
 //---由于事件的存在冒泡阶段，所以可以把事件的监听函数设置父元素上，这样有多个子元素的就不用重复设置了，这种方法称为【事件代理】
-//---如果想阻止事件的传播，可以用event对象的stopPropagation()方法
-//---如果想取消这个事件，则可以用event对象的stopImmediatePropagation()方法
+event.stopPropagation();//阻止事件的传播
+event.stopImmediatePropagation();//使事件不再触发，但当前的还是会触发
+event.preventDefault();//完全取消这个事件，就像没有发生过
 
+//(5)Event对象
+//---事件触发时，会生成一个事件对象，作为参数传给监听函数。所有的事件对象都是Event对象的实例
+//---Event对象本身是一个构造函数，可以用来生成event对象实例。注意和document.createEvent()的使用要区分开
+var event = new Event('click', {//事件种类
+    bubbles: true,//是否冒泡，默认false，事件只能在捕获阶段执行监听函数，而addEventListener添加的监听函数默认在冒泡阶段执行，所以一般得设为true
+    cancelable: false//是否可取消
+})
+document.dispatchEvent(event);//触发事件。可以用目标元素的dispatchEvent()方法触发对应的事件
+event.preventDefault();//取消事件。一旦事件被取消，就好像从来没有发生过，不会触发浏览器对该事件的默认行为。
 
+//(6)Event实例对象的属性
+event.type;//事件的类型
+event.bubbles;//返回是否冒泡（只读）
+event.cancelable;//返回是否可取消（只读）
+event.eventPhase;//事件所处的阶段（0：未发生，1：捕获阶段，2：目标阶段，3：冒泡阶段）
+event.cancelBubble;//是否可阻止冒泡（可读写）
+event.defaultPrevented;//返回是否被取消
+event.target;//指向事件的目标节点。如click事件中，始终指向被点击的节点
+event.currentTarget;//指向事件在捕获阶段或冒泡阶段时，监听函数对应的当前节点。如click事件中，可能是被点击的节点，也可能是其父节点
+event.timeStamp;//返回一个毫秒时间戳，表示事件发生的时间。它是相对于网页加载成功开始计算的
+event.isTrusted;//返回事件是否是用户产生的，而不是利用脚本产生的
+event.detail;//这个只有浏览器的 UI （用户界面）事件才具有。比如对于click和dblclick事件，Event.detail是鼠标按下的次数（1表示单击，2表示双击，3表示三击）；对于鼠标滚轮事件，Event.detail是滚轮正向滚动的距离，负值就是负向滚动的距离，返回值总是3的倍数
+
+//(7)Event实例对象的方法
+event.preventDefault();//取消浏览器对当前事件的默认行为。前提是event.cancelable为true，并且不会阻止事件的传播
+event.stopPropagation();//阻止事件的在DOM之间的传播。不会触发其他节点上的事件监听函数，但事件还是会触发当前节点的各个监听函数
+event.stopImmediatePropagation();//立即阻止事件的传播。阻止同一个事件的其他监听函数被调用，不论是哪个节点。
+event.composedPath();//返回一个数组，成员是事件的最底层节点和依次冒泡经过的所有上层节点
+event.initEvent();//用于初始化通过document.createEvent()方法生成的事件。注意new Event()生成的事件相对于已经执行了这个了
+
+//(8)鼠标事件的种类
+"click";//鼠标单击（这里通常是左键）
+"dblclick";//鼠标双击
+"mousedown";//鼠标按下
+"mouseup";//释放按下的鼠标
+"mousemove";//鼠标移动
+"mouseenter";//鼠标进入目标节点时触发，进入其子节点时不触发
+"mouseover";//鼠标进入目标节点时触发，进入其子节点时也会触发
+"mouseout";//鼠标离开目标节点时触发，离开其子节点也会触发
+"mouseleave";//鼠标离开目标节点时才触发，离开其子节点不会触发
+"contextmenu";//浏览器上下文菜单出现前触发（通常是按鼠标右键，或者按上下文菜单按钮时）
+"wheel";//鼠标滚轮滚动
+
+//(9)MouseEvent对象
+var mouseEvent = new MouseEvent('click', {//鼠标事件种类
+    screenX: 0,//鼠标相对于屏幕的水平位置（单位像素），默认值为0，设置该属性不会移动鼠标。
+    screenY: 0,//鼠标相对于屏幕的垂直位置（单位像素），默认值为0，设置该属性不会移动鼠标。
+    clientX: 0,//鼠标相对于程序窗口的水平位置（单位像素）
+    clientY: 0,//鼠标相对于程序窗口的垂直位置（单位像素）
+    ctrlKey: false,//是否同时按下了ctrl键
+    shiftKey: false,//是否同时按下了shift键
+    altKey: false,//是否同时按下了alt键
+    metaKey: false,//是否同时按下了meta键（Mac 键盘是一个四瓣的小花，Windows 键盘是 Windows 键）
+    button: 0,//按下了鼠标上的哪一个键（0：主键[通常为左键]，1：辅助键[通常为中间键]，2：次要键[通常为右键]）
+    buttons: 0,//按下了鼠标上的哪些键（0：没有按下任何键，1：主键[通常为左键]，2：次要键[通常为右键]，3：同时按下了左键和右键，4：辅助键[通常为中间键]）
+    relatedTarget: null//节点对象
+})
+mouseEvent.screenX;
+mouseEvent.screenY;
+mouseEvent.clientX;
+mouseEvent.clientY;
+mouseEvent.altKey;
+mouseEvent.ctrlKey;
+mouseEvent.metaKey;
+mouseEvent.shiftKey;
+mouseEvent.button;
+mouseEvent.buttons;
+mouseEvent.movementX;//返回当前位置与上一个mousemove事件之间的水平距离（单位像素）
+mouseEvent.movementY;//返回当前位置与上一个mousemove事件之间的垂直距离（单位像素）
+mouseEvent.offsetX;//返回鼠标位置与目标节点左侧的padding边缘的水平距离（单位像素）
+mouseEvent.offsetY;//返回鼠标位置与目标节点左侧的padding边缘的垂直距离（单位像素）
+mouseEvent.pageX;//返回鼠标位置与文档左侧边缘的距离（单位像素）
+mouseEvent.pageY;//返回鼠标位置与文档顶部边缘的距离（单位像素）
+mouseEvent.relatedTarget;//返回事件的相关节点
+mouseEvent.getModifierState();//参数为表示功能键的字符串，返回是否按下了指定的键，如大写键“CapsLock”
+
+//(10)WheelEvent对象
+var wheelEvent = new WheelEvent('wheel', {
+    deltaX: 0.0,//滚轮的水平滚动量
+    deltaY: 0.0,//滚轮的垂直滚动量
+    deltaZ: 0.0,//滚轮的Z轴滚动量
+    deltaMode: 0,//表示相关的滚动事件的单位（0：像素，1：行，2：页）
+})
+
+//(11)键盘事件的种类
+"keydown";//按下键盘
+"keypress";//按下有值的键。如Ctrl、Alt、Shift、Meta等不会触发。后于“keydown”触发
+"keyup";//释放按下的键盘
+//---当一直按着键很久才放，就会触发"keydown"-"keypress"-"keydown"-"keypress"-......-"keyup"
+
+//(12)KeyboardEvent对象
+var keyboardEvent = new KeyboardEvent('keydown', {
+    key: '',//当前按下的键
+    code: '',//当前按下的键的字符串形式
+    location: '',//当前按下的键的位置
+    ctrlKey: false,//是否同时按下了ctrl键
+    shiftKey: false,//是否同时按下了shift键
+    altKey: false,//是否同时按下了alt键
+    metaKey: false,//是否同时按下了meta键（Mac 键盘是一个四瓣的小花，Windows 键盘是 Windows 键）
+    repeat: false,//是否重复按键
+})
+KeyboardEvent.getModifierState();//返回一个布尔值，表示是否按下或激活指定的功能键。它的常用参数如下。
+"Alt";//Alt 键
+"CapsLock";//大写锁定键
+"Control"//Ctrl 键
+"Meta";//Meta 键
+"NumLock";//数字键盘开关键
+"Shift";//Shift 键
