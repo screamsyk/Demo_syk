@@ -43,7 +43,7 @@ document.documentElement;//返回根元素（Element）节点，一般是<html>�
 document.head;//<head>节点
 document.body;//<body>节点
 document.scrollingElement;//文档的滚动元素节点，即真正在滚动的元素，标准模式下为<html>节点，兼容模式下为<body>节点，没有滚动则为null
-document.activeElement;//获取当前焦点的元素节点，如<input>、<textarea>等，没有则返回<body>节点或null
+document.activeElement;//获取当前焦点的元素节点，如<input>、<textarea>等，没有则返回<body>节点或null。利用此对象的selectionStart、selectionEnd、selectionDirection可以做到在特定位置插入文本等
 document.fullscreenElement;//当前以全屏状态显示的元素节点，没有则为null。根据这个就可以进行是否全屏的判定
 
 //(3)document的节点集合属性
@@ -251,7 +251,10 @@ event.stopImmediatePropagation();//立即阻止事件的传播。阻止同一个
 event.composedPath();//返回一个数组，成员是事件的最底层节点和依次冒泡经过的所有上层节点
 event.initEvent();//用于初始化通过document.createEvent()方法生成的事件。注意new Event()生成的事件相对于已经执行了这个了
 
-//(8)鼠标事件的种类
+
+//-----------------------------鼠标事件----------------------------
+
+//(1)鼠标事件的种类
 "click";//鼠标单击（这里通常是左键）
 "dblclick";//鼠标双击
 "mousedown";//鼠标按下
@@ -264,7 +267,7 @@ event.initEvent();//用于初始化通过document.createEvent()方法生成的�
 "contextmenu";//浏览器上下文菜单出现前触发（通常是按鼠标右键，或者按上下文菜单按钮时）
 "wheel";//鼠标滚轮滚动
 
-//(9)MouseEvent对象
+//(2)MouseEvent对象
 var mouseEvent = new MouseEvent('click', {//鼠标事件种类
     screenX: 0,//鼠标相对于屏幕的水平位置（单位像素），默认值为0，设置该属性不会移动鼠标。
     screenY: 0,//鼠标相对于屏幕的垂直位置（单位像素），默认值为0，设置该属性不会移动鼠标。
@@ -297,7 +300,7 @@ mouseEvent.pageY;//返回鼠标位置与文档顶部边缘的距离（单位像�
 mouseEvent.relatedTarget;//返回事件的相关节点
 mouseEvent.getModifierState();//参数为表示功能键的字符串，返回是否按下了指定的键，如大写键“CapsLock”
 
-//(10)WheelEvent对象
+//(3)WheelEvent对象
 var wheelEvent = new WheelEvent('wheel', {
     deltaX: 0.0,//滚轮的水平滚动量
     deltaY: 0.0,//滚轮的垂直滚动量
@@ -305,13 +308,16 @@ var wheelEvent = new WheelEvent('wheel', {
     deltaMode: 0,//表示相关的滚动事件的单位（0：像素，1：行，2：页）
 })
 
-//(11)键盘事件的种类
+
+//--------------------------键盘事件-----------------------
+
+//(1)键盘事件的种类
 "keydown";//按下键盘
 "keypress";//按下有值的键。如Ctrl、Alt、Shift、Meta等不会触发。后于“keydown”触发
 "keyup";//释放按下的键盘
 //---当一直按着键很久才放，就会触发"keydown"-"keypress"-"keydown"-"keypress"-......-"keyup"
 
-//(12)KeyboardEvent对象
+//(2)KeyboardEvent对象
 var keyboardEvent = new KeyboardEvent('keydown', {
     key: '',//当前按下的键
     code: '',//当前按下的键的字符串形式
@@ -329,3 +335,83 @@ KeyboardEvent.getModifierState();//返回一个布尔值，表示是否按下或
 "Meta";//Meta 键
 "NumLock";//数字键盘开关键
 "Shift";//Shift 键
+
+
+//-------------------------进度事件---------------------------
+
+//(1)进度事件的种类
+//---进度事件是用来描述资源加载（或文件上传）的进度的。主要由 AJAX 请求、<img>、<audio>、<video>、<style>、<link>等外部资源的加载触发，继承了ProgressEvent接口
+"abort";//用户终止资源加载。由于错误导致终止的话不属于这个事件
+"error";//由于错误导致资源无法加载
+"load";//加载成功
+"loadstart";//开始加载
+"loadend";//结束加载。后于abort、error、load触发
+"progress";//正在加载。在加载过程中不断触发
+"timeout";//加载超时
+
+//(2)ProgressEvent对象
+var progressEvent = new ProgressEvent('load', {
+    lengthComputable: false,//加载的总量是否可以计算
+    loaded: 0,//已经加载的量
+    total: 0,//需要加载的量。前提是lengthComputable为true
+})
+
+
+//------------------------表单事件-------------------------
+
+//(1)表单事件的种类
+"input";//当<input>、<select>、<textarea>的值发生改变时触发。input事件会连续触发，比如用户每按下一次按键，就会触发一次input事件
+"select";//当在<input>、<textarea>里面选中文本时触发
+"change";//当<input>、<select>、<textarea>的值发生改变时触发。change事件不会连续触发，比如输入汉字时，得字输入完确定后才会触发change
+"invalid";//当表单元素的值不满足校验条件时触发
+"reset";//当<form>的所有值重置为默认值时触发
+"submit";//当<form>提交时触发
+
+//(2)InputEvent对象（主要用来描述input事件）
+var inputEvent = new inputEvent('input', {
+    inputType: 'insertText',//发生变更的类型
+    data: '',//插入的字符串
+    dataTransfer: '',//插入的富文本
+})
+
+
+//------------------------触摸事件-------------------------
+
+//(1)触摸事件的种类
+"touchstart";//开始触摸
+"touchend";//结束触摸
+"touchmove";//移动触摸点
+"touchcancel";//触摸点取消时触发
+
+//(2)触摸操作
+//---浏览器的触摸API分为三个部分：
+"Touch";//一个触摸点。可能是一根手指，也可能是一根触摸笔。
+"TouchList";//多个触摸点的集合，是个类数组对象，包含了多个Touch
+"TouchEvent";//触摸事件
+
+//(3)Touch对象
+var touch = new Touch({
+    identifier: '',//触摸点的唯一id
+    target: null,//触摸的目标节点
+    clientX: 0,//触摸点距离程序窗口的水平距离
+    clientY: 0,//触摸点距离程序窗口的垂直距离
+    screenX: 0,//触摸点距离屏幕的水平距离
+    screenY: 0,//触摸点距离屏幕的垂直距离
+    pageX: 0,//触摸点距离网页文档的水平距离
+    pageY: 0,//触摸点距离网页文档的垂直距离
+    radiusX: 0,//触摸点周围受到影响的椭圆范围的 X 轴半径
+    radiusY: 0,//触摸点周围受到影响的椭圆范围的 Y 轴半径
+    rotationAngle: 0,//触摸点周围受到影响的椭圆的旋转角度，0~90度
+    force: 0,//触摸点的压力值，0~1
+})
+
+//(4)TouchEvent对象
+var touchEvent = new TouchEvent('touchmove', {
+    touches: [],//TouchList实例，代表所有的当前处于活跃状态的触摸点
+    targetTouches: [],//TouchList实例，代表所有处在触摸的目标元素节点内部、且仍然处于活动状态的触摸点
+    changedTouches: [],//TouchList实例，代表本次触摸事件的相关触摸点
+    ctrlKey: false,//是否同时按下了ctrl键
+    shiftKey: false,//是否同时按下了shift键
+    altKey: false,//是否同时按下了alt键
+    metaKey: false,//是否同时按下了meta键（Mac 键盘是一个四瓣的小花，Windows 键盘是 Windows 键）
+})
