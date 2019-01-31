@@ -415,3 +415,13 @@ var touchEvent = new TouchEvent('touchmove', {
     altKey: false,//是否同时按下了alt键
     metaKey: false,//是否同时按下了meta键（Mac 键盘是一个四瓣的小花，Windows 键盘是 Windows 键）
 })
+
+
+//------------------------拖拽事件---------------------------
+
+//(1)拖拽事件的种类
+"drag";//拖拉过程中，在被拖拉的节点上持续触发（相隔几百毫秒）
+"dragstart";//开始拖拽
+"dragend";//结束拖拽
+"dragenter";//拖拽进入当前节点时触发
+"dragover";//拖拽到当前节点上方时触发
