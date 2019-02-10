@@ -420,8 +420,85 @@ var touchEvent = new TouchEvent('touchmove', {
 //------------------------拖拽事件---------------------------
 
 //(1)拖拽事件的种类
-"drag";//拖拉过程中，在被拖拉的节点上持续触发（相隔几百毫秒）
-"dragstart";//开始拖拽
-"dragend";//结束拖拽
-"dragenter";//拖拽进入当前节点时触发
-"dragover";//拖拽到当前节点上方时触发
+"drag";//拖拉过程中，在被拖拉的节点上持续触发（相隔几百毫秒）（事件对象：被拖拉的节点）
+"dragstart";//开始拖拽（事件对象：被拖拉的节点）
+"dragend";//结束拖拽（事件对象：被拖拉的节点）
+"dragenter";//拖拽进入目标节点时触发（事件对象：用于放置被拖拉的节点的节点，称为目标节点）
+"dragover";//拖拽到目标节点上时触发（事件对象：目标节点）
+"dragleave";//拖拉操作离开目标节点时触发（事件对象：目标节点）
+"drop";//被拖拉的节点或选中的文本，释放到目标节点时触发（事件对象：目标节点）
+
+//(2)注意点
+//---拖拽时，鼠标事件等不会发生，只会发生拖拽事件
+//---为了让目标节点能接受拖拽的节点，需要阻止目标节点的默认的dropover事件，因为默认不允许放置节点
+
+//(3)DataTransfer对象
+//---所有拖拉事件的实例都有一个DragEvent.dataTransfer属性，用于读写需要传递的数据
+var dataTransfer = new DataTransfer();
+dataTransfer.dropEffect;//用来设置放下（drop）被拖拉节点时的效果，会影响到拖拉经过相关区域时鼠标的形状
+'copy';//复制被拖拉的节点
+'move';//移动被拖拉的节点
+'link';//创建指向被拖拉的节点的链接
+'none';//无法放置被拖拉的节点
+dataTransfer.effectAllowed;//设置本次拖拉中允许的效果
+'copy';//复制被拖拉的节点
+'move';//移动被拖拉的节点
+'link';//创建指向被拖拉节点的链接
+'copyLink';//允许copy或link
+'copyMove'//允许copy或move
+'linkMove'//允许link或move
+'all'//允许所有效果
+'none'//无法放下被拖拉的节点
+'uninitialized'//默认值，等同于all
+dataTransfer.files;//一个 FileList 对象，包含一组本地文件，可以用来在拖拉操作中传送（可以用来实现图片拖拽上传效果）
+dataTransfer.types;//一个只读的数组，每个成员是一个字符串，里面是拖拉的数据格式（通常是 MIME 值）。比如，如果拖拉的是文字，对应的成员就是text/plain
+dataTransfer.items;//一个类似数组的只读对象，每个成员就是本次拖拉的一个对象
+dataTransfer.setData();//设置拖拽时的数据
+dataTransfer.getData();//获取指定的数据
+dataTransfer.clearData();//清除指定的数据
+dataTransfer.setDragImage();//用于设置拖拽过程中，显示的图片，用于跟随鼠标一起移动，表示被拖动的节点。（浏览器会自动创建，我们通过这个可以自定义）
+
+
+//----------------------其他事件-------------------------
+
+//(1)资源事件
+"beforeunload";//在窗口、文档、各种资源将要卸载前触发。通常用于窗口关闭时提示，如下：
+window.addEventListener('beforeunload', function (event) {
+    event.returnValue = '你确定离开吗？';
+})
+"unload";//在窗口关闭或者document对象将要卸载时触发
+"load";//在页面或某个资源加载成功时触发
+"error";//事件是在页面或资源加载失败时触发。
+"abort";//事件在用户取消加载时触发
+
+//(2)session历史事件（默认情况下，浏览器会在当前会话（session）缓存页面，当用户点击“前进/后退”按钮时，浏览器就会从缓存中加载页面）
+"pageshow";//在页面加载时触发，包括第一次加载和从缓存加载两种情况（后于load事件触发）
+"pagehide";//在离开页面时触发
+"popstate";//在浏览器的history对象的当前记录发生显式切换时触发
+"hashchange";//在 URL 的 hash 部分（即#号后面的部分，包括#号）发生变化时触发，其事件实例具有两个特有属性：oldURL属性和newURL属性
+
+//(3)网页状态事件
+"DOMContentLoaded";//网页下载并解析完成以后，即DOM结构解析完成（先于load事件触发）
+"readystatechange";//当 Document 对象和 XMLHttpRequest 对象的 readyState 属性发生变化时触发
+
+//(4)窗口事件
+"scroll";//在文档或文档元素滚动时触发，主要出现在用户拖动滚动条
+"resize";//改变浏览器窗口大小时触发，主要发生在window对象上面
+"fullscreenchange";//在进入或推出全屏状态时触发，该事件发生在document对象上面
+"fullscreenerror";//事件在浏览器无法切换到全屏状态时触发
+
+//(5)剪切板事件
+"cut";//将选中的内容从文档中移除，加入剪贴板时触发
+"copy";//进行复制动作时触发
+"paste";//剪贴板内容粘贴到文档后触发
+
+//(6)焦点事件
+"focusin";//元素节点将要获得焦点时触发，发生在focus事件之前。该事件会冒泡
+"focus";//元素节点获得焦点后触发，该事件不会冒泡
+"focusout";//元素节点将要失去焦点时触发，发生在blur事件之前。该事件会冒泡
+"blur";//元素节点失去焦点后触发，该事件不会冒泡
+
+//(7)自定义事件
+var customEvent=new CustomEvent('fly',{
+    detail:null,//事件的附带属性
+})
