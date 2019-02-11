@@ -258,3 +258,19 @@ document.cookie = 'fontSize=14; '//cookie的属性一旦写入，就不能读取
 //(10)删除cookie
 document.cookie = 'fontSize=;expires=Thu, 01-Jan-1970 00:00:01 GMT';//只能通过设置它的expires属性为一个过去的日期。
 
+
+//------------------------Web storage API----------------------------
+
+//(1)Web storage API主要是指localStorage和sessionStorage，两个对象都实现了Storage接口
+//---sessionStorage保存的数据用于浏览器的一次会话（session），当会话结束（通常是窗口关闭），数据被清空
+//---localStorage保存的数据长期存在
+//---除了保存时间长短不一致，其他都一样，所以统一介绍localStorage对象就行了
+
+//(2)Storage接口的属性
+localStorage.length;//返回保存的数据项个数
+
+//(3)Storage接口的方法
+localStorage.setItem('key', 'value');//存入数据。直接用localStorage对象属性赋值也行
+
+
+
