@@ -261,7 +261,7 @@ document.cookie = 'fontSize=;expires=Thu, 01-Jan-1970 00:00:01 GMT';//只能通�
 
 //------------------------Web storage API----------------------------
 
-//(1)Web storage API主要是指localStorage和sessionStorage，两个对象都实现了Storage接口
+//(1)Web storage API主要是指localStorage和sessionStorage，两个对象都实现了Storage接口，大小在在 2.5MB 到 10MB 之间
 //---sessionStorage保存的数据用于浏览器的一次会话（session），当会话结束（通常是窗口关闭），数据被清空
 //---localStorage保存的数据长期存在
 //---除了保存时间长短不一致，其他都一样，所以统一介绍localStorage对象就行了
@@ -271,6 +271,20 @@ localStorage.length;//返回保存的数据项个数
 
 //(3)Storage接口的方法
 localStorage.setItem('key', 'value');//存入数据。直接用localStorage对象属性赋值也行
+localStorage.getItem('key');//"value"，读取数据。直接用localStorage对象属性读取也行
+localStorage.key(0);//"key"，返回对应位置的键
+localStorage.removeItem('key');//移除数据
+localStorage.clear();//清除所有数据
 
+//(4)storage事件
+window.addEventListener('storage', function (e) {
+    e.key;//发生变动的键名
+    e.newValue;//新的键值
+    e.oldValue;//旧的键值
+    e.storageArea;//键值对所在的对象
+    e.url;//触发storage事件的那个网页的网址
+});
+//---注意：该事件有一个很特别的地方，就是它不在导致数据变化的当前页面触发，而是在同一个域名的其他窗口触发。
+//---当其中的一个窗口导致储存的数据发生改变时，只有在其他窗口才能观察到监听函数的执行。可以通过这种机制，实现多个窗口之间的通信。
 
 
