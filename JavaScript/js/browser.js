@@ -139,3 +139,78 @@ screen.pixelDepth;//屏幕的色彩位数
 screen.colorDepth;//基本等同于screen.pixelDepth
 screen.orientation;//屏幕的方向。landscape-primary表示横放，landscape-secondary表示颠倒的横放，portrait-primary表示竖放，portrait-secondary表示颠倒的竖放
 
+
+//-----------------------location对象，提供对浏览器URL的操作----------------------------------
+
+//(1)location对象的属性，假设地址为："http://user:passwd@www.example.com:4097/path/a.html?x=111#part1"
+location.href === "http://user:passwd@www.example.com:4097/path/a.html?x=111#part1";//整个URL
+location.origin === "http://user:passwd@www.example.com:4097";//从协议到端口（只读）
+location.protocol === "http:";//协议，包含冒号
+location.host === "www.example.com:4097";//主机，如果端口是http默认的80，或者是https默认的443，就会省略
+location.hostname === "www.example.com";//主机名
+location.port === "4097";//端口
+location.pathname === "/path/a.html";//路径部分，从根路径/开始。
+location.search === "?x=111";//查询字符串部分，从问号?开始
+location.hash === "#part1";//片段字符串部分，从#开始
+location.username === "user";//主机前的用户名
+location.password === "passwd";//主机前的密码
+
+//(2)location对象的属性中，只有origin只读，其他的可读写，如果修改了loaction.href，则会立即跳转到对应的地址，常用于跳到对应的锚点
+
+//(3)location对象的方法
+location.assign("www.example.com");//用于跳转到指定的网址，若网址格式无效，则报错
+location.replace("www.example.com");//用于替换网址，并立即跳转。此方法会在history中删除之前的网址，无法返回之前的网页，常用于跳转到手机版网页
+location.reload();//刷新网页，若提供参数true，则代表清空缓存刷新
+location.toString();//相当于location.href
+
+//(4)URL的编码和解码
+//---网页的URL只能包含合法的字符，如下
+//---元字符：; , / ? : @ & = + $ #
+//---语义字符：a-z A-Z 0-9 - _ . ! ~ * ' ( )
+//---除了以上这些合法字符外，其他的都需要进行编码转义，编码规则：用%加上字符在系统中的默认编码对应的十六进制，如下：
+"春节" === "%E6%98%A5%E8%8A%82";//春=>E6 98 A5=>%E6%98%A5；节=>E8 8A 82=>%E8%8A%82
+encodeURI("春节+");//%E6%98%A5%E8%8A%82+，将元字符和语义字符之外的字符，都进行编码转义
+decodeURI("%E6%98%A5%E8%8A%82+");//春节+，解码encodeURL()编码的字符
+encodeURIComponent("春节+");//%E6%98%A5%E8%8A%82%2B，将语义字符之外的字符，都进行编码转义，即会编码元字符
+decodeURIComponent("%E6%98%A5%E8%8A%82%2B");//春节+，解码encodeURIComponent()编码的字符
+
+
+//---------------------URL对象，用来构造、解析和编码 URL------------------------
+
+//(1)<a><area>元素对象，都可以用URL对象实例的属性和方法等
+
+//(2)URL对象本身是一个构造函数，用于生产URL实例
+var url = new URL('http://www.example.com/index.html');
+url.href;//http://www.example.com/index.html
+
+//(3)URL对象的实例属性与与location对象的属性基本一致，只多了一个
+url.searchParams;//返回一个URLSearchParams实例，用来操作查询参数
+
+//(4)URL对象的静态方法
+URL.createObjectURL();//用来为上传/下载的文件、流媒体文件生成一个临时的 URL 字符串。这个字符串代表了File对象或Blob对象的 URL
+URL.revokeObjectURL();//由于用URL.createObjectURL()生成的URL实例会一直在内存中，所以需要手动用revokeObjectURL()来释放
+
+
+//----------------URLSearchParams对象，用来构造、解析和编码URL的查询字符串（学了这个就不要傻乎乎的按?去拆分URL了~v~）-------------------------------
+
+//(1)URLSearchParams对象作为构造函数
+var params = new URLSearchParams('?foo=1&bar=2');//参数为查询字符串
+var params = new URLSearchParams([['foo', 1], ['bar', 2]]);//参数为二维数组
+var params = new URLSearchParams({ 'foo': 1, 'bar': 2 });//参数为对象
+params.get('foo');//"1"
+
+//(2)URLSearchParams对象的实例方法
+params.toString();//"foo=1&bar=2"，注意不会有?
+params.append('baz', 3);//"foo=1&bar=2&baz=3"，增加查询参数
+params.delete('bar');//"foo=1&baz=3"，删除对应的查询参数
+params.has('bar');//false，是否有对应的查询参数
+params.set('bar', 3);//"foo=1&baz=3&bar=3"，设置或增加对应的查询参数
+params.get('bar');//"3"，获取对应的查询参数
+params.getAll('bar');//如果bar有多个，则返回多元素数组
+params.sort();//对参数进行排序，排序规则为：按Unicode编码从小到大的方式，从左到右排列
+params.keys();//返回参数名组成的遍历器
+params.values();//返回参数值组成的遍历器
+params.entries();//返回键值对组成的遍历器
+
+
+
