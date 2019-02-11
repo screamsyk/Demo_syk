@@ -213,4 +213,48 @@ params.values();//返回参数值组成的遍历器
 params.entries();//返回键值对组成的遍历器
 
 
+//------------------Cookie-------------------
+
+//(1)Cookie是服务器保存在浏览器客户端的一小段文本信息，每个cookie大小一般不超过4KB，浏览器每次向服务器发送请求都会带上这个cookie信息
+
+//(2)Cookie的作用：用来分辨两个请求是否来自同一个浏览器，以及用来保存一些状态信息，有以下一些使用场景
+//---对话（session）管理：保存登录、购物车等需要记录的信息
+//---个性化：保存用户的偏好，比如网页的字体大小、背景色等等
+//---追踪：记录和分析用户行为。
+
+//(3)Cookie并不适用于作为客户端存储，容量很小（4KB），缺乏数据操作接口，而且会影响性能。客户端储存应该使用 Web storage API 和 IndexedDB
+
+//(4)Cookie的信息，如Set-Cookie: key1=value1; Expires=Wed, 21 Oct 2015 07:28:00 GMT; domain=example.com; path=/blog;Secure;Http Only;
+"key1";//Cookie 的名字
+"value1";//Cookie 的值（真正的数据写在这里面）
+"Expires";//到期时间，格式为UTC格式，可以用Date实例方法toUTCString()进行转换，如果不设置，则只存在于当前会话，浏览器窗口一关就没有了
+"Max-Age";//存在秒数，优先级大于Expires
+"domain";//所属域名（默认是当前域名）
+"path";//生效的路径（默认是当前网址）
+"Secure";//浏览器只有在加密协议 HTTPS 下，才能将这个 Cookie 发送到服务器
+"HttpOnly";//该 Cookie 无法通过 JavaScript 脚本拿到
+
+//(5)单个域名设置的 Cookie 不应超过30个，每个 Cookie 的大小不能超过4KB。超过限制以后，Cookie 将被忽略，不会被设置
+
+//(6)浏览器的同源政策规定，两个网址只要域名相同和端口相同，就可以共享 Cookie。注意协议可以不同
+
+//(7)操作cookie，由于缺乏数据操作接口，所以现在很多是一些人封装的cookie的操作方法，但基本的使用时用document.cookie进行操作
+
+//(8)读取cookie
+document.cookie;//"foo=bar;baz=bar"，返回非HttpOnly的cookie，每个Cookie之间用;分隔
+var cookies = document.cookie.split(';');
+for (var i = 0; i < cookies.length; i++) {
+    console.log(cookies[i]);
+}
+
+//(9)写入cookie
+document.cookie = 'test1=hello';//document.cookie一次只能写入一个 Cookie，而且写入并不是覆盖，而是添加
+document.cookie = 'test2=world';//document.cookie读写行为的差异（一次可以读出全部 Cookie，但是只能写入一个 Cookie）
+document.cookie = 'fontSize=14; '//cookie的属性一旦写入，就不能读取了
+    + 'expires=' + someDate.toGMTString() + '; '
+    + 'path=/subdirectory; '
+    + 'domain=*.example.com';
+
+//(10)删除cookie
+document.cookie = 'fontSize=;expires=Thu, 01-Jan-1970 00:00:01 GMT';//只能通过设置它的expires属性为一个过去的日期。
 
