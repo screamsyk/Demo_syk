@@ -288,3 +288,30 @@ window.addEventListener('storage', function (e) {
 //---当其中的一个窗口导致储存的数据发生改变时，只有在其他窗口才能观察到监听函数的执行。可以通过这种机制，实现多个窗口之间的通信。
 
 
+//--------------------------History对象---------------------------
+
+//(1)history对象记录了当前窗口所访问过的所有页面网址
+
+//(2)history对象的属性
+history.length;//网址数量
+history.state;//History 堆栈最上层的状态值
+
+//(3)history对象的方法
+history.back();//移动到上一个网址
+history.forward();//移动到下一个网址
+history.go();//移动到指定网址
+history.go(-1);//等同于history.back()
+history.go(0);//刷新网页，等同于location.reload()
+history.go(1);//等同于history.forward()
+history.pushState(//在历史中添加一条记录
+    null,//state：一个与添加的记录相关联的状态对象，主要用于popstate事件。不需要则填null
+    "",//title: 新页面的标题
+    "",//url: 新页面的网址，但跨域的网址会报错
+);
+history.replaceState();//参数与pushState一样，用于修改记录
+
+//(4)popstate事件
+//---当浏览历史history改变时，就会触发此事件
+window.addEventListener('popstate',function(e){
+    e.state;//对应状态对象，也可通过history.state获取当前的
+})
