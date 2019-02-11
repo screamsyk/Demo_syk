@@ -212,7 +212,7 @@ EventTarget.dispatchEvent();//参数为Event对象，用于触发对应的事件
 //(3)监听函数内部的this指向的是对应的DOM元素节点对象，且事件会在子元素和父元素之间传播，传播阶段分为以下 3 个：
 //---第一阶段：从window对象传播到目标节点（上层传到底层），捕获事件，称为【捕获阶段】
 //---第二阶段：在目标节点上触发，触发事件，称为【目标阶段】
-//---第三阶段：从目标节点传播会window对象（底层传到上层），事件冒泡，会导致同个事件在多个节点上触发，称为【冒泡阶段】
+//---第三阶段：从目标节点传播回window对象（底层传到上层），事件冒泡，会导致同个事件在多个节点上触发，称为【冒泡阶段】
 //---监听函数默认在【冒泡阶段】执行，通过addEventListener可以指定在什么阶段执行监听函数
 
 //(4)事件代理
@@ -499,6 +499,6 @@ window.addEventListener('beforeunload', function (event) {
 "blur";//元素节点失去焦点后触发，该事件不会冒泡
 
 //(7)自定义事件
-var customEvent=new CustomEvent('fly',{
-    detail:null,//事件的附带属性
+var customEvent = new CustomEvent('fly', {
+    detail: null,//事件的附带属性
 })
