@@ -6,7 +6,7 @@ const style = {
     zoom: 7.5,//数字，表示地图的缩放层级
     bearing: 45,//地图绕空间坐标系 x 轴的旋转角度
     pitch: 45,//地图绕空间坐标系 z 轴的旋转角度
-    sprite: 'mapbox://sprites/mapbox/bright-v8',//图形图像的加载地址模板
+    sprite: 'mapbox://sprites/mapbox/bright-v8',//一个加载小图片的地址模板，常用于渲染background-pattern, fill-pattern, line-pattern,fill-extrusion-pattern and icon-image时
     glyphs: 'mapbox://fonts/mapbox/{fontstack}/{range}.pbf',//字形的地址模板
     transition: {//过渡效果
         duration: 300,
