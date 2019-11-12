@@ -1,1 +1,10 @@
-print('hello python')
+print('字符串测试')
+print('hello',"python")
+print('hello\npython')
+print(r'hello\npython')
+print('''hello
+python
+''')
+print(r'''hello\n
+python
+''')
